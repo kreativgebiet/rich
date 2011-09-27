@@ -7,11 +7,11 @@ require "rich/version"
 Gem::Specification.new do |s|
   s.name        = "rich"
   s.version     = Rich::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Rich."
-  s.description = "TODO: Description of Rich."
+  s.authors     = ["Bastiaan Terhorst"]
+  s.email       = ["bastiaan@perceptor.nl"]
+  s.homepage    = "https://github.com/bastiaanterhorst/rich"
+  s.summary     = "Rich is an opinionated WYSIWYG editor for Rails based on CKEditor."
+  s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
