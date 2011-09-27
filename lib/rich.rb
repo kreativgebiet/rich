@@ -4,8 +4,10 @@ module Rich
   autoload :ViewHelper, 'rich/view_helper'
   
   # Configuration defaults (these map directly to ckeditor settings)
-  mattr_accessor :skin
-  @@skin = "office2003"
+  mattr_accessor :editor
+  @@editor = {
+    :asetting => 'avalue'
+  }
   # End configuration defaults
   
   def self.setup
