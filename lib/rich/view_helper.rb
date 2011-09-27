@@ -22,26 +22,19 @@ module Rich
       textarea_options[:class] = (options.delete(:class) || 'editor').to_s
       textarea_options[:style] = "width:#{width};height:#{height}"
       
-      # ckeditor_options = {:width => width, :height => height }.
-      #   merge(options.delete(:ckeditor_options)||{})
-
       # merge options with Rich.ckeditor
       editor_options = Rich.editor.merge(options[:editor] || {})
+      editor_options[:width]  = width;
+      editor_options[:height] = height;
             
       output_buffer = ActiveSupport::SafeBuffer.new
       output_buffer << ActionView::Base::InstanceTag.new(object, field, self, var).to_text_area_tag(textarea_options.merge(options))
       
-      
-      # output_buffer << javascript_tag("if (CKEDITOR.instances['#{element_id}']) { 
-      #   CKEDITOR.remove(CKEDITOR.instances['#{element_id}']);}
-      #   CKEDITOR.replace('#{element_id}', { #{ckeditor_applay_options(ckeditor_options)} });")
-      
+      # lookin' like wealth.
       output_buffer << javascript_tag("$(function(){$('##{element_id}').ckeditor(function() { }, #{editor_options.to_json} );});")
       output_buffer << editor_options.to_json
       
       output_buffer
-      
-      #$('textarea.ckeditor').ckeditor();"
     end
     
     protected

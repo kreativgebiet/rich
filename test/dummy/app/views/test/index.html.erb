@@ -1,3 +1,8 @@
 hello
 
-<%= rich_text_area(:post, :body, :width => '800px', :height => '400px') %>
+<%= rich_text_area(:post, :body, :width => '800px', :height => '400px', :editor => { :toolbar => [['Bold', 'Italic', '-','NumberedList', 'BulletedList', '-', 'Image', '-', 'Link', 'Unlink'],['Styles','Format'],['PasteFromWord'],['Source', 'ShowBlocks']]}) %>
+
+
+<br><br><br><br>
+
+<%= rich_text_area(:post, :excerpt, :width => '800px', :height => '400px') %>
