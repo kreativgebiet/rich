@@ -12,3 +12,5 @@ gemspec
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem 'jquery-rails'
