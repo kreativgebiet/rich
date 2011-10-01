@@ -2,7 +2,7 @@ module Rich
   module ViewHelper
     include ActionView::Helpers
     
-    def rich_text_area(object, field, options = {})
+    def rich_textarea(object, field, options = {})
       options = options.dup.symbolize_keys
       
       var = options.delete(:object) if options.key?(:object)
@@ -32,7 +32,6 @@ module Rich
       
       # lookin' like wealth.
       output_buffer << javascript_tag("$(function(){$('##{element_id}').ckeditor(function() { }, #{editor_options.to_json} );});")
-      output_buffer << editor_options.to_json
       
       output_buffer
     end

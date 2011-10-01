@@ -1,0 +1,16 @@
+/*	This file defines the default set of CSS styles available in the Rich editor
+	Override these defaults by creating the file app/assets/stylesheets/rich/editor.css
+*/
+
+p.caption {
+	font-style: italic;
+	color: grey;
+}
+
+img.left {
+	float: left;
+}
+
+img.right {
+	float: right;
+}

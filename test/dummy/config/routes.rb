@@ -1,6 +1,14 @@
-Rails.application.routes.draw do
+Dummy::Application.routes.draw do
+  resources :posts
 
-  mount Rich::Engine => "/rich"
-  
-  root :to => 'test#index'
+  Rails.application.routes.draw do
+
+  resources :posts
+
+    mount Rich::Engine => "/rich"
+    
+    resources :test
+    root :to => 'post#index'
+  end
+
 end

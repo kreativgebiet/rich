@@ -13,4 +13,6 @@ gemspec
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'rails',     :git => 'git://github.com/rails/rails.git', :branch=>'3-1-stable'
 gem 'jquery-rails'
+gem 'formtastic'

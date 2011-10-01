@@ -1,3 +1,10 @@
 = Rich
 
+TODO
+* implement file uploads
+* implement listing of files using CKeditors "browse server" feature
+* skin ckeditor to make it nicer <- custom skin to fit active admin
+* change the image and link dialogs to be friendlier
+* implement loading of custom styles
+
 This project rocks and uses MIT-LICENSE.
