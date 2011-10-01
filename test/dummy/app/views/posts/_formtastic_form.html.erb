@@ -1,0 +1,10 @@
+<%= semantic_form_for @post do |f| %>
+   <%= f.inputs do %>
+     <%= f.input :name %>
+     <%= f.input :title %>
+     <%= f.input :content, :as => :rich %>
+   <% end %>
+   <%= f.buttons do %>
+     <%= f.commit_button %>
+   <% end %>
+ <% end %>
