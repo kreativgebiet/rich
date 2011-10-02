@@ -8,7 +8,7 @@ Dummy::Application.routes.draw do
     mount Rich::Engine => "/rich"
     
     resources :test
-    root :to => 'post#index'
+    root :to => 'posts#index'
   end
 
 end

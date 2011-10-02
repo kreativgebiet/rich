@@ -7,6 +7,10 @@ p.caption {
 	color: grey;
 }
 
+span.highlight {
+	background: yellow;
+}
+
 img.left {
 	float: left;
 }

@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.rich_text_area :content %>
+    <%= f.rich_text_area :content, :editor => { :filebrowserBrowseUrl => '/browse', :filebrowserUploadUrl => '/upload' } %>
   </div>
   <div class="actions">
     <%= f.submit %>
