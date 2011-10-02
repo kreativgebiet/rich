@@ -1,0 +1,12 @@
+<h1>This is the filebrowser</h1>
+
+<%= form_for(@file, :html => { :multipart => true }) do |f| %>
+  <p><%= f.select :category, Article.categories %></p>
+  
+  <p><%= f.file_field :file %></p>
+  <%= f.submit("Upload") %>
+<% end %>
+
+<div class="test">
+  
+</div>
