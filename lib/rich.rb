@@ -30,6 +30,7 @@ module Rich
     ActionView::Base.send(:include, Rich::ViewHelper)
     ActionView::Helpers::FormBuilder.send(:include, Rich::FormBuilder)
     
+    # TODO: upgrade to formtastic 2 when Active Admin supports it
     if Object.const_defined?("Formtastic")
       Formtastic::SemanticFormHelper.builder = Rich::CustomFormBuilder
     end
