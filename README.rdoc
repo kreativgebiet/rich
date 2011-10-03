@@ -1,9 +1,5 @@
 = Rich
 
-TODO
-* implement file uploads
-* implement listing of files using CKeditors "browse server" feature
-* skin ckeditor to make it nicer <- custom skin to fit active admin
-* implement loading of custom styles
+This project is incomplete and non-functional.
 
 This project rocks and uses MIT-LICENSE.
