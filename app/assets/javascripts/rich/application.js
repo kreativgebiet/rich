@@ -23,9 +23,9 @@
 
 $(function() {
 	
-	$('.test').live('click', function(e){
-		//var url = $(this).parents('div.gal-item').data('url');
-		var url = "http://www.google.nl/images/nav_logo89.png";
+	$('#images li img').live('click', function(e){
+		//var url = $(this).data('url');
+		var url = $(this).attr('src');
 		
 		// TODO: this is very ckeditor centric and should be rewritten to also handle the case
 		// where files are browsed/uplaoded form a generic form
