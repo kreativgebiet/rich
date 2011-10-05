@@ -2,20 +2,49 @@
 //= require ckeditor/ckeditor
 //= require ckeditor/adapters/jquery
 
-// clean up dialogs
-CKEDITOR.on('dialogDefinition', function(ev) {
-		var dialogName = ev.data.name;
-		var dialogDefinition = ev.data.definition;
- 
-		if (dialogName == 'image') {
-			dialogDefinition.removeContents('Upload');
-			
-			var tab = dialogDefinition.getContents( 'info' );
-			tab.remove('txtAlt');
-			tab.remove('basic');
-		}
+function addQueryString( url, params ) {
+	var queryString = [];
+	if (!params) return url;
+	else {
+		for (var i in params) queryString.push(i + "=" + encodeURIComponent( params[i]));
+	}
+	return url + ( ( url.indexOf( "?" ) != -1 ) ? "&" : "?" ) + queryString.join( "&" );
+}
+	
+// implement a basic plugin to insert rich images
+
+// accepted properties:
+// richImageUrl - path to image browser action
+// richImageAllowedStyles - list of allowed image styles, defaults to all
+// richImageOwnerType
+// richImageOwnerId
+
+CKEDITOR.plugins.add('richimage',
+{
+    init: function(editor) {
+	
+		// register a callback that actually inserts a selected image
+        editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url){
+			this.insertHtml('<img src="' + url + '" alt="" />');
+		}, editor );
 		
-		if (dialogName == 'link') {
-			dialogDefinition.removeContents('upload');
-		}
-	});
+		// clean up the callback
+		editor.on( 'destroy', function () { CKEDITOR.tools.removeFunction( this._.insertImagefn ); } );
+
+		editor.addCommand( 'insertRichImage', {
+			exec: function(editor) {
+				var params = {};
+				params.CKEditor = editor.name;
+				params.CKEditorFuncNum = editor._.insertImagefn;
+				var url = addQueryString(editor.config.richImageUrl, params );
+				editor.popup(url, 900, 400);
+			}
+		});
+		
+		editor.ui.addButton( 'richImage', {
+			label : editor.lang.common.image,
+			command: 'insertRichImage',
+			icon: '/assets/rich/images.png'
+		});
+    }
+});

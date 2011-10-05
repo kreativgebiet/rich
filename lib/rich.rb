@@ -9,14 +9,17 @@ module Rich
   mattr_accessor :editor
   @@editor = {
     :stylesSet  =>  [],
-    :extraPlugins => 'stylesheetparser',
+    :extraPlugins => 'stylesheetparser,richimage',
+    :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
     :contentsCss => '/assets/rich/editor.css', # TODO: make this map to the engine mount point
-    :removeDialogTabs => 'link:advanced;link:target;image:Link;image:advanced',
+    :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
     :format_tags => 'h3;p;pre',
-    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'Image', '-', 'Link', 'Unlink'],['PasteFromWord'],['Source', 'ShowBlocks']],
+    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['PasteFromWord'],['Source', 'ShowBlocks']],
     
-    :uiColor => '#f4f4f4', # similar to Active Admin
+    :richImageUrl => '/rich/files/', #todo make this map to the engine mount point
+    
+    :uiColor => '#f4f4f4' # similar to Active Admin
   }
   # End configuration defaults
   
