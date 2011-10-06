@@ -11,9 +11,24 @@ module Rich
     
     def create
       
-      # inject the uploaded image into the page with JS
+      #render :json => { :success => false, :error => "File is too large..." }
+      render :json => { :success => true }
       
-      render :text, params.inspect
+      # if @article.save
+      #       if is_qq
+      #         render :json => { "success" => true }
+      #       else
+      #         # as before, likely:
+      #         # redirect_to(articles_path, :notice => "Article was successfully created.")
+      #       end
+      #     else
+      #       if is_qq
+      #         render :json => { "error" => @article.errors }
+      #       else
+      #         # as before, likely:
+      #         # render :action => :new
+      #       end
+      #     end
       
       # @rich_image = RichImage.new(params[:rich_image])
       #       if @rich_image.save
