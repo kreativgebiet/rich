@@ -1,4 +1,12 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "fileuploader" %>
+<% end %>
+
 <h1>This is the filebrowser</h1>
+
+<div id="upload" class="test">
+  
+</div>
 
 <%= form_for(@rich_image, :url => files_path) do |f| %>
   <p><%= f.file_field :image%></p>

@@ -13,13 +13,15 @@ module Rich
       
       # inject the uploaded image into the page with JS
       
-      @rich_image = RichImage.new(params[:rich_image])
-      if @rich_image.save
-        flash[:notice] = "Successfully created image."
-        redirect_to :action => 'index'
-      else
-        redirect_to :action => 'index'
-      end
+      render :text, params.inspect
+      
+      # @rich_image = RichImage.new(params[:rich_image])
+      #       if @rich_image.save
+      #         flash[:notice] = "Successfully created image."
+      #         redirect_to :action => 'index'
+      #       else
+      #         redirect_to :action => 'index'
+      #       end
     end
     
     

@@ -23,6 +23,7 @@
 
 $(function() {
 	
+	// click an image to insert it in the editor
 	$('#images li img').live('click', function(e){
 		//var url = $(this).data('url');
 		var url = $(this).attr('src');
@@ -32,21 +33,11 @@ $(function() {
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url);
 		window.close();
 	})
+	
+	// fancy uploading
+	var uploader = new qq.FileUploader({
+	    element: document.getElementById('upload'),
+	    action: '/rich/files'
+	});
+	
 });
-
-
-// $(document).ready(function(){
-//   $("div.gal-item div.gal-inner-holder")
-//     .live('mouseover', function(e){
-//       $(this).addClass('hover');
-//     })
-//     .live('mouseout', function(e){
-//       $(this).removeClass('hover');
-//     })
-//     .live('click', function(e){
-//       var url = $(this).parents('div.gal-item').data('url');
-//       CKEDITOR.tools.callFunction(CKEditorFuncNum, url);
-//       window.close();
-//     });
-//   
-// });
