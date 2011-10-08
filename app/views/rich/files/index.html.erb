@@ -4,16 +4,30 @@
 
 <h1>This is the filebrowser</h1>
 
-<div id="upload" class="test">
-  
-</div>
 
-<%= form_for(@rich_image, :url => files_path) do |f| %>
+<div id="legacy-form"><%= form_for(@rich_image, :url => files_path) do |f| %>
   <p><%= f.file_field :image%></p>
   <%= f.submit("Upload") %>
 <% end %>
-
+</div>
 <ul id="images">
+  <li id="insertionpoint">
+    <div id="upload" class="qq-upload-button placeholder">
+      Upload
+    </div>
+  </li>
+  
+  <li>
+    <div class="placeholder progress-determinate">
+      <div style="width: 40%;"></div>
+    </div>
+  </li>
+  
+  <li>
+    <div class="placeholder progress-indeterminate">
+      <div></div>
+    </div>
+  </li>
 <% for image in @images %>
     <%= render :partial => 'image', :locals => {:image => image} %>
 <% end %>

@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rich/uploader
 
 (function($) {
   $.QueryString = (function(a) {
@@ -35,23 +36,7 @@ $(function() {
 	})
 	
 	// fancy uploading
-	var uploader = new qq.FileUploader({
-	    element: document.getElementById('upload'),
-		action: $("#new_rich_rich_image").attr("action"),
-		params: { authenticity_token: $("input[name='authenticity_token']").attr("value") },
-		debug: true,
-		onComplete: function(id, fileName, responseJSON){
-			console.log(responseJSON);
-		          if (responseJSON.success) {
-					console.log("yes");
-		          } else {
-					console.log("no");			
-		}
-		          // else
-		          // {
-		          //   $$('.qq-upload-failed-text').first().update('Hmm .. upload failed');
-		          // }
-		        }
-	});
+	new rich.Uploader();
 	
 });
+
