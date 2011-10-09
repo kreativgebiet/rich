@@ -2,8 +2,11 @@
   <%= javascript_include_tag "fileuploader" %>
 <% end %>
 
-<h1>This is the filebrowser</h1>
-
+<header>
+  <ul>
+    <li><h2>Show images</h2></li>
+  </ul>
+</header>
 
 <div id="legacy-form"><%= form_for(@rich_image, :url => files_path) do |f| %>
   <p><%= f.file_field :image%></p>

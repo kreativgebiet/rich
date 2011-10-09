@@ -5,6 +5,9 @@
  *= require_self
 */
 
+// master reset
+@import "rich/mixins/reset";
+
 // main vars
 $activeText: #3bbfce;
 $normalText: #3bbfce;
@@ -16,6 +19,7 @@ $light: #888888;
 
 $imageSize: 100px;
 $margin: 20px;
+$headerHeight: 46px;
 $verticalCenterOffset: 5px;
 
 $fontSizeSmall: 10px;
@@ -44,10 +48,23 @@ $fontSizeLarge: 16px;
 	display: none;
 }
 
+header {
+	position: fixed;
+	z-index: 999;
+	height: $headerHeight;
+	width: 100%;
+	
+	background: $subtle;
+	border-bottom: 1px solid white;
+	
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
 #images {
 	list-style: none;
-	margin: 0;
+	margin: 0 0 0 $margin;
 	padding: 0;
+	padding-top: $headerHeight + $margin + 1;
 	
 	li {
 		width: $imageSize;
@@ -81,15 +98,15 @@ $fontSizeLarge: 16px;
 		}
 		
 		.progress-indeterminate div {
-			opacity: 0.48;
-			margin-left: $imageSize/2 - 24/2;
-			margin-top: ($imageSize - $verticalCenterOffset)/2 - 24/2;
-			width: 24px;
-			height: 24px;
-			background: url('/assets/rich/spinner.png') no-repeat center;
+			opacity: 0.2;
+			margin-left: $imageSize/2 - 32/2;
+			margin-top: ($imageSize - $verticalCenterOffset)/2 - 32/2;
+			width: 32px;
+			height: 32px;
+			background: url('/assets/rich/plus.png') no-repeat center;
 
 		  -webkit-animation-name: spinner;
-		  -webkit-animation-duration:0.25s;
+		  -webkit-animation-duration:0.75s;
 		  -webkit-animation-iteration-count:infinite;
 		  -webkit-animation-timing-function:linear;
 		}
