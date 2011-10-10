@@ -2,6 +2,9 @@ module Rich
   class FilesController < ApplicationController
     
     def index
+      # all available styles
+      @styles = Rich.image_styles
+      
       # list all files
       @images = RichImage.all
       

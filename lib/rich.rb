@@ -4,7 +4,13 @@ module Rich
   autoload :ViewHelper, 'rich/view_helper'
   autoload :FormBuilder, 'rich/form_builder'
   autoload :CustomFormBuilder, 'rich/formtastic'
-    
+  
+  # specify desired image styles here  
+  mattr_accessor :image_styles
+  @@image_styles = {
+    :thumb => "100x100#"
+  }  
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
@@ -37,6 +43,7 @@ module Rich
     if Object.const_defined?("Formtastic")
       Formtastic::SemanticFormHelper.builder = Rich::CustomFormBuilder
     end
+        
   end
   
 end

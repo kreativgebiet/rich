@@ -9,6 +9,11 @@ if Object.const_defined?("Rich")
     # if you used the generator, you shouldn't need to change these
     #config.image_model = 'Rich::ImageAsset'
     
+    config.image_styles = {
+      :large => "2000x2000",
+      :thumb => "100x100#"
+    }
+    
   end
   
   # activate Rich
