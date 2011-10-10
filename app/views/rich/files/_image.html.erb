@@ -1,1 +1,7 @@
-<li><%= image_tag(image.image.url(:thumb)) %></li>
+<li class="clickable">
+  <img  id="image<%= image.id %>"
+        src="<%= image.image.url(:thumb) %>" 
+        data-uris="<%= image.style_uris %>"
+        data-rich-id="<% image.id %>"
+  />
+</li>

@@ -27,16 +27,19 @@ rich.Uploader = function(){
 rich.Uploader.prototype = {
 
 	uploadComplete: function(id, fileName, responseJSON){
-		$('#im'+id+' span').text("Done!");
+		$('#up'+id+' .progress-bar').first().width("100%");
+		$('#up'+id+' .spinner').first().addClass("spinning");
+		//get the created image object's id from the response and use it to request the thumbnail
   },
 
 	uploadSubmit: function(id, fileName) {
+		console.log($('#'+this._options.insertionPoint));
 		// insert a new image placeholder after the upload button
-		$('#'+this._options.insertionPoint).after('<li id="im'+id+'"><span>Starting</span></li>');
+		$('#'+this._options.insertionPoint).after('<li id="up'+id+'"><div class="placeholder progress"><div class="progress-bar" style="width: 0%;"></div><div class="spinner"></div></div></li>');
 	},
 	
 	uploadProgress: function(id, fileName, progress) {
-		$('#im'+id+' span').text(progress+"%");
+		$('#up'+id+' .progress-bar').first().width(progress+"%");
 	},
 
 };

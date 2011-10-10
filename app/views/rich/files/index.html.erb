@@ -4,7 +4,7 @@
 
 <header>
   <ul>
-    <li><h2>Show images</h2></li>
+    <li><h2>Show images (<%= @styles.inspect %>)</h2></li>
   </ul>
 </header>
 
@@ -14,23 +14,25 @@
 <% end %>
 </div>
 <ul id="images">
-  <li id="insertionpoint">
+  <li id="uploadBlock">
     <div id="upload" class="qq-upload-button placeholder">
-      Upload
+      <div class="spinner"></div>
+    </div>
+  </li>
+  
+  <!-- <li>
+    <div class="placeholder progress">
+      <div class="progress-bar" style="width: 40%;"></div>
+      <div class="spinner"></div>
     </div>
   </li>
   
   <li>
-    <div class="placeholder progress-determinate">
-      <div style="width: 40%;"></div>
+    <div class="placeholder progress">
+      <div class="progress-bar" style="width: 100%;"></div>
+      <div class="spinner"></div>
     </div>
-  </li>
-  
-  <li>
-    <div class="placeholder progress-indeterminate">
-      <div></div>
-    </div>
-  </li>
+  </li> -->
 <% for image in @images %>
     <%= render :partial => 'image', :locals => {:image => image} %>
 <% end %>
