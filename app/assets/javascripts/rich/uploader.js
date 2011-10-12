@@ -18,7 +18,7 @@ rich.Uploader = function(){
 		action: $("#new_rich_rich_image").attr("action"),
 		params: { authenticity_token: $("input[name='authenticity_token']").attr("value") },
 		debug: true,
-		onComplete: function(id, fileName, responseJSON) { self.uploadComplete(id, fileName.responseJSON); },
+		onComplete: function(id, fileName, responseJSON) { self.uploadComplete(id, fileName, responseJSON); },
 		onSubmit: function(id, fileName) { self.uploadSubmit(id, fileName); },
 		onProgress: function(id, fileName, loaded, total) { self.uploadProgress(id, fileName, Math.round(loaded/total*100)); }
 	});
@@ -26,10 +26,20 @@ rich.Uploader = function(){
 
 rich.Uploader.prototype = {
 
-	uploadComplete: function(id, fileName, responseJSON){
-		$('#up'+id+' .progress-bar').first().width("100%");
-		$('#up'+id+' .spinner').first().addClass("spinning");
-		//get the created image object's id from the response and use it to request the thumbnail
+	uploadComplete: function(id, fileName, response){
+		if (response.success){
+			$('#up'+id+' .progress-bar').first().width("100%");
+			$('#up'+id+' .spinner').first().addClass("spinning");
+			//get the created image object's id from the response and use it to request the thumbnail
+			$.get("/rich/files/"+response.rich_id, function(data) {
+				$('#up'+id).replaceWith(data).addClass("test");
+				$('#image'+response.rich_id).addClass("new");
+			});
+    } else {
+				$('#up'+id+' .spinner').first().addClass("error");
+    }
+		
+
   },
 
 	uploadSubmit: function(id, fileName) {

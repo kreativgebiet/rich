@@ -2,6 +2,7 @@
   <img  id="image<%= image.id %>"
         src="<%= image.image.url(:thumb) %>" 
         data-uris="<%= image.style_uris %>"
-        data-rich-id="<% image.id %>"
+        data-rich-id="<%= image.id %>"
   />
+  <p><%= image.image.original_filename %></p>
 </li>

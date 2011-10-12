@@ -72,6 +72,10 @@ header {
 		margin-right: $margin;
 		float: left;
 		
+		.new {
+			box-shadow: 0px 0px 3px rgba(0,75,255,0.5); 
+		}
+		
 		.placeholder {
 			height: $imageSize;
 			border: 1px dotted $light;
@@ -84,13 +88,17 @@ header {
 			color: $light;
 		}
 		
-		#upload .spinner, .progress .spinning {
-			opacity: 0.2;
+		.spinner {
+			opacity: 0.1;
 			margin-left: $imageSize/2 - 32/2;
 			margin-top: ($imageSize - $verticalCenterOffset)/2 - 32/2;
 			width: 32px;
 			height: 32px;
 			background: url('/assets/rich/plus.png') no-repeat center;
+		}
+		
+		#upload .spinner {
+			opacity: 0.3;
 		}
 		
 		.progress .progress-bar {
@@ -106,9 +114,31 @@ header {
 		  -webkit-animation-timing-function:linear;
 		}
 		
+		.progress .spinner.error {
+			opacity: 1;
+			background-image: url('/assets/rich/plus-red.png');
+			-webkit-transform: rotate(45deg);
+		}
+		
+		p {
+			font-size: 10px;
+			margin: 0;
+			line-height: $margin;
+			height: $margin;
+			overflow:hidden;
+			text-overflow: ellipsis;
+			color: $subtle;
+		}
+		
 	}
 	
+	li:hover p {
+		color: $light;
+	}
 	
+	#uploadBlock p {
+		text-align: center;
+	}
 	
 	li#uploadBlock:hover .placeholder .spinner {
 		background-image: url('/assets/rich/plus-green.png');

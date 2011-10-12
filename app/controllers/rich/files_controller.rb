@@ -12,10 +12,22 @@ module Rich
       @rich_image = RichImage.new
     end
     
-    def create
+    def show
+      # show is used to retrieve single images through XHR requests after an image has been uploaded
       
+      if(params[:id])
+        # list all files
+        @image = RichImage.find(params[:id])
+        render :layout => false
+      else 
+        render :text => "Image not found"
+      end
+      
+    end
+    
+    def create
       #render :json => { :success => false, :error => "File is too large..." }
-      render :json => { :success => true }
+      render :json => { :success => true, :rich_id => 1 }
       
       # if @article.save
       #       if is_qq
@@ -42,6 +54,19 @@ module Rich
       #       end
     end
     
+    def destroy
+      # delete an image
+      
+      # if(params[:id])
+      #   # list all files
+      #   @image = RichImage.find(params[:id])
+      #   #render :layout => false
+      #   # render js
+      # 
+      # else 
+      #   render :text => "Image not found"
+      # end
+    end
     
   end
 end
