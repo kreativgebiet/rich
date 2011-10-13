@@ -1,10 +1,9 @@
 <li class="clickable">
-  <img  id="image<%= image.id %>"
-        src="<%= image.image.url(:thumb) %>" 
-        data-uris="<%= image.style_uris %>"
-        data-rich-image-id="<%= image.id %>"
+  <img  id="image<%= file.id %>"
+        src="<%= file.image.url(:thumb) %>" 
+        data-uris="<%= file.style_uris %>"
+        data-rich-image-id="<%= file.id %>"
   />
-  <p><%= image.image.original_filename %></p>
-  <div class="delete"></div>
-  <%= link_to "delete", files_path, :method => :delete, :confirm => "Are you sure?" %>
+  <p><%= file.image.original_filename %></p>
+  <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this image?", :class => "delete", :title => "Delete this image" %>
 </li>

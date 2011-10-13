@@ -6,7 +6,7 @@ module Rich
       @styles = Rich.image_styles
       
       # list all files
-      @images = RichImage.all
+      @images = RichImage.all(:order => "created_at DESC")
       
       # stub for new file
       @rich_image = RichImage.new
@@ -17,7 +17,7 @@ module Rich
       
       if(params[:id])
         # list all files
-        @image = RichImage.find(params[:id])
+        @file = RichImage.find(params[:id])
         render :layout => false
       else 
         render :text => "Image not found"
@@ -27,7 +27,25 @@ module Rich
     
     def create
       #render :json => { :success => false, :error => "File is too large..." }
-      render :json => { :success => true, :rich_id => 1 }
+      #render :json => { :success => true, :rich_id => 1 }
+
+      @file = RichImage.new
+            
+      # use the file from Rack Raw Upload
+      if(params[:file])
+        @file.image = params[:file]
+      end
+      
+      if @file.save
+        render :json => { :success => true, :rich_id => @file.id }
+      else
+        render :json => { :success => false, 
+                          :error => "Could not upload your file:\n"+@file.errors.map {
+                            |k,v|
+                            "- "+v+"\n"
+                          }.to_s,
+                          :params => params.inspect }
+      end
       
       # if @article.save
       #       if is_qq
@@ -54,20 +72,11 @@ module Rich
       #       end
     end
     
-    def delete
-      
-      render :text => "Hello"
-      # delete an image
-      
-      # if(params[:id])
-      #   # list all files
-      #   @image = RichImage.find(params[:id])
-      #   #render :layout => false
-      #   # render js
-      # 
-      # else 
-      #   render :text => "Image not found"
-      # end
+    def destroy  
+      if(params[:id])
+        image = RichImage.delete(params[:id])
+        @fileid = params[:id]
+      end
     end
     
   end

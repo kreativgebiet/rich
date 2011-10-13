@@ -5,8 +5,8 @@ module Rich
     has_attached_file :image
     
     validates_attachment_presence :image
-    validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif']
-    validates_attachment_size :image, :less_than=>15.megabyte
+    #validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'image/jpg'], :message => "invalid filetype"
+    validates_attachment_size :image, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
     
     after_initialize :init_styles
     

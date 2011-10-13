@@ -3,7 +3,7 @@
 <% end %>
 
 <header>
-  <ul>
+  <ul style="display: none">
     <li><h2>Styles (<%= @styles.inspect %>)</h2></li>
     <li class="label">Insert</li>
     <% for style in @styles %>
@@ -24,11 +24,11 @@
     <div id="upload" class="qq-upload-button placeholder">
       <div class="spinner"></div>
     </div>
-    <p>Upload</p>
+    <p>Upload an image</p>
   </li>
   
-<% for image in @images %>
-    <%= render :partial => 'image', :locals => {:image => image} %>
+<% for file in @images %>
+    <%= render :partial => 'image', :locals => {:file => file} %>
 <% end %>
 
 </ul>

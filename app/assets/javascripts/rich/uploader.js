@@ -37,19 +37,23 @@ rich.Uploader.prototype = {
 			});
     } else {
 				$('#up'+id+' .spinner').first().addClass("error");
+				$('#up'+id+' .spinner').first().removeClass("spinning");		
     }
-		
-
   },
 
 	uploadSubmit: function(id, fileName) {
 		console.log($('#'+this._options.insertionPoint));
 		// insert a new image placeholder after the upload button
-		$('#'+this._options.insertionPoint).after('<li id="up'+id+'"><div class="placeholder progress"><div class="progress-bar" style="width: 0%;"></div><div class="spinner"></div></div></li>');
+		$('#'+this._options.insertionPoint).after('<li id="up'+id+'"><div class="placeholder progress"><div class="progress-bar" style="width: 0%;"></div><div class="spinner"></div></div><p>'+fileName+'</p></li>');
 	},
 	
 	uploadProgress: function(id, fileName, progress) {
 		$('#up'+id+' .progress-bar').first().width(progress+"%");
+		
+		if(progress > 90) {
+			// start spinning
+			$('#up'+id+' .spinner').first().addClass("spinning");
+		}
 	},
 
 };

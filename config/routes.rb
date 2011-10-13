@@ -1,5 +1,5 @@
 Rich::Engine.routes.draw do
   
-  resources :files
+  resources :files, :controller => "files"
   
 end
