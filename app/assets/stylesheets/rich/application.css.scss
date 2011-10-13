@@ -13,6 +13,7 @@ $dimmedText: #3bbfce;
 
 $subtle: #f3f3f3;
 $light: #888888;
+$dark: #686868;
 
 
 $imageSize: 100px;
@@ -170,6 +171,54 @@ header {
 
 .clickable:hover {
 	cursor: pointer;	
+}
+
+// scope selector
+ul.scopes {
+	
+	list-style: none;
+	margin: 0 $margin /2;
+	padding: 0;
+	float: right;
+	
+	li {
+		float: left;
+		height: $margin;
+		line-height: $margin;
+		margin-right: $margin/2;
+		margin-top: ($headerHeight - $margin) / 2;
+		font-weight: bold;
+		font-size: 12px;
+	}
+	
+	li.label {
+		color: $light;
+	}
+	
+	li.scope {
+		color: $dark;
+	}
+	
+	li.scope:hover {
+		cursor: pointer;
+	}
+	
+	li.scope.selected {
+		padding: 0 $margin / 2;
+		
+		
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		box-shadow: inset 0 1px 0 #CCC;
+		-moz-box-shadow: inset 0 1px 0 #CCC;
+		-webkit-box-shadow: inset 0 1px 0 #CCC;
+		text-shadow: white 0 1px 0;
+		background: #EFEFEF;
+
+
+	}
+	
 }
 
 

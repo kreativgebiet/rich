@@ -3,12 +3,12 @@
 <% end %>
 
 <header>
-  <ul style="display: none">
-    <li><h2>Styles (<%= @styles.inspect %>)</h2></li>
-    <li class="label">Insert</li>
+  <ul id="styles" class="scopes">
+    <li class="label">Image style to insert</li>
     <% for style in @styles %>
-      <li><%= style %></li>
+      <li class="scope"><%= style[0] %></li>
     <% end %>
+    <li class="scope selected">original</li>
   </ul>
 </header>
 
