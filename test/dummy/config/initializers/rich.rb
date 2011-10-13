@@ -1,3 +1,5 @@
+require "rich"
+
 if Object.const_defined?("Rich")
   Rich.setup do |config|    
     
