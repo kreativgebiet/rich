@@ -2,7 +2,9 @@
   <img  id="image<%= image.id %>"
         src="<%= image.image.url(:thumb) %>" 
         data-uris="<%= image.style_uris %>"
-        data-rich-id="<%= image.id %>"
+        data-rich-image-id="<%= image.id %>"
   />
   <p><%= image.image.original_filename %></p>
+  <div class="delete"></div>
+  <%= link_to "delete", files_path, :method => :delete, :confirm => "Are you sure?" %>
 </li>

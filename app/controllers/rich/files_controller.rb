@@ -54,7 +54,9 @@ module Rich
       #       end
     end
     
-    def destroy
+    def delete
+      
+      render :text => "Hello"
       # delete an image
       
       # if(params[:id])

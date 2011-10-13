@@ -35,6 +35,11 @@ $(function() {
 		window.close();
 	})
 	
+	// $('.delete').live('click', function(e){
+	// 	// find out which image we need to delete
+	// 	
+	// });
+	
 	// fancy uploading
 	new rich.Uploader();
 	
