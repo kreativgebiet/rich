@@ -16,3 +16,8 @@ gemspec
 gem 'jquery-rails'
 #gem 'formtastic'
 #gem 'sass-rails'
+
+#testing
+gem 'activeadmin'
+gem 'sass-rails'
+gem "meta_search",    '>= 1.1.0.pre'

@@ -1,4 +1,5 @@
 // Wire up Rich
+//= require rich/ckeditor_path
 //= require ckeditor/ckeditor
 //= require ckeditor/adapters/jquery
 

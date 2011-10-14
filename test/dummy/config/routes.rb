@@ -1,14 +1,13 @@
-Dummy::Application.routes.draw do
-  resources :posts
+Rails.application.routes.draw do
 
-  Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
 
-  resources :posts
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+    resources :posts
 
     mount Rich::Engine => "/rich"
     
     resources :test
     root :to => 'posts#index'
-  end
-
 end
