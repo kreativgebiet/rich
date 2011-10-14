@@ -12,6 +12,7 @@ module Rich
       value ||= options.delete(:value) || ""
       
       element_id = options.delete(:id) || editor_element_id(object, field, options.delete(:index))
+
       width  = options.delete(:width) || '76%'
       height = options.delete(:height) || '200px'
       
