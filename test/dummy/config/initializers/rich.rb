@@ -12,9 +12,14 @@ if Object.const_defined?("Rich")
     #config.image_model = 'Rich::ImageAsset'
     
     config.image_styles = {
-      :large => "2000x2000",
+      :large => "500x500",
       :thumb => "100x100#"
     }
+    
+    # config.allowed_styles = :all # this is the default - show all styles
+    #config.allowed_styles = { :large, :original }
+
+    config.default_style = :large
     
   end
   

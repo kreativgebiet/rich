@@ -11,14 +11,14 @@ module Rich
     after_initialize :init_styles
     
     def style_uris
-      uris = []
+     uris = {}
   
       image.styles.each do |style|
-        uris.push({:name => style[0], :uri => image.url(style[0].to_sym)})
+        uris[style[0]] = image.url(style[0].to_sym)
       end
       
       # manualy add the original size
-      uris.push({:name => "original", :uri => image.url(:original)})
+      uris["original"] = image.url(:original)
       
       uris.to_json
     end

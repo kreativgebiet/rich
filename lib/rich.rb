@@ -11,6 +11,12 @@ module Rich
     :thumb => "100x100#"
   }  
   
+  mattr_accessor :allowed_styles
+  @@allowed_styles = :all
+  
+  mattr_accessor :default_style
+  @@default_style = :thumb
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {

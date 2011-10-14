@@ -31,6 +31,19 @@ $fontSizeLarge: 16px;
   border-radius: $radius;
 }
 
+@mixin inset-box-shadow($x: 2px, $y: 2px, $blur: 4px, $color: blue) {
+	box-shadow: inset $x $y $blur $color;
+	-moz-box-shadow: inset $x $y $blur $color;
+	-webkit-box-shadow: inset $x $y $blur $color;
+}
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 4px, $color: blue) {
+	box-shadow: $x $y $blur $color;
+	-moz-box-shadow: set $x $y $blur $color;
+	-webkit-box-shadow: $x $y $blur $color;
+}
+
+
 @-webkit-keyframes spinner {
   from {-webkit-transform:rotate(0deg);}
   to {-webkit-transform:rotate(360deg);}
@@ -62,7 +75,8 @@ header {
 	background: $subtle;
 	border-bottom: 1px solid white;
 	
-	box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))
+	
 }
 
 #images {
@@ -78,7 +92,7 @@ header {
 		float: left;
 		
 		.new {
-			box-shadow: 0px 0px 8px rgba(58,194,207,0.75); 
+			@include box-shadow(0, 0, 8px, rgba(58,194,207,0.75))
 		}
 		
 		.placeholder {
@@ -177,7 +191,7 @@ header {
 ul.scopes {
 	
 	list-style: none;
-	margin: 0 $margin /2;
+	margin: 0 ($margin/4*3);
 	padding: 0;
 	float: right;
 	
@@ -185,7 +199,7 @@ ul.scopes {
 		float: left;
 		height: $margin;
 		line-height: $margin;
-		margin-right: $margin/2;
+		margin-right: $margin/4;
 		margin-top: ($headerHeight - $margin) / 2;
 		font-weight: bold;
 		font-size: 12px;
@@ -197,26 +211,21 @@ ul.scopes {
 	
 	li.scope {
 		color: $dark;
+		@include rounded;
+		padding: 0 $margin / 2;
 	}
 	
 	li.scope:hover {
 		cursor: pointer;
+		background: darken($subtle, 10%);
+		text-shadow: 0px 1px 0 white;
 	}
 	
 	li.scope.selected {
-		padding: 0 $margin / 2;
-		
-		
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-		box-shadow: inset 0 1px 0 #CCC;
-		-moz-box-shadow: inset 0 1px 0 #CCC;
-		-webkit-box-shadow: inset 0 1px 0 #CCC;
-		text-shadow: white 0 1px 0;
-		background: #EFEFEF;
-
-
+		@include inset-box-shadow(0, 1px, 1px, $dark);
+		text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
+		color: $subtle;
+		background: $light;
 	}
 	
 }

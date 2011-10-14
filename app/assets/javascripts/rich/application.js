@@ -8,6 +8,14 @@
 //= require jquery_ujs
 //= require rich/uploader
 
+var rich_current_style = "";
+function selectStyle(name) {
+	rich_current_style = name;
+	$('#styles li').removeClass('selected');
+	$('#style-'+name).addClass('selected');
+}
+
+
 (function($) {
   $.QueryString = (function(a) {
     if (a == "") return {};
@@ -27,16 +35,24 @@ $(function() {
 	// click an image to insert it in the editor
 	$('#images li img').live('click', function(e){
 		//var url = $(this).data('url');
-		var url = $(this).attr('src');
+//		var url = $(this).attr('src');
+		var url = $(this).data('uris')[rich_current_style];
 		var id = $(this).data('rich-image-id');
-		
 		
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
 		window.close();
-	})
+	});
+	
+	$('#styles li').click(function(e){
+		selectStyle($(this).data('rich-style'));
+	});
+	
+	// preselect the default style
+	selectStyle($('#styles').data('default-style'));
 	
 	// fancy uploading
 	new rich.Uploader();
 	
 });
+
 

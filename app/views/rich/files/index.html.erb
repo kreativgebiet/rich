@@ -3,10 +3,10 @@
 <% end %>
 
 <header>
-  <ul id="styles" class="scopes">
+  <ul id="styles" class="scopes" data-default-style="<%= @default_style %>">
     <li class="label">Image style to insert</li>
     <% for style in @styles %>
-      <li class="scope"><%= style[0] %></li>
+      <li class="scope" id="style-<%= style[0] %>" data-rich-style="<%= style[0] %>"><%= style[0] %></li>
     <% end %>
     <li class="scope selected">original</li>
   </ul>

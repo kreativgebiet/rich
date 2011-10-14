@@ -2,8 +2,17 @@ module Rich
   class FilesController < ApplicationController
     
     def index
-      # all available styles
-      @styles = Rich.image_styles
+      # filter for allowed styles, default to all available
+      
+      logger.debug("#{Rich.allowed_styles.inspect}")
+      
+      if (Rich.allowed_styles == :all)
+        @styles = Rich.image_styles
+      else 
+        @styles = Rich.allowed_styles
+      end
+      
+      @default_style = Rich.default_style
       
       # list all files
       @images = RichImage.all(:order => "created_at DESC")
