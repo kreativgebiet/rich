@@ -28,17 +28,12 @@ $(function() {
 	$('#images li img').live('click', function(e){
 		//var url = $(this).data('url');
 		var url = $(this).attr('src');
+		var id = $(this).data('rich-image-id');
 		
-		// TODO: this is very ckeditor centric and should be rewritten to also handle the case
-		// where files are browsed/uplaoded form a generic form
-		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url);
+		
+		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
 		window.close();
 	})
-	
-	// $('.delete').live('click', function(e){
-	// 	// find out which image we need to delete
-	// 	
-	// });
 	
 	// fancy uploading
 	new rich.Uploader();
