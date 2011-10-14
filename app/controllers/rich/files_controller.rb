@@ -4,10 +4,11 @@ module Rich
     def index
       # filter for allowed styles, default to all available
       
-      logger.debug("#{Rich.allowed_styles.inspect}")
+      #logger.debug("#{Rich.allowed_styles.inspect}")
       
       if (Rich.allowed_styles == :all)
-        @styles = Rich.image_styles
+        @styles = Rich.image_styles.keys
+        @styles.push(:original)
       else 
         @styles = Rich.allowed_styles
       end
