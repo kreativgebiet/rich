@@ -4,6 +4,8 @@ Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a s
 
 Presently, Rich integrates with Formtastic (1.x) and regular Rails forms.
 
+RICH IS CURRENTLY NOT SUITABLE FOR PUBLIC CONSUMTPION AS ESSENTIAL AUTHENTICATION FEATURES ARE MISSING.
+
 == Goals
 
 1. Keep the CKEditor source our of your project.
