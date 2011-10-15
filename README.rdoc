@@ -1,0 +1,112 @@
+= Rich
+
+Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
+
+Presently, Rich integrates with Formtastic (1.x) and regular Rails forms.
+
+== Goals
+
+1. Keep the CKEditor source our of your project.
+2. Sensible defaults. We don't want our users to insert tables, smilies or other frivolities that will do nothing but ruin a lovingly crafted design.
+3. Make it easy to customize these defaults.
+4. Implement a usable (and easily configurable) file manager that serves up images that fit your specific design.
+
+It should be noted that while a major point of this project was to remove many things from CKEditor, all that stuff is still in there and can be easily re-enabled through the initializer.
+
+== Quick install
+
+Rich is available as a Ruby Gem, which makes installation very easy.
+
+  # In your Gemfile (Rails >= 3.1)
+  gem 'rich'
+  
+After updating your bundle, run the installer.
+
+  $> rails generate rich:install
+
+The installer sets up a route, creates an initializer for configuration and adds a javascript and CSS file. It also creates a migration, so we need to migrate the database.
+
+  $> rake db:migrate
+  
+You should be set.
+
+== Usage
+
+To use Rich, it's javascript file must be loaded. By default, this is already setup for you because Rails loads all Javascript files through the require_tree command in application.js. If you've removed that line, manually load rich by requiring it.
+
+  //= require rich
+  
+=== In a Rails form
+
+Use the <tt>rich_text_area</tt> command to insert Rich.
+
+  <%= form_for(@post) do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.rich_text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+=== Formtastic
+
+Use <tt>:as => :rich</tt> to insert Rich. At this time, Rich only works with Formtastic 1. Version 2 is not supported. Using it is very simple, like so:
+
+  <%= semantic_form_for @post do |f| %>
+     <%= f.inputs do %>
+       <%= f.input :name %>
+       <%= f.input :title %>
+       <%= f.input :body, :as => :rich %>
+     <% end %>
+     <%= f.buttons do %>
+       <%= f.commit_button %>
+     <% end %>
+   <% end %>
+   
+=== Active Admin
+
+Since Active Admin actually uses Formtastic, you can use it with Rich out of the box. In your model configuration file, set up your form like this.
+
+  form do |f|
+    f.inputs "Basic info" do
+      f.input :title
+      f.input :body, :as => :rich
+    end
+    f.buttons
+  end
+
+== Configuration and overrides
+
+=== CKEditor configuration
+
+=== Editor styles
+
+=== Image configuration
+
+== Roadmap
+
+* Formtastic 2 support (waiting for Active Admin to make the switch)
+
+== Inspiration
+
+Much of this project is heavily inspired by Igor Galeta's ckeditor gem. Also, inspiration comes from Francesc Esplugas' Ckeditor gem and Active Admin.
+
+== Tools used
+
+* Valum's FileUploader - https://github.com/valums/file-uploader
+* Rack Raw Upload - https://github.com/newbamboo/rack-raw-upload
+
+== Copyright
+
+Rich was created by Bastiaan Terhorst with contributions by Dunya Kirkali.
+This project is licenced under the MIT License. See MIT-LICENSE for details.
