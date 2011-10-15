@@ -17,6 +17,9 @@ module Rich
   mattr_accessor :default_style
   @@default_style = :thumb
   
+  mattr_accessor :authentication_method
+  @@authentication_method = :none
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
