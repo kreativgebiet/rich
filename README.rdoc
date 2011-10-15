@@ -110,5 +110,6 @@ Much of this project is heavily inspired by Igor Galeta's ckeditor gem. Also, in
 
 == Copyright
 
-Rich was created by Bastiaan Terhorst with contributions by Dunya Kirkali.
+Rich was created by Bastiaan Terhorst with contributions by Dunya Kirkali. It is sponsored by Perceptor (http://perceptor.nl).
+
 This project is licenced under the MIT License. See MIT-LICENSE for details.
