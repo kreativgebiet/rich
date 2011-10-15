@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     rich (0.0.1)
-      formtastic (< 2.0.0)
       jquery-rails
       paperclip
       rack-raw-upload
@@ -58,6 +57,8 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     erubis (2.7.0)
+    execjs (1.2.8)
+      multi_json (~> 1.0)
     fastercsv (1.5.4)
     formtastic (1.2.4)
       actionpack (>= 2.3.7)
@@ -143,6 +144,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.30)
+    uglifier (1.0.3)
+      execjs (>= 0.3.0)
+      multi_json (>= 1.0.2)
     warden (1.0.5)
       rack (>= 1.0)
 
@@ -151,9 +155,10 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
-  formtastic
+  formtastic (< 2.0.0)
   jquery-rails
   meta_search (>= 1.1.0.pre)
   rich!
   sass-rails
   sqlite3
+  uglifier

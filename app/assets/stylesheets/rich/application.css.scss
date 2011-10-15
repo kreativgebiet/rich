@@ -91,10 +91,6 @@ header {
 		margin-right: $margin;
 		float: left;
 		
-		.new {
-			@include box-shadow(0, 0, 8px, rgba(58,194,207,0.75))
-		}
-		
 		.placeholder {
 			height: $imageSize - 2;
 			width: $imageSize - 2;
@@ -108,17 +104,26 @@ header {
 			color: $light;
 		}
 		
+		img {
+			@include rounded;
+			@include box-shadow(0, 0, 4px, lighten($dark, 40%));
+		}
+		
+		.new {
+			@include box-shadow(0, 0, 4px, rgb(58,194,207))
+		}
+		
 		.spinner {
-			opacity: 0.1;
+			opacity: 0.3;
 			margin-left: ($imageSize - 2)/2 - 32/2;
 			margin-top: ($imageSize - 2 - $verticalCenterOffset)/2 - 32/2;
 			width: 32px;
 			height: 32px;
-			background: url('/assets/rich/plus.png') no-repeat center;
+			background: url('/assets/rich/plus.png') no-repeat top center;
 		}
 		
 		#upload .spinner {
-			opacity: 0.3;
+			opacity: 1;
 		}
 		
 		.progress .progress-bar {
@@ -158,14 +163,29 @@ header {
 			margin-top: -$margin;
 			width:$margin;
 			height: $margin;
-			background: white url('/assets/rich/x-red.png') no-repeat center right;
+			background: url('/assets/rich/x-red.png') no-repeat center right;
 			opacity: 0.1;
 		}
 		
 	}
 	
+	li:hover * {
+		transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+		-moz-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+		-ms-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+		-webkit-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+	}
+	
 	li:hover p {
 		color: $light;
+	}
+	
+	li:hover img {
+		@include box-shadow(0, 0, 4px, $light);
+	}
+	
+	li:active img {
+		@include box-shadow(0, 0, 4px, black);
 	}
 	
 	li:hover .delete {
@@ -177,8 +197,7 @@ header {
 	}
 	
 	li#uploadBlock:hover .placeholder .spinner {
-		background-image: url('/assets/rich/plus-green.png');
-		opacity: 1;
+		background-position: 0 -32px;
 	}
 	
 }
@@ -200,13 +219,14 @@ ul.scopes {
 		height: $margin;
 		line-height: $margin;
 		margin-right: $margin/4;
-		margin-top: ($headerHeight - $margin) / 2;
+		margin-top: ($headerHeight - $margin) / 2 + 1;
 		font-weight: bold;
 		font-size: 12px;
 	}
 	
 	li.label {
 		color: $light;
+		padding-right: $margin/4;
 	}
 	
 	li.scope {

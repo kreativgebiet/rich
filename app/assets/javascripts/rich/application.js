@@ -40,7 +40,9 @@ $(function() {
 		var id = $(this).data('rich-image-id');
 		
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
-		window.close();
+		window.setTimeout(function(){
+			window.close();
+		},500);
 	});
 	
 	$('#styles li').click(function(e){

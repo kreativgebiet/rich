@@ -4,8 +4,6 @@ Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a s
 
 Presently, Rich integrates with Formtastic (1.x) and regular Rails forms.
 
-RICH IS CURRENTLY NOT SUITABLE FOR PUBLIC CONSUMTPION AS ESSENTIAL AUTHENTICATION FEATURES ARE MISSING.
-
 == Goals
 
 1. Keep the CKEditor source our of your project.
@@ -89,6 +87,26 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
     end
     f.buttons
   end
+
+If you're annoyed by the fact that the Rich editor overlaps the field label (I was!), add the following to your <tt>/app/assets/stylesheets/active_admin.css.scss</tt>.
+
+  .cke_skin_kama {
+  	margin-left: 20%;
+  }
+  
+== Caveats — Rich in production mode
+
+If you want to run Rich in production mode, you need to make two changes to your <tt>config/environments/production.rb</tt>.
+
+  config.assets.compile = true
+
+This setting will instruct Rails to serve up any assets that have not been precompiled. The reason we need this is that CKEditor will attempt to load many javascript files on its own. Since all of these files have been merged into one large file by Sprockets and are no longer available on their own, that will not work. Unless you change this setting.
+
+  config.assets.compress = false
+  
+This setting will keep Rails from compressing CSS (and, unfortunately, javascript). This is required because CKEditor contains some CSS that SASS (the default compressor) doesn't like.
+
+We're not very happy about these required changes, and will do our best work around them. If anyone has ideas, get in touch.
 
 == Configuration and overrides
 

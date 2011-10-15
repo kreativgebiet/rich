@@ -14,7 +14,7 @@ rich.Uploader = function(){
 	var uploader = new qq.FileUploaderBasic({
 	  button: document.getElementById(self._options.uploadButtonId),
 		multiple: true,
-		maxConnections: 1,
+		maxConnections: 3,
 		action: $("#new_rich_rich_image").attr("action"),
 		params: { authenticity_token: $("input[name='authenticity_token']").attr("value") },
 		debug: true,

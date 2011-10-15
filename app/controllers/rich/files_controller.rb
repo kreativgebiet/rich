@@ -40,7 +40,9 @@ module Rich
       #render :json => { :success => true, :rich_id => 1 }
 
       @file = RichImage.new
-            
+      
+      logger.debug("DIT IS HEM >> #{params[:file].inspect}")
+      
       # use the file from Rack Raw Upload
       if(params[:file])
         @file.image = params[:file]

@@ -38,7 +38,7 @@ CKEDITOR.plugins.add('richimage',
 				params.CKEditor = editor.name;
 				params.CKEditorFuncNum = editor._.insertImagefn;
 				var url = addQueryString(editor.config.richImageUrl, params );
-				editor.popup(url, 900, 400);
+				editor.popup(url, 860, 400);
 			}
 		});
 		

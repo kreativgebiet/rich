@@ -1,0 +1,614 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+*/
+@-webkit-keyframes spinner {
+  /* line 46, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 47, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* line 52, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+*, html, body {
+  font-family: helvetica, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* line 63, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#legacy-form {
+  display: none;
+}
+
+/* line 67, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+header {
+  position: fixed;
+  z-index: 999;
+  height: 46px;
+  width: 100%;
+  background: #f3f3f3;
+  border-bottom: 1px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: set 0 0 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* line 80, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images {
+  list-style: none;
+  margin: 0 0 0 20px;
+  padding: 0;
+  padding-top: 67px;
+}
+/* line 86, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li {
+  width: 100px;
+  height: 120px;
+  margin-right: 20px;
+  float: left;
+}
+/* line 92, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .placeholder {
+  height: 98px;
+  width: 98px;
+  border: 1px dotted #888888;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  line-height: 95px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #888888;
+}
+/* line 105, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li img {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px #cecece;
+  -moz-box-shadow: set 0 0 4px #cecece;
+  -webkit-box-shadow: 0 0 4px #cecece;
+}
+/* line 110, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .new {
+  box-shadow: 0 0 4px #3ac2cf;
+  -moz-box-shadow: set 0 0 4px #3ac2cf;
+  -webkit-box-shadow: 0 0 4px #3ac2cf;
+}
+/* line 114, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .spinner {
+  opacity: 0.3;
+  margin-left: 33px;
+  margin-top: 30.5px;
+  width: 32px;
+  height: 32px;
+  background: url("/assets/rich/plus.png") no-repeat top center;
+}
+/* line 123, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li #upload .spinner {
+  opacity: 1;
+}
+/* line 127, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .progress .progress-bar {
+  background: #f3f3f3;
+  height: 98px;
+  float: left;
+}
+/* line 133, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .progress .spinning {
+  -webkit-animation-name: spinner;
+  -webkit-animation-duration: 0.75s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+/* line 140, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .progress .spinner.error {
+  opacity: 1;
+  background-image: url("/assets/rich/plus-red.png");
+  -webkit-transform: rotate(45deg);
+}
+/* line 146, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li p {
+  font-size: 10px;
+  margin: 0;
+  line-height: 20px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f3f3f3;
+  width: 80px;
+}
+/* line 157, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li .delete {
+  position: absolute;
+  text-indent: -9999px;
+  margin-left: 80px;
+  margin-top: -20px;
+  width: 20px;
+  height: 20px;
+  background: url("/assets/rich/x-red.png") no-repeat center right;
+  opacity: 0.1;
+}
+/* line 170, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:hover * {
+  transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+  -moz-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+  -ms-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+  -webkit-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+}
+/* line 177, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:hover p {
+  color: #888888;
+}
+/* line 181, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:hover img {
+  box-shadow: 0 0 4px #888888;
+  -moz-box-shadow: set 0 0 4px #888888;
+  -webkit-box-shadow: 0 0 4px #888888;
+}
+/* line 185, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:active img {
+  box-shadow: 0 0 4px black;
+  -moz-box-shadow: set 0 0 4px black;
+  -webkit-box-shadow: 0 0 4px black;
+}
+/* line 189, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:hover .delete {
+  opacity: 0.5;
+}
+/* line 193, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li:hover .delete:hover {
+  opacity: 1;
+}
+/* line 197, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+#images li#uploadBlock:hover .placeholder .spinner {
+  background-position: 0 -32px;
+}
+
+/* line 203, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.clickable:hover {
+  cursor: pointer;
+}
+
+/* line 208, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes {
+  list-style: none;
+  margin: 0 15px;
+  padding: 0;
+  float: right;
+}
+/* line 215, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes li {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 5px;
+  margin-top: 14px;
+  font-weight: bold;
+  font-size: 12px;
+}
+/* line 225, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes li.label {
+  color: #888888;
+  padding-right: 5px;
+}
+/* line 230, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes li.scope {
+  color: #686868;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+/* line 236, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes li.scope:hover {
+  cursor: pointer;
+  background: #d9d9d9;
+  text-shadow: 0px 1px 0 white;
+}
+/* line 242, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+ul.scopes li.scope.selected {
+  box-shadow: inset 0 1px 1px #686868;
+  -moz-box-shadow: inset 0 1px 1px #686868;
+  -webkit-box-shadow: inset 0 1px 1px #686868;
+  text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
+  color: #f3f3f3;
+  background: #888888;
+}
+
+/* from QQ Uploader */
+/* line 256, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-uploader {
+  position: relative;
+  width: 100%;
+}
+
+/* line 266, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-drop-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 70px;
+  z-index: 2;
+  background: #FF9797;
+  text-align: center;
+}
+
+/* line 270, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-drop-area span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -8px;
+  font-size: 16px;
+}
+
+/* line 273, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-drop-area-active {
+  background: #FF7171;
+}
+
+/* line 275, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-list {
+  margin: 15px 35px;
+  padding: 0;
+  list-style: disc;
+}
+
+/* line 276, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-list li {
+  margin: 0;
+  padding: 0;
+  line-height: 15px;
+  font-size: 12px;
+}
+
+/* line 277, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
+  margin-right: 7px;
+}
+
+/* line 282, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-spinner {
+  display: inline-block;
+  background: url("loading.gif");
+  width: 15px;
+  height: 15px;
+  vertical-align: text-bottom;
+}
+
+/* line 283, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-size, .qq-upload-cancel {
+  font-size: 11px;
+}
+
+/* line 285, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-failed-text {
+  display: none;
+}
+
+/* line 286, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/application.css.scss */
+.qq-upload-fail .qq-upload-failed-text {
+  display: inline;
+}
+/* line 1, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+  display: block;
+}
+
+/* line 2, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+audio, canvas, video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+/* line 3, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+audio:not([controls]) {
+  display: none;
+}
+
+/* line 4, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+[hidden] {
+  display: none;
+}
+
+/* line 6, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* line 7, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+body {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.231;
+}
+
+/* line 8, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+body, button, input, select, textarea {
+  font-family: sans-serif;
+  color: #222;
+}
+
+/* line 10, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+::-moz-selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* line 11, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+::selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* line 13, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+a {
+  color: #00e;
+}
+
+/* line 14, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+a:visited {
+  color: #551a8b;
+}
+
+/* line 15, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+a:hover {
+  color: #06e;
+}
+
+/* line 16, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/* line 17, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+a:hover, a:active {
+  outline: 0;
+}
+
+/* line 19, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/* line 20, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+b, strong {
+  font-weight: bold;
+}
+
+/* line 21, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+blockquote {
+  margin: 1em 40px;
+}
+
+/* line 22, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+dfn {
+  font-style: italic;
+}
+
+/* line 23, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 24, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+ins {
+  background: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 25, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* line 26, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+pre, code, kbd, samp {
+  font-family: monospace, monospace;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+
+/* line 27, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* line 28, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+q {
+  quotes: none;
+}
+
+/* line 29, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+small {
+  font-size: 85%;
+}
+
+/* line 31, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 32, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 33, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* line 34, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+ul, ol {
+  margin: 1em 0;
+  padding: 0 0 0 40px;
+}
+
+/* line 35, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+dd {
+  margin: 0 0 0 40px;
+}
+
+/* line 36, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+nav ul, nav ol {
+  list-style: none;
+  list-style-image: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 37, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+/* line 38, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 39, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+figure {
+  margin: 0;
+}
+
+/* line 41, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+form {
+  margin: 0;
+}
+
+/* line 42, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 43, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+label {
+  cursor: pointer;
+}
+
+/* line 44, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+legend {
+  border: 0;
+  *margin-left: -7px;
+  padding: 0;
+}
+
+/* line 45, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+button, input, select, textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+
+/* line 46, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+button, input {
+  line-height: normal;
+  *overflow: visible;
+}
+
+/* line 47, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+table button, table input {
+  *overflow: auto;
+}
+
+/* line 48, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+/* line 49, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+}
+
+/* line 50, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* line 51, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* line 52, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* line 53, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+/* line 55, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+input:invalid, textarea:invalid {
+  background-color: #f0dddd;
+}
+
+/* line 57, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 58, /Users/bastiaan/Files/Work/Perceptor website/_sandbox/rich/app/assets/stylesheets/rich/mixins/reset.css.scss */
+td {
+  vertical-align: top;
+}
