@@ -30,11 +30,14 @@ The installer sets up a route, creates an initializer for configuration and adds
 
   $> rake db:migrate
   
-You should be set.
+As a last step, secure the file manager by setting your authentication method in <tt>/config/initializers/rich.rb</tt>. If you're using Devise with an AdminUser model (incidentally, the Active Admin defaults):
+  config.authentication_method = :authenticate_admin_user!
+  
+You're good to go.
 
 == Usage
 
-To use Rich, it's javascript file must be loaded. By default, this is already setup for you because Rails loads all Javascript files through the require_tree command in application.js. If you've removed that line, manually load rich by requiring it.
+To use Rich, it's javascript file must be loaded. By default, this is already setup for you because Rails loads all Javascript files through the <tt>require_tree .</tt> command in application.js. If you've removed that line, manually load rich by requiring it.
 
   //= require rich
   
@@ -95,6 +98,8 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
 
 === Image configuration
 
+=== Per-editor overrides
+
 == Roadmap
 
 * Formtastic 2 support (waiting for Active Admin to make the switch)
@@ -110,6 +115,6 @@ Much of this project is heavily inspired by Igor Galeta's ckeditor gem. Also, in
 
 == Copyright
 
-Rich was created by Bastiaan Terhorst with contributions by Dunya Kirkali. It is sponsored by Perceptor (http://perceptor.nl).
+Rich was created by Bastiaan Terhorst and sponsored by Perceptor (http://perceptor.nl).
 
 This project is licenced under the MIT License. See MIT-LICENSE for details.
