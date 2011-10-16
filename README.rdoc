@@ -94,19 +94,20 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   	margin-left: 20%;
   }
   
-== Caveats — Rich in production mode
+== Rich in production mode
 
-If you want to run Rich in production mode, you need to make two changes to your <tt>config/environments/production.rb</tt>.
+Rich works fine in production mode, as long as you make sure to precompile your assets. Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So make sure you precompile your assets before starting production mode (something you most likely are doing anyway).
 
-  config.assets.compile = true
+  rake assets:precompile
 
-This setting will instruct Rails to serve up any assets that have not been precompiled. The reason we need this is that CKEditor will attempt to load many javascript files on its own. Since all of these files have been merged into one large file by Sprockets and are no longer available on their own, that will not work. Unless you change this setting.
+Rich will also clean up these CKEditor files when you clean your assets. So the following works as expected.
 
-  config.assets.compress = false
+  rake assets:clean
   
-This setting will keep Rails from compressing CSS (and, unfortunately, javascript). This is required because CKEditor contains some CSS that SASS (the default compressor) doesn't like.
+Although generally not necessary, the underlying Rich tasks can be invoked directly.
 
-We're not very happy about these required changes, and will do our best work around them. If anyone has ideas, get in touch.
+  rake rich:assetize_ckeditor
+  rake rich:clean_ckeditor
 
 == Configuration and overrides
 

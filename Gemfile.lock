@@ -3,6 +3,7 @@ PATH
   specs:
     rich (0.0.1)
       jquery-rails
+      mime-types
       paperclip
       rack-raw-upload
       rails (>= 3.1.0)

@@ -1,3 +1,5 @@
+require 'cgi'
+
 module Rich
   class RichImage < ActiveRecord::Base
     
@@ -5,12 +7,12 @@ module Rich
     has_attached_file :image
     
     validates_attachment_presence :image
-    #validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'image/jpg'], :message => "invalid filetype"
+    validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'image/jpg'], :message => "is not an image"
     validates_attachment_size :image, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
     
     after_initialize :init_styles
     
-    before_post_process :transliterate_file_name
+    before_create :transliterate_file_name
 
     def style_uris
      uris = {}
@@ -28,17 +30,6 @@ module Rich
     def init_styles
       self.class.has_attached_file :image,
         :styles => hash = Rich.image_styles
-    end
-    
-    private 
-    
-    def transliterate_file_name
-      extension = File.extname(image_file_name).gsub(/^\.+/, '')
-      filename = image_file_name.gsub(/\.#{extension}$/, '')
-      
-      # TODO: remove %20 stuff from filename
-      
-      self.image.instance_write(:file_name, "#{self.transliterate(filename)}.#{self.transliterate(extension)}")
     end
     
     def transliterate(str)
@@ -66,6 +57,21 @@ module Rich
     end
     
     
+    private 
     
+    def transliterate_file_name
+      extension = File.extname(image_file_name).gsub(/^\.+/, '')
+      filename = image_file_name.gsub(/\.#{extension}$/, '')
+      
+      filename = CGI::unescape(filename)
+      filename = CGI::unescape(filename)
+      
+      # TODO: remove %20 stuff from filename
+      # CGI::unescape("%27Stop%21%27+said+Fred")
+      
+      self.image.instance_write(:file_name, "#{self.transliterate(filename)}.#{self.transliterate(extension)}")
+    end
+    
+        
   end
 end

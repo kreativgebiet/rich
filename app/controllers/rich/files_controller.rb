@@ -1,3 +1,5 @@
+require 'mime/types'
+
 module Rich
   class FilesController < ApplicationController
     
@@ -41,22 +43,32 @@ module Rich
 
       @file = RichImage.new
       
-      logger.debug("DIT IS HEM >> #{params[:file].inspect}")
+      
+
       
       # use the file from Rack Raw Upload
       if(params[:file])
+        # Rack Raw Upload always passes octet/stream, so we need to figure it out ourselves.
+        params[:file].content_type = MIME::Types.type_for(params[:file].original_filename)
+        
         @file.image = params[:file]
       end
+      
+      logger.debug("DIT IS HEM >> #{params[:file].inspect}")
       
       if @file.save
         render :json => { :success => true, :rich_id => @file.id }
       else
         render :json => { :success => false, 
-                          :error => "Could not upload your file:\n"+@file.errors.map {
-                            |k,v|
-                            "- "+v+"\n"
-                          }.to_s,
+                          :error => "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
                           :params => params.inspect }
+                          
+                          # :error => "Could not upload your file:\n"+@file.errors.map {
+                          #                             |k,v|
+                          #                             "- "+v+"\n"
+                          #                           }.to_s,
+                          #                           
+                          
       end
       
       # if @article.save

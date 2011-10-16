@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fileuploader
 //= require rich/uploader
 
 var rich_current_style = "";
