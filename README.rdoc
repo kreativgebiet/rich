@@ -3,6 +3,7 @@
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
 Presently, Rich integrates with Formtastic (1.x) and regular Rails forms.
+Rich does not support Formtastic 2 yet, but we're working on it.
 
 == Goals
 
@@ -18,7 +19,7 @@ It should be noted that while a major point of this project was to remove many t
 Rich is available as a Ruby Gem, which makes installation very easy.
 
   # In your Gemfile (Rails >= 3.1)
-  gem 'rich'
+  gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
   
 After updating your bundle, run the installer.
 
