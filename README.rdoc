@@ -2,8 +2,7 @@
 
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
-Presently, Rich integrates with Formtastic (1.x) and regular Rails forms.
-Rich does not support Formtastic 2 yet, but we're working on it.
+Presently, Rich integrates with Formtastic (1.x and 2) and regular Rails forms.
 
 == Goals
 
@@ -65,7 +64,7 @@ Use the <tt>rich_text_area</tt> command to insert Rich.
 
 === Formtastic
 
-Use <tt>:as => :rich</tt> to insert Rich. At this time, Rich only works with Formtastic 1. Version 2 is not supported. Using it is very simple, like so:
+Use <tt>:as => :rich</tt> to insert Rich. Using it is very simple, like so:
 
   <%= semantic_form_for @post do |f| %>
      <%= f.inputs do %>
@@ -121,26 +120,41 @@ Although generally not necessary, the underlying Rich tasks can be invoked direc
 
 == Configuration and overrides
 
+Take a look at the generated <tt>rich.rb</tt> initializer and – if you want to dig deeper – the Rich sourcecode. The initializer guides you through the most important settings and configuration options.
+
 === CKEditor configuration
+
+Rich attempts to provide you with a sensible set of buttons and capabilities. But of course, you might disagree. To that end, you can configure CKEditor through the <tt>editor</tt> directive, either globally through the initializer, or per editor instance as an option.
 
 === Editor styles
 
+When you run the generator a css file is created for you in <tt>app/assets/stylesheets/rich/editor.css</tt>. Use this stylesheet to define the contents of the Styles drop down in CKEditor.
+
 === Image configuration
 
-=== Per-editor overrides
+The styles you define in the initializer are passed to Paperclip directly, so the syntax is identical. See https://github.com/thoughtbot/paperclip/wiki/Thumbnail-Generation for more information.
 
-== Roadmap
+Currently the image styles available in the file manager can only be set globally in the initializer.
 
-* Formtastic 2 support (waiting for Active Admin to make the switch)
+== Planned features
+
+* Scoping assets to other objects
+* per-editor-instance image styles
+* Drag & drop uploading
+* separate form control to select/upload images without CKEditor
+* localization support
 
 == Inspiration
 
-Much of this project is heavily inspired by Igor Galeta's ckeditor gem. Also, inspiration comes from Francesc Esplugas' Ckeditor gem and Active Admin.
+* Igor Galeta's ckeditor gem - https://github.com/galetahub/ckeditor
+* Francesc Esplugas' Ckeditor - https://github.com/fesplugas/rails-ckeditor
+* Gregg Bell's Active Admin - https://github.com/gregbell/active_admin
 
 == Tools used
 
 * Valum's FileUploader - https://github.com/valums/file-uploader
 * Rack Raw Upload - https://github.com/newbamboo/rack-raw-upload
+* Paperclip - https://github.com/thoughtbot/paperclip
 
 == Copyright
 
