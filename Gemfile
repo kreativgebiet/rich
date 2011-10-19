@@ -14,12 +14,13 @@ gemspec
 # gem 'ruby-debug'
 
 gem 'jquery-rails'
-gem 'formtastic', '< 2.0.0'
+gem 'formtastic'
 #gem 'sass-rails'
 
 #testing
-gem 'activeadmin'
+gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'
 gem 'sass-rails'
 gem "meta_search",    '>= 1.1.0.pre'
 
 gem 'uglifier'
+
