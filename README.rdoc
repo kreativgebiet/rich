@@ -98,11 +98,9 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   
 == Screenshots
 
-https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png
+{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png" />}
 
-https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-filemanager.png
-
-![Editor](https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png "The editor")
+{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-filemanager.png" />}
 
 == Rich in production mode
 
