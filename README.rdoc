@@ -19,7 +19,9 @@ It should be noted that while a major point of this project was to remove many t
 Rich is available as a Ruby Gem, which makes installation very easy.
 
   # In your Gemfile (Rails >= 3.1)
-  gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
+  gem 'rich'
+  # the edge (unstable) version can be had using:
+  # gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
   
 After updating your bundle, run the installer.
 
