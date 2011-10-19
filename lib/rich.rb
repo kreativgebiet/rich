@@ -29,6 +29,7 @@ module Rich
     :contentsCss => '/assets/rich/editor.css', # TODO: make this map to the engine mount point
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
+    :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
     :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['PasteFromWord'],['Source', 'ShowBlocks']],
     
