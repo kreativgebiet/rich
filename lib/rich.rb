@@ -3,7 +3,7 @@ require "rich/engine"
 module Rich
   autoload :ViewHelper, 'rich/view_helper'
   autoload :FormBuilder, 'rich/form_builder'
-  autoload :FormtasticBuilder, 'rich/formtastic'
+  autoload :FormtasticBuilder, 'rich/legacy_formtastic'
   
   # specify desired image styles here  
   mattr_accessor :image_styles
@@ -49,11 +49,14 @@ module Rich
     ActionView::Base.send(:include, Rich::ViewHelper)
     ActionView::Helpers::FormBuilder.send(:include, Rich::FormBuilder)
     
-    # TODO: upgrade to formtastic 2 when Active Admin supports it
+    # If we're dealing with Formtastic 1.x
     if Object.const_defined?("Formtastic")
-      #Formtastic::SemanticFormHelper.builder = Rich::CustomFormBuilder
-      ::Formtastic::SemanticFormBuilder.send :include, Rich::FormtasticBuilder
+     if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
+       Formtastic::SemanticFormHelper.builder = Rich::CustomFormBuilder
+       ::Formtastic::SemanticFormBuilder.send :include, Rich::FormtasticBuilder
+     end
     end
+    
         
   end
   
