@@ -31,7 +31,7 @@ module Rich
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
-    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['PasteFromWord'],['Source', 'ShowBlocks']],
+    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
     
     :richImageUrl => '/rich/files/', #todo make this map to the engine mount point
     
