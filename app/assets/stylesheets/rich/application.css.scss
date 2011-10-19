@@ -6,6 +6,7 @@
  *= require_tree ./mixins
 */
 
+
 // main vars
 $activeText: #3bbfce;
 $normalText: #3bbfce;
@@ -25,6 +26,8 @@ $fontSizeSmall: 10px;
 $fontSizeNormal: 12px;
 $fontSizeLarge: 16px;
 
+
+// Mixins
 @mixin rounded($radius: 4px) { 
   -webkit-border-radius: $radius; 
   -moz-border-radius: $radius; 
@@ -43,14 +46,13 @@ $fontSizeLarge: 16px;
 	-webkit-box-shadow: $x $y $blur $color;
 }
 
-
 @-webkit-keyframes spinner {
   from {-webkit-transform:rotate(0deg);}
   to {-webkit-transform:rotate(360deg);}
 }
 
-// the meat
 
+// the meat
 *, html, body {
 	font-family: helvetica, arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -75,8 +77,7 @@ header {
 	background: $subtle;
 	border-bottom: 1px solid white;
 	
-	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))
-	
+	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))	
 }
 
 #images {
@@ -90,6 +91,13 @@ header {
 		height: $imageSize + $margin;
 		margin-right: $margin;
 		float: left;
+		
+		* {
+				transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-moz-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-ms-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-webkit-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+		}
 		
 		.placeholder {
 			height: $imageSize - 2;
@@ -109,6 +117,14 @@ header {
 			@include box-shadow(0, 0, 4px, lighten($dark, 40%));
 		}
 		
+		img:hover {
+			@include box-shadow(0, 0, 4px, $light);
+		}
+
+		img:active {
+			@include box-shadow(0, 0, 4px, black);
+		}
+		
 		.new {
 			@include box-shadow(0, 0, 4px, rgb(58,194,207))
 		}
@@ -119,7 +135,7 @@ header {
 			margin-top: ($imageSize - 2 - $verticalCenterOffset)/2 - 32/2;
 			width: 32px;
 			height: 32px;
-			background: url('/assets/rich/plus.png') no-repeat top center;
+			background: image-url('rich/plus.png') no-repeat top center;
 		}
 		
 		#upload .spinner {
@@ -141,7 +157,7 @@ header {
 		
 		.progress .spinner.error {
 			opacity: 1;
-			background-image: url('/assets/rich/plus-red.png');
+			background-image: image-url('rich/plus-red.png');
 			-webkit-transform: rotate(45deg);
 		}
 		
@@ -156,6 +172,10 @@ header {
 			width: 80px;
 		}
 		
+		&:hover p {
+			color: $light;
+		}
+		
 		.delete {
 			position: absolute;
 			text-indent: -9999px;
@@ -163,42 +183,24 @@ header {
 			margin-top: -$margin;
 			width:$margin;
 			height: $margin;
-			background: url('/assets/rich/x-red.png') no-repeat center right;
+			background: image-url('rich/x-red.png') no-repeat center right;
 			opacity: 0.1;
+		}
+		
+		&:hover .delete {
+			opacity: 0.5;
+		}
+
+		&:hover .delete:hover {
+			opacity: 1;
+		}
+		
+		#uploadBlock:hover .placeholder .spinner {
+			background-position: 0 -32px;
 		}
 		
 	}
 	
-	li:hover * {
-		transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-		-moz-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-		-ms-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-		-webkit-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-	}
-	
-	li:hover p {
-		color: $light;
-	}
-	
-	li:hover img {
-		@include box-shadow(0, 0, 4px, $light);
-	}
-	
-	li:active img {
-		@include box-shadow(0, 0, 4px, black);
-	}
-	
-	li:hover .delete {
-		opacity: 0.5;
-	}
-	
-	li:hover .delete:hover {
-		opacity: 1;
-	}
-	
-	li#uploadBlock:hover .placeholder .spinner {
-		background-position: 0 -32px;
-	}
 	
 }
 
@@ -249,40 +251,3 @@ ul.scopes {
 	}
 	
 }
-
-
-
-
-/* from QQ Uploader */
-
-.qq-uploader { position:relative; width: 100%;}
-
-//.qq-upload-button {
-//    display:block; /* or inline-block */
-//    width: 105px; padding: 7px 0; text-align:center;    
-//    background:#880000; border-bottom:1px solid #ddd;color:#fff;
-//}
-//.qq-upload-button-hover {background:#cc0000;}
-//.qq-upload-button-focus {outline:1px dotted black;}
-
-.qq-upload-drop-area {
-    position:absolute; top:0; left:0; width:100%; height:100%; min-height: 70px; z-index:2;
-    background:#FF9797; text-align:center; 
-}
-.qq-upload-drop-area span {
-    display:block; position:absolute; top: 50%; width:100%; margin-top:-8px; font-size:16px;
-}
-.qq-upload-drop-area-active {background:#FF7171;}
-
-.qq-upload-list {margin:15px 35px; padding:0; list-style:disc;}
-.qq-upload-list li { margin:0; padding:0; line-height:15px; font-size:12px;}
-.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
-    margin-right: 7px;
-}
-
-.qq-upload-file {}
-.qq-upload-spinner {display:inline-block; background: url("loading.gif"); width:15px; height:15px; vertical-align:text-bottom;}
-.qq-upload-size,.qq-upload-cancel {font-size:11px;}
-
-.qq-upload-failed-text {display:none;}
-.qq-upload-fail .qq-upload-failed-text {display:inline;}
