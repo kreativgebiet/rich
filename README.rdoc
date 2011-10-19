@@ -11,6 +11,7 @@ Rich does not support Formtastic 2 yet, but we're working on it.
 2. Sensible defaults. We don't want our users to insert tables, smilies or other frivolities that will do nothing but ruin a lovingly crafted design.
 3. Make it easy to customize these defaults.
 4. Implement a usable (and easily configurable) file manager that serves up images that fit your specific design.
+5. A good upload experience, but no flash.
 
 It should be noted that while a major point of this project was to remove many things from CKEditor, all that stuff is still in there and can be easily re-enabled through the initializer.
 
@@ -95,6 +96,12 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   	margin-left: 20%;
   }
   
+== Screenshots
+
+https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png
+https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-filemanager.png
+
+  
 == Rich in production mode
 
 Rich works fine in production mode, as long as you make sure to precompile your assets. Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So make sure you precompile your assets before starting production mode (something you most likely are doing anyway).
@@ -135,6 +142,6 @@ Much of this project is heavily inspired by Igor Galeta's ckeditor gem. Also, in
 
 == Copyright
 
-Rich was created by Bastiaan Terhorst and sponsored by Perceptor (http://perceptor.nl).
+Rich was created by Bastiaan Terhorst and is sponsored by Perceptor (http://perceptor.nl).
 
 This project is licenced under the MIT License. See MIT-LICENSE for details.

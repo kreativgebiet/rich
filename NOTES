@@ -1,2 +1,0 @@
-Regenerate images after changing styles:
-  rake paperclip:refresh CLASS=Rich::RichImage
