@@ -52,7 +52,7 @@ module Rich
     # If we're dealing with Formtastic 1.x
     if Object.const_defined?("Formtastic")
      if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
-       Formtastic::SemanticFormHelper.builder = Rich::CustomFormBuilder
+       Formtastic::SemanticFormHelper.builder = Rich::FormBuilder
        ::Formtastic::SemanticFormBuilder.send :include, Rich::FormtasticBuilder
      end
     end
