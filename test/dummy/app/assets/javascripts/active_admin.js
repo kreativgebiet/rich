@@ -1,2 +1,2 @@
 //= require active_admin/base
-//= require rich/base
+//= require rich

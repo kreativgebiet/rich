@@ -15,7 +15,7 @@ GIT
 PATH
   remote: .
   specs:
-    rich (0.0.3)
+    rich (0.0.4)
       formtastic (>= 2.0.0)
       jquery-rails
       mime-types
