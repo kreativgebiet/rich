@@ -6,7 +6,8 @@ module Rich
     isolate_namespace Rich
 
     initializer "rich.add_middleware" do |app|
-        app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files'] # TODO make this path the engine mountpoint
+      app.config.assets.precompile += %w( rich/base.js )
+      app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files']
     end
     
   end
