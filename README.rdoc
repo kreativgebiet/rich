@@ -2,7 +2,7 @@
 
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
-Presently, Rich integrates with Formtastic 2 and regular Rails forms.
+Presently, Rich integrates with Formtastic 2.
 
 == Goals
 
@@ -41,32 +41,8 @@ You're good to go.
 To use Rich, it's javascript file must be loaded. By default, this is already setup for you because Rails loads all Javascript files through the <tt>require_tree .</tt> command in application.js. If you've removed that line, manually load rich by requiring it.
 
   //= require rich
-  
-=== In a Rails form
 
-Use the <tt>rich_text_area</tt> command to insert Rich.
-
-  <%= form_for(@post) do |f| %>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :content %><br />
-      <%= f.rich_text_area :body %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-
-=== Formtastic
-
-Use <tt>:as => :rich</tt> to insert Rich. Using it is very simple, like so:
+In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
 
   <%= semantic_form_for @post do |f| %>
      <%= f.inputs do %>
