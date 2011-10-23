@@ -22,5 +22,7 @@ gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'inherited_resources'
 
+#gem 'rack-raw-upload', :git => "https://github.com/newbamboo/rack-raw-upload.git"
+
 gem 'uglifier'
 

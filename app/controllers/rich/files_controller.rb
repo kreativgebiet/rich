@@ -1,13 +1,7 @@
-require 'mime/types'
-
 module Rich
   class FilesController < ApplicationController
     
-    def index
-      # filter for allowed styles, default to all available
-      
-      #logger.debug("#{Rich.allowed_styles.inspect}")
-      
+    def index      
       if (Rich.allowed_styles == :all)
         @styles = Rich.image_styles.keys
         @styles.push(:original)
@@ -38,23 +32,12 @@ module Rich
     end
     
     def create
-      #render :json => { :success => false, :error => "File is too large..." }
-      #render :json => { :success => true, :rich_id => 1 }
-
       @file = RichImage.new
-      
-      
-
       
       # use the file from Rack Raw Upload
       if(params[:file])
-        # Rack Raw Upload always passes octet/stream, so we need to figure it out ourselves.
-        params[:file].content_type = MIME::Types.type_for(params[:file].original_filename)
-        
         @file.image = params[:file]
       end
-      
-      logger.debug("DIT IS HEM >> #{params[:file].inspect}")
       
       if @file.save
         render :json => { :success => true, :rich_id => @file.id }
@@ -62,38 +45,7 @@ module Rich
         render :json => { :success => false, 
                           :error => "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
                           :params => params.inspect }
-                          
-                          # :error => "Could not upload your file:\n"+@file.errors.map {
-                          #                             |k,v|
-                          #                             "- "+v+"\n"
-                          #                           }.to_s,
-                          #                           
-                          
       end
-      
-      # if @article.save
-      #       if is_qq
-      #         render :json => { "success" => true }
-      #       else
-      #         # as before, likely:
-      #         # redirect_to(articles_path, :notice => "Article was successfully created.")
-      #       end
-      #     else
-      #       if is_qq
-      #         render :json => { "error" => @article.errors }
-      #       else
-      #         # as before, likely:
-      #         # render :action => :new
-      #       end
-      #     end
-      
-      # @rich_image = RichImage.new(params[:rich_image])
-      #       if @rich_image.save
-      #         flash[:notice] = "Successfully created image."
-      #         redirect_to :action => 'index'
-      #       else
-      #         redirect_to :action => 'index'
-      #       end
     end
     
     def destroy  

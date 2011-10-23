@@ -1,18 +1,17 @@
 require 'cgi'
+require 'mime/types'
 
 module Rich
   class RichImage < ActiveRecord::Base
     
-    #has_attached_file :image, :styles => { :thumb => "100x100#", :large => "1000x1000"}
     has_attached_file :image
     
     validates_attachment_presence :image
-    validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'image/jpg'], :message => "is not an image"
+    validate :check_content_type    
     validates_attachment_size :image, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
     
     after_initialize :init_styles
-    
-    before_create :transliterate_file_name
+    before_create :clean_file_name
 
     def style_uris
      uris = {}
@@ -32,46 +31,28 @@ module Rich
         :styles => hash = Rich.image_styles
     end
     
-    def transliterate(str)
-      # Based on permalink_fu by Rick Olsen
-
-      # Escape str by transliterating to UTF-8 with Iconv
-      s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
-
-      # Downcase string
-      s.downcase!
-
-      # Remove apostrophes so isn't changes to isnt
-      s.gsub!(/'/, '')
-
-      # Replace any non-letter or non-number character with a space
-      s.gsub!(/[^A-Za-z0-9]+/, ' ')
-
-      # Remove spaces from beginning and end of string
-      s.strip!
-
-      # Replace groups of spaces with single hyphen
-      s.gsub!(/\ +/, '-')
-
-      return s
-    end
-    
-    
     private 
     
-    def transliterate_file_name
+    def clean_file_name
       extension = File.extname(image_file_name).gsub(/^\.+/, '')
       filename = image_file_name.gsub(/\.#{extension}$/, '')
       
       filename = CGI::unescape(filename)
       filename = CGI::unescape(filename)
       
-      # TODO: remove %20 stuff from filename
-      # CGI::unescape("%27Stop%21%27+said+Fred")
+      extension = extension.downcase
+      filename = filename.downcase.gsub(/[^a-z0-9]+/i, '-')
       
-      self.image.instance_write(:file_name, "#{self.transliterate(filename)}.#{self.transliterate(extension)}")
+      self.image.instance_write(:file_name, "#{filename}.#{extension}")
     end
     
-        
+    def check_content_type
+      self.image.instance_write(:content_type, MIME::Types.type_for(image_file_name)[0])
+      logger.debug(image_content_type)
+      unless ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'].include?(image_content_type)
+        self.errors[:base] << "'#{self.image_file_name}' is not an image."
+      end
+    end
+    
   end
 end
