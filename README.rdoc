@@ -69,7 +69,7 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
 
 If you're annoyed by the fact that the Rich editor overlaps the field label (I was!), add the following to your <tt>/app/assets/stylesheets/active_admin.css.scss</tt>.
 
-  .cke_skin_kama {
+  #wrapper .cke_skin_kama {
   	margin-left: 20%;
   }
   
