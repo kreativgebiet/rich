@@ -21,9 +21,7 @@
     </div>
     <p>Upload an image</p>
   </li>
-  
-<% for file in @images %>
-    <%= render :partial => 'image', :locals => {:file => file} %>
-<% end %>
+
+	<%= render :partial => "image", :collection => @images, :as => :file %>
 
 </ul>

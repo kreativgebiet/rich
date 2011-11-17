@@ -1,7 +1,7 @@
 <%= semantic_form_for @post do |f| %>
    <%= f.inputs do %>
      <%= f.input :name %>
-     <%= f.input :title %>
+     <%= f.input :title, :as => :rich_asset %>
      <%= f.input :content, :as => :rich, :editor => { } %>
    <% end %>
    <%= f.buttons do %>

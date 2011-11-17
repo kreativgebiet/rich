@@ -1,7 +1,7 @@
 <li class="clickable">
   <img  id="image<%= file.id %>"
         src="<%= file.image.url(:thumb) %>" 
-        data-uris="<%= file.style_uris %>"
+        data-uris="<%= file.uri_cache %>"
         data-rich-image-id="<%= file.id %>"
   />
   <p><%= file.image.original_filename %></p>

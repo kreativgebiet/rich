@@ -4,6 +4,8 @@ require 'mime/types'
 module Rich
   class RichImage < ActiveRecord::Base
     
+    paginates_per 27
+    
     has_attached_file :image
     
     validates_attachment_presence :image
@@ -13,18 +15,8 @@ module Rich
     after_initialize :init_styles
     before_create :clean_file_name
 
-    def style_uris
-     uris = {}
-  
-      image.styles.each do |style|
-        uris[style[0]] = image.url(style[0].to_sym)
-      end
-      
-      # manualy add the original size
-      uris["original"] = image.url(:original)
-      
-      uris.to_json
-    end
+    after_create :cache_style_uris_and_save
+    before_update :cache_style_uris
 
     def init_styles
       self.class.has_attached_file :image,
@@ -32,6 +24,24 @@ module Rich
     end
     
     private 
+    
+    def cache_style_uris_and_save
+      cache_style_uris
+      self.save!
+    end
+    
+    def cache_style_uris
+      uris = {}
+      
+      image.styles.each do |style|
+        uris[style[0]] = image.url(style[0].to_sym)
+      end
+      
+      # manualy add the original size
+      uris["original"] = image.url(:original)
+      
+      self.uri_cache = uris.to_json
+    end
     
     def clean_file_name
       extension = File.extname(image_file_name).gsub(/^\.+/, '')

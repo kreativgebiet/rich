@@ -12,21 +12,16 @@ GIT
       rails (>= 3.0.0)
       sass (>= 3.1.0)
 
-GIT
-  remote: https://github.com/newbamboo/rack-raw-upload.git
-  revision: d5c1705e48a4aab44e5a38ef58acf96de5bc5639
-  specs:
-    rack-raw-upload (1.0.8)
-      json
-
 PATH
   remote: .
   specs:
-    rich (0.0.4)
+    rich (0.0.5)
       formtastic (>= 2.0.0)
       jquery-rails
+      kaminari
       mime-types
       paperclip
+      rack-raw-upload
       rails (>= 3.1.0)
       sass-rails
 
@@ -112,6 +107,8 @@ GEM
       rack (>= 0.4)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
+    rack-raw-upload (1.0.9)
+      json
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -168,7 +165,6 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   meta_search (>= 1.1.0.pre)
-  rack-raw-upload!
   rich!
   sass-rails
   sqlite3

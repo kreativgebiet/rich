@@ -1,6 +1,7 @@
 require "rich"
 
 if Object.const_defined?("Rich")
+  
   Rich.setup do |config|    
     
     # Customize ckeditor by adding configuration to config.editor (you can use any ckeditor config directive)
