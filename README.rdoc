@@ -2,7 +2,7 @@
 
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
-Presently, Rich integrates with Formtastic 2.
+Presently, Rich integrates with Formtastic (1 and 2).
 
 == Goals
 
@@ -57,7 +57,7 @@ In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
    
 === Active Admin
 
-Since Active Admin actually uses Formtastic, you can use it with Rich out of the box. In your model configuration file, set up your form like this. Make sure you use a recent version of Active Admin, that supports Formtastic 2 (which Rich requires). Also make sure you add <tt>//= require rich</tt> to your <tt>app/assets/javascripts/active_admin.js</tt>.
+Since Active Admin actually uses Formtastic, you can use it with Rich out of the box. In your model configuration file, set up your form like this. Make sure you add <tt>//= require rich</tt> to your <tt>app/assets/javascripts/active_admin.js</tt>.
 
   form do |f|
     f.inputs "Basic info" do

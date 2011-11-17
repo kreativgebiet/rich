@@ -14,11 +14,10 @@ gemspec
 # gem 'ruby-debug'
 
 gem 'jquery-rails'
-gem 'formtastic'
 gem 'sass-rails'
 
 #testing
-gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'
+gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git', :branch => '0.3.x-stable'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'inherited_resources'
 
