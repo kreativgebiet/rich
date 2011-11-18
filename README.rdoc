@@ -2,7 +2,7 @@
 
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
-Presently, Rich integrates with Formtastic (1 and 2).
+Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2).
 
 == Goals
 
@@ -38,6 +38,8 @@ You're good to go.
 
 == Usage
 
+=== Vanilla Formtastic
+
 To use Rich, it's javascript file must be loaded. By default, this is already setup for you because Rails loads all Javascript files through the <tt>require_tree .</tt> command in application.js. If you've removed that line, manually load rich by requiring it.
 
   //= require rich
@@ -72,6 +74,24 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   #wrapper .cke_skin_kama {
   	margin-left: 20%;
   }
+  
+=== Rails Admin
+
+Support for Rails Admin is very new and should be considered fragile. Per-editor configuration is not supported. However, you can globally customize your editors through the Rich initializer.
+
+To use Rich in your RA forms, first add the following lines to your <tt>/config/initializers/rails_admin.rb</tt>.
+
+  require 'rich/rails_admin'
+  RailsAdmin::Config::Fields::Types::register(Rich::RichRailsAdmin::RichEditor)
+  
+This will enable the <tt>rich_editor</tt> field type. You can use this field as follows:
+
+  config.model Post do
+    edit do
+      field :title
+      field :body, :rich_editor
+    end
+  end
   
 == Screenshots
 

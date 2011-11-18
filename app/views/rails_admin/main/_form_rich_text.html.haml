@@ -1,0 +1,5 @@
+= form.send field.view_helper, field.method_name, field.html_attributes
+
+= javascript_include_tag "rich/base.js"
+= javascript_tag do
+  $(function(){ $('##{field.dom_id}').ckeditor(function() { }, #{Rich.editor.to_json.html_safe} ); });
