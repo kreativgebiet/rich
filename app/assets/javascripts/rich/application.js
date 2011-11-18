@@ -38,9 +38,12 @@ function selectStyle(name) {
 $(function() {
   
   updateImageInsertToggle();
-  $('#insert-one, #insert-many').click(function(){
+  $('#insert-one, #insert-many').click(function(e){
     insert_many_images = !insert_many_images;
     updateImageInsertToggle();
+    
+    e.preventDefault();
+    return false;
   })
   
 	
@@ -49,7 +52,6 @@ $(function() {
 		var id = $(this).data('rich-image-id');
 		
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
-		
 
 		window.setTimeout(function(){
 	    if(insert_many_images == false) {  			
@@ -86,9 +88,8 @@ function  updateImageInsertToggle() {
 }
 
 // seamless pagination
-
+var currentPage = 1;
 (function() {
-  var page = 1,
   loading = false;
 
   function nearBottomOfPage() {
@@ -102,9 +103,10 @@ function  updateImageInsertToggle() {
 
     if(nearBottomOfPage()) {
       loading=true;
-      page++;
+      currentPage++;
+      console.log(window.location.href);
       $.ajax({
-        url: window.location.href + '&page=' + page,
+        url: window.location.href + '&page=' + currentPage,
         type: 'get',
         dataType: 'script',
         success: function() {
