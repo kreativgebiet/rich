@@ -19,6 +19,9 @@ module Rich
   mattr_accessor :authentication_method
   @@authentication_method = :none
   
+  mattr_accessor :insert_many_images
+  @@insert_many_images = false
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {

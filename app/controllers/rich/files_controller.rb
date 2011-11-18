@@ -1,7 +1,10 @@
 module Rich
   class FilesController < ApplicationController
     
-    def index      
+    def index
+      
+      @insert_many_images = Rich.insert_many_images
+      
       if (Rich.allowed_styles == :all)
         @styles = Rich.image_styles.keys
         @styles.push(:original)

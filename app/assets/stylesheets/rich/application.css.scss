@@ -80,6 +80,31 @@ header {
 	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))	
 }
 
+#insert-toggle {
+  float: right;
+  height: $headerHeight;
+  overflow: hidden;
+  margin: 0 $margin 0 5px;
+  padding-left: 25px;
+  background: image-url('rich/menu-dash.png') no-repeat left center;
+}
+
+#insert-many, #insert-one {
+  display: block;
+  width: 16px;
+  height: $headerHeight;
+  text-indent: -9999em;
+  background: no-repeat center;
+}
+
+#insert-many {
+  background-image: image-url('rich/insert-many.png');
+}
+
+#insert-one {
+  background-image: image-url('rich/insert-one.png');
+}
+
 #images {
 	list-style: none;
 	margin: 0 0 0 $margin;
@@ -212,7 +237,7 @@ header {
 ul.scopes {
 	
 	list-style: none;
-	margin: 0 ($margin/4*3);
+	margin: 0 0 0 ($margin/4*3);
 	padding: 0;
 	float: right;
 	

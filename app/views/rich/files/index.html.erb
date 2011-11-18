@@ -1,10 +1,20 @@
 <header>
+  
+  <div id="insert-toggle">
+    <a href="#" id="insert-many" title="Insert many images (keep browser open)">Insert many</a>
+    <a href="#" id="insert-one" title="Insert one image">Insert one</a>  
+    <script type="text/javascript" charset="utf-8">
+      var insert_many_images = <%= @insert_many_images.to_s %>;
+    </script>  
+  </div>
+
   <ul id="styles" class="scopes" data-default-style="<%= @default_style %>">
     <li class="label">Image style to insert</li>
     <% for style in @styles %>
       <li class="scope" id="style-<%= style %>" data-rich-style="<%= style %>"><%= style %></li>
     <% end %>
   </ul>
+  
 </header>
 
 <div id="legacy-form"><%= form_for(@rich_image, :url => files_path) do |f| %>

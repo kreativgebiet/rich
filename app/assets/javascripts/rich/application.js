@@ -31,19 +31,35 @@ function selectStyle(name) {
   })(window.location.search.substr(1).split('&'))
 })(jQuery);
 
+
+
+// Initialization
+
 $(function() {
+  
+  updateImageInsertToggle();
+  $('#insert-one, #insert-many').click(function(){
+    insert_many_images = !insert_many_images;
+    updateImageInsertToggle();
+  })
+  
 	
-	// click an image to insert it in the editor
 	$('#images li img').live('click', function(e){
-		//var url = $(this).data('url');
-//		var url = $(this).attr('src');
 		var url = $(this).data('uris')[rich_current_style];
 		var id = $(this).data('rich-image-id');
 		
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
+		
+
 		window.setTimeout(function(){
-			window.close();
-		},500);
+	    if(insert_many_images == false) {  			
+			  window.close();
+		  } else {
+		    window.focus();
+		  }
+			
+		},100); 
+		
 	});
 	
 	$('#styles li').click(function(e){
@@ -57,6 +73,17 @@ $(function() {
 	new rich.Uploader();
 	
 });
+
+// image insert toggle
+function  updateImageInsertToggle() {
+  if(insert_many_images == true) {
+    $('#insert-one').hide();
+    $('#insert-many').show();
+  } else {
+    $('#insert-one').show();
+    $('#insert-many').hide();
+  }
+}
 
 // seamless pagination
 
