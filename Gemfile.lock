@@ -16,7 +16,7 @@ GIT
 PATH
   remote: .
   specs:
-    rich (0.0.6)
+    rich (0.0.7)
       formtastic
       jquery-rails
       kaminari

@@ -22,6 +22,12 @@ rich.Browser.prototype = {
 	
 	setLoading: function(loading) {
 		this._options.loading = loading;
+		
+		if(loading == true) {
+			$('#loading').css({visibility: 'visible'});
+		} else {
+			$('#loading').css({visibility: 'hidden'});
+		}
 	},
 	
 	selectStyle: function(name) {
