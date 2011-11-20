@@ -81,8 +81,8 @@ Support for Rails Admin is very new and should be considered fragile. Per-editor
 
 To use Rich in your RA forms, first add the following lines to your <tt>/config/initializers/rails_admin.rb</tt>.
 
-  require 'rich/rails_admin'
-  RailsAdmin::Config::Fields::Types::register(Rich::RichRailsAdmin::RichEditor)
+  require 'rich/integrations/rails_admin_editor'
+  RailsAdmin::Config::Fields::Types::register(Rich::Integrations::RailsAdmin::RichEditor)
   
 This will enable the <tt>rich_editor</tt> field type. You can use this field as follows:
 

@@ -1,7 +1,5 @@
-
-if Object.const_defined?("Formtastic")
-  if(Gem.loaded_specs["formtastic"].version.version[0,1] == "2")
-
+if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].version.version[0,1] == "2")
+    
     class RichAssetInput < ::Formtastic::Inputs::StringInput  
   
       # todo:
@@ -16,5 +14,4 @@ if Object.const_defined?("Formtastic")
       end
     end
     
-  end
 end

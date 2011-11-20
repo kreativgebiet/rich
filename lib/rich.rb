@@ -1,9 +1,7 @@
 require "rich/engine"
 
 module Rich
-  
-  autoload :FormtasticBuilder, 'rich/legacy_formtastic'
-
+ 
   # specify desired image styles here  
   mattr_accessor :image_styles
   @@image_styles = {
@@ -49,11 +47,10 @@ module Rich
     # manually inject into Formtastic 1. V2 is extended autmatically.
     if Object.const_defined?("Formtastic")
       if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
-        #Formtastic::SemanticFormHelper.builder = Rich::SemanticFormBuilder
-        ::Formtastic::SemanticFormBuilder.send :include, Rich::FormtasticBuilder
+        require 'rich/integrations/legacy_formtastic'
+        ::Formtastic::SemanticFormBuilder.send :include, Rich::Integrations::FormtasticBuilder
       end
     end
-    
   end
   
 end
