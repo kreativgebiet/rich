@@ -2,7 +2,8 @@
   <img  id="image<%= file.id %>"
         src="<%= file.image.url(:thumb) %>" 
         data-uris="<%= file.uri_cache %>"
-        data-rich-image-id="<%= file.id %>"
+        data-rich-asset-id="<%= file.id %>"
+				data-rich-asset-type="image"
   />
   <p><%= file.image.original_filename %></p>
   <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this image?", :class => "delete", :title => "Delete this image" %>

@@ -42,7 +42,6 @@ rich.Uploader.prototype = {
   },
 
 	uploadSubmit: function(id, fileName) {
-		console.log($('#'+this._options.insertionPoint));
 		// insert a new image placeholder after the upload button
 		$('#'+this._options.insertionPoint).after('<li id="up'+id+'"><div class="placeholder progress"><div class="progress-bar" style="width: 0%;"></div><div class="spinner"></div></div><p>'+fileName+'</p></li>');
 	},

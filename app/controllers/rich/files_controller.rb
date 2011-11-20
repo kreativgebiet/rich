@@ -15,10 +15,10 @@ module Rich
       @default_style = Rich.default_style
       
       # list all files
-      @images = RichImage.order("created_at DESC").page params[:page]
+      @items = RichImage.order("created_at DESC").page params[:page]
       
       # stub for new file
-      @rich_image = RichImage.new
+      @rich_asset = RichImage.new
       
       respond_to do |format|
         format.js

@@ -4,7 +4,7 @@
     <a href="#" id="insert-many" title="Insert many images (keep browser open)">Insert many</a>
     <a href="#" id="insert-one" title="Insert one image">Insert one</a>  
     <script type="text/javascript" charset="utf-8">
-      var insert_many_images = <%= @insert_many_images.to_s %>;
+      var defaultInsertionMode = <%= @insert_many_images.to_s %>;
     </script>  
   </div>
 
@@ -17,13 +17,13 @@
   
 </header>
 
-<div id="legacy-form"><%= form_for(@rich_image, :url => files_path) do |f| %>
+<div id="legacy-form"><%= form_for(@rich_asset, :url => files_path) do |f| %>
   <p><%= f.file_field :image%></p>
   <%= f.submit("Upload") %>
 <% end %>
 </div>
 
-<ul id="images">
+<ul id="items">
   
   <li id="uploadBlock">
     <div id="upload" class="qq-upload-button placeholder">
@@ -32,6 +32,6 @@
     <p>Upload an image</p>
   </li>
 
-	<%= render :partial => "image", :collection => @images, :as => :file %>
+	<%= render :partial => "image", :collection => @items, :as => :file %>
 
 </ul>
