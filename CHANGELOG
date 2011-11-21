@@ -1,0 +1,10 @@
+0.0.7
+- major refactoring of internals
+- renamed per-instance options directive from 'editor' to 'config'
+- renamed RA integration class to Rich::Integrations::RailsAdmin::RichEditor
+- loading indicator when new images are loaded
+- allowed styles, default style and insertion mode (single or many) can now be specified per instance
+- the RA integration now supports per-editor configuration
+
+<= 0.0.6
+Changes unavailable. Check the repo.
