@@ -7,9 +7,7 @@ module Rich
 
       module InstanceMethods
         def rich_input(method, options)
-          editor_options = Rich.editor.merge(options[:editor] || {})
-          editor_options[:width]  = options[:width] || '76%'
-          editor_options[:height] = options[:height] || '400px'
+          editor_options = Rich.getEditorOptions(options[:config])
           dom_id = "#{sanitized_object_name}_#{generate_association_input_name(method)}"
 
           (

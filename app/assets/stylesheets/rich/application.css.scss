@@ -51,11 +51,6 @@ $fontSizeLarge: 16px;
   to {-webkit-transform:rotate(360deg);}
 }
 
-@-webkit-keyframes pulser {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 // the meat
 *, html, body {
 	font-family: helvetica, arial, sans-serif;
@@ -88,14 +83,8 @@ header {
 	background: image-url('rich/loading.png') no-repeat center;
 	width: 16px;
 	height: $headerHeight;
-	float: left;
+	position: absolute;
 	margin-left: 20px;
-	
-	-webkit-animation-name: pulser;
-  -webkit-animation-duration:0.06s;
-  -webkit-animation-iteration-count:infinite;
-  -webkit-animation-timing-function:linear;
-	-webkit-animation-direction: alternate;
 }
 
 #insert-toggle {
@@ -207,7 +196,7 @@ header {
 		p {
 			font-size: 10px;
 			margin: 0;
-			line-height: $margin;
+			line-height: $margin - 3;
 			height: $margin;
 			overflow:hidden;
 			text-overflow: ellipsis;
@@ -226,7 +215,7 @@ header {
 			margin-top: -$margin;
 			width:$margin;
 			height: $margin;
-			background: image-url('rich/x-red.png') no-repeat center right;
+			background: image-url('rich/x-red.png') no-repeat right ($margin / 2 - 5);
 			opacity: 0.1;
 		}
 		

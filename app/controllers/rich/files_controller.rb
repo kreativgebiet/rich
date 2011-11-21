@@ -2,18 +2,6 @@ module Rich
   class FilesController < ApplicationController
     
     def index
-      
-      @insert_many_images = Rich.insert_many_images
-      
-      if (Rich.allowed_styles == :all)
-        @styles = Rich.image_styles.keys
-        @styles.push(:original)
-      else 
-        @styles = Rich.allowed_styles
-      end
-      
-      @default_style = Rich.default_style
-      
       # list all files
       @items = RichImage.order("created_at DESC").page params[:page]
       

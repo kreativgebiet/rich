@@ -1,20 +1,14 @@
 <header>
   
-	<div id="loading" style="visibility: hidden;"></div>
+	<div id="loading" style="display:none;"></div>
 
   <div id="insert-toggle">
     <a href="#" id="insert-many" title="Insert many images (keep browser open)">Insert many</a>
     <a href="#" id="insert-one" title="Insert one image">Insert one</a>  
-    <script type="text/javascript" charset="utf-8">
-      var defaultInsertionMode = <%= @insert_many_images.to_s %>;
-    </script>  
   </div>
 
-  <ul id="styles" class="scopes" data-default-style="<%= @default_style %>">
-    <li class="label">Image style to insert</li>
-    <% for style in @styles %>
-      <li class="scope" id="style-<%= style %>" data-rich-style="<%= style %>"><%= style %></li>
-    <% end %>
+  <ul id="styles" class="scopes">
+    <li class="label">Style</li>
   </ul>
   
 </header>

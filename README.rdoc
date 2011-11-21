@@ -50,7 +50,7 @@ In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
      <%= f.inputs do %>
        <%= f.input :name %>
        <%= f.input :title %>
-       <%= f.input :body, :as => :rich %>
+       <%= f.input :body, :as => :rich, :editor => { :defaultStyle => "myCrazyPaperclipStyle" } %>
      <% end %>
      <%= f.buttons do %>
        <%= f.commit_button %>
@@ -64,7 +64,7 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
   form do |f|
     f.inputs "Basic info" do
       f.input :title
-      f.input :body, :as => :rich
+      f.input :body, :as => :rich, :editor => { :width => '76%', :height => '400px' }
     end
     f.buttons
   end
@@ -77,8 +77,6 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   
 === Rails Admin
 
-Support for Rails Admin is very new and should be considered fragile. Per-editor configuration is not supported. However, you can globally customize your editors through the Rich initializer.
-
 To use Rich in your RA forms, first add the following lines to your <tt>/config/initializers/rails_admin.rb</tt>.
 
   require 'rich/integrations/rails_admin_editor'
@@ -89,7 +87,11 @@ This will enable the <tt>rich_editor</tt> field type. You can use this field as 
   config.model Post do
     edit do
       field :title
-      field :body, :rich_editor
+      field :body, :rich_editor do
+         config({ 
+           :insert_many => true 
+         })
+      end
     end
   end
   

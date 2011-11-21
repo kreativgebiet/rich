@@ -16,7 +16,7 @@ if Object.const_defined?("Rich")
     
     # config.allowed_styles = :all # this is the default - show all styles
     # config.allowed_styles = [ :large, :original ]
-    config.allowed_styles = [ :large, :thumb ]
+    # config.allowed_styles = [ :large, :thumb ]
     
     config.default_style = :large
     

@@ -12,8 +12,9 @@ function addQueryString( url, params ) {
 // implement a basic plugin to insert rich images
 
 // accepted properties:
-// richImageUrl - path to image browser action
-// richImageAllowedStyles - list of allowed image styles, defaults to all
+// richBrowserUrl - path to image browser action
+// allowedStyles - list of allowed image styles, defaults to all
+// defaultStyle - the default style
 // richImageOwnerType
 // richImageOwnerId
 
@@ -22,7 +23,7 @@ CKEDITOR.plugins.add('richimage',
     init: function(editor) {
 	
 		// register a callback that actually inserts a selected image
-        editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id){
+        editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id, type){
 			this.insertHtml('<img src="' + url + '" alt="" data-rich-image-id="' + id + '" />');
 		}, editor );
 		
@@ -34,7 +35,10 @@ CKEDITOR.plugins.add('richimage',
 				var params = {};
 				params.CKEditor = editor.name;
 				params.CKEditorFuncNum = editor._.insertImagefn;
-				var url = addQueryString(editor.config.richImageUrl, params );
+				params.default_style = editor.config.default_style;
+				params.allowed_styles = editor.config.allowed_styles;
+				params.insert_many = editor.config.insert_many;
+				var url = addQueryString(editor.config.richBrowserUrl, params );
 				editor.popup(url, 860, 400);
 			}
 		});

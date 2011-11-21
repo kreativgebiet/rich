@@ -2,9 +2,8 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
 
   class RichInput < ::Formtastic::Inputs::TextInput  
     def to_html
-      editor_options = Rich.editor.merge(options[:editor] || {})
-      editor_options[:width]  = options[:width] || '76%'
-      editor_options[:height] = options[:height] || '400px'
+
+      editor_options = Rich.getEditorOptions(options[:config])
 
       input_wrapping do
         label_html <<

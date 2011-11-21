@@ -3,7 +3,7 @@
      <%= f.input :name %>
      <%= # f.input :title, :as => :rich_asset 
 %>
-     <%= f.input :content, :as => :rich, :editor => { } %>
+     <%= f.input :content, :as => :rich, :editor => { :defaultStyle => "thumb", :insertMany => true } %>
    <% end %>
    <%= f.buttons do %>
      <%= f.commit_button %>

@@ -6,7 +6,7 @@ if Object.const_defined?("Rich")
     # == CKEditor configuration
     # 
     # Rich ships with what I hope are sensible defaults. 
-    # You may want to override these. This is how.
+    # You may want to override these.
     # 
     # For example, the elements available in the formats
     # dropdown are defined like this:
@@ -48,6 +48,14 @@ if Object.const_defined?("Rich")
     # styles defined above you can also use :original to get 
     # the unprocessed file. Make sure this style exists.
     config.default_style = :thumb
+
+		# == Asset insertion
+		#
+		# Set this to true to keep the filebrowser open after inserting an asset.
+		# Also configurable per-use from within the filebrowser.
+		#
+		# Default:
+		# config.insert_many = false
     
     # == User Authentication
     #

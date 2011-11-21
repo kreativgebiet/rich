@@ -17,16 +17,32 @@ rich.Browser = function(){
 rich.Browser.prototype = {
 	
 	initialize: function() {
+		
+		// intialize styles
+		this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
+		
+		// initialize image insertion mode
+		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
 		this.toggleInsertionMode(false);
+	},
+	
+	initStyles: function(opt, def) {
+		opt=opt.split(',');
+		$.each(opt, function(index, value) { 
+		  $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
+		});
+		
+		browser.selectStyle(def);
 	},
 	
 	setLoading: function(loading) {
 		this._options.loading = loading;
 		
 		if(loading == true) {
-			$('#loading').css({visibility: 'visible'});
+			// $('#loading').css({visibility: 'visible'});
+			$('#loading').fadeIn();
 		} else {
-			$('#loading').css({visibility: 'hidden'});
+			$('#loading').fadeOut();
 		}
 	},
 	
@@ -51,6 +67,7 @@ rich.Browser.prototype = {
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
+		var type = $(item).data('rich-asset-type');
 		
 		// differentiate between CKEditor browsing and direct asset selection
 		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
@@ -103,8 +120,6 @@ $(function(){
 	browser = new rich.Browser();
 	new rich.Uploader();
 
-	// set defaults and initialize
-	browser._options.insertionModeMany = defaultInsertionMode;
 	browser.initialize();
 	
 	// hook up insert mode switching
@@ -114,15 +129,12 @@ $(function(){
     return false;
   });
 
-	// preselect the default style
-	browser.selectStyle($('#styles').data('default-style'));
-
 	// hook up style selection
 	$('#styles li').click(function(e){
 		browser.selectStyle($(this).data('rich-style'));
 	});
 
-	// hook up image insertion
+	// hook up item insertion
 	$('#items li img').live('click', function(e){
 		browser.selectItem(e.target);
 	});

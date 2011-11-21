@@ -17,8 +17,8 @@ module Rich
   mattr_accessor :authentication_method
   @@authentication_method = :none
   
-  mattr_accessor :insert_many_images
-  @@insert_many_images = false
+  mattr_accessor :insert_many
+  @@insert_many = false
   
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
@@ -33,11 +33,37 @@ module Rich
     :format_tags => 'h3;p;pre',
     :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
     
-    :richImageUrl => '/rich/files/', #todo make this map to the engine mount point
+    :richBrowserUrl => '/rich/files/', #todo make this map to the engine mount point
     
-    :uiColor => '#f4f4f4' # similar to Active Admin
+    :uiColor => '#f4f4f4'
   }
   # End configuration defaults
+  
+  def self.getEditorOptions(overrides={})
+    # merge in editor settings configured elsewhere
+    
+    if(self.allowed_styles == :all)
+      # replace :all with a list of the actual styles that are present
+      all_styles = Rich.image_styles.keys
+      all_styles.push(:original)
+      self.allowed_styles = all_styles
+    end
+    
+    base = {
+      :allowed_styles => self.allowed_styles,
+      :default_style => self.default_style,
+      :insert_many => self.insert_many
+    }
+    editor_options = self.editor.merge(base)
+       
+    # merge in local overrides
+    editor_options.merge!(overrides)
+    
+    puts editor_options.inspect
+    
+    editor_options
+
+  end
   
   def self.setup
     yield self
