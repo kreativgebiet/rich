@@ -26,14 +26,14 @@ module Rich
     :stylesSet  =>  [],
     :extraPlugins => 'stylesheetparser,richimage',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
-    :contentsCss => '/assets/rich/editor.css', # TODO: make this map to the engine mount point
+    :contentsCss => '/assets/rich/editor.css',
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
     :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
     
-    :richBrowserUrl => '/rich/files/', #todo make this map to the engine mount point
+    :richBrowserUrl => '/rich/files/',
     
     :uiColor => '#f4f4f4'
   }
