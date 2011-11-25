@@ -20,6 +20,16 @@ namespace :rich do
       # the folder may not exist
     end
   end
+  
+  desc "Re-generate image styles"
+  task :refresh => :environment do
+    # re-generate images
+    ENV['CLASS'] = "Rich::RichImage"
+    Rake::Task["paperclip:refresh"].invoke
+    
+    # re-generate uri cache
+    Rich::RichImage.find_each(&:save)
+  end
 end
 
 # Hook to automatically assetize ckeditor when precompiling assets

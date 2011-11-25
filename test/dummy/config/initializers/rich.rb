@@ -11,7 +11,8 @@ if Object.const_defined?("Rich")
 
     config.image_styles = {
       :large => "500x500",
-      :thumb => "100x100#"
+      :thumb => "100x100#",
+      :gigantic =>"5000x5000"
     }
     
     # config.allowed_styles = :all # this is the default - show all styles
