@@ -22,7 +22,7 @@ namespace :rich do
   end
   
   desc "Re-generate image styles"
-  task :refresh => :environment do
+  task :refresh_assets => :environment do
     # re-generate images
     ENV['CLASS'] = "Rich::RichImage"
     Rake::Task["paperclip:refresh"].invoke

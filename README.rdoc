@@ -136,7 +136,7 @@ The styles you define in the initializer are passed to Paperclip directly, so th
 
 When you change styles after uploading files, you will need to re-process those old files. To accomplish this, run the following command (avoid the standard Paperclip task!).
 
-  rake rich:refresh
+  rake rich:refresh_assets
 
 == Planned features
 
