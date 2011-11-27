@@ -57,7 +57,7 @@ module Rich
     end
     
     def check_content_type
-      self.image.instance_write(:content_type, MIME::Types.type_for(image_file_name)[0])
+      self.image.instance_write(:content_type, MIME::Types.type_for(image_file_name)[0].content_type)
       logger.debug(image_content_type)
       unless ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'].include?(image_content_type)
         self.errors[:base] << "'#{self.image_file_name}' is not an image."
