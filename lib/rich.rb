@@ -57,7 +57,7 @@ module Rich
     editor_options = self.editor.merge(base)
        
     # merge in local overrides
-    editor_options.merge!(overrides)
+    editor_options.merge!(overrides) if overrides
     
     puts editor_options.inspect
     
