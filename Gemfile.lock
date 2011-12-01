@@ -16,7 +16,7 @@ GIT
 PATH
   remote: .
   specs:
-    rich (0.0.7)
+    rich (0.0.8)
       jquery-rails
       kaminari
       mime-types

@@ -1,6 +1,9 @@
 Release notes
 Matters to consider. Or ignore at your own peril.
 
+0.0.8
+- fixes a problem that would prevent Rich from working unless settings were overridden (thanks Stanislaw)
+- updated Rails Admin integration to work with their new form logic
 
 0.0.7
 - add a rake task to regenerate image styles whilst keeping the URI cache in sync
