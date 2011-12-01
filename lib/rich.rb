@@ -39,7 +39,7 @@ module Rich
   }
   # End configuration defaults
   
-  def self.getEditorOptions(overrides={})
+  def self.options(overrides={})
     # merge in editor settings configured elsewhere
     
     if(self.allowed_styles == :all)
