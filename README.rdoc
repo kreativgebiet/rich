@@ -10,9 +10,13 @@ Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic
 2. Sensible defaults. We don't want our users to insert tables, smilies or other frivolities that will do nothing but ruin a lovingly crafted design.
 3. Make it easy to customize these defaults.
 4. Implement a usable (and easily configurable) file manager that serves up images that fit your specific design.
-5. A good upload experience, but no flash.
+5. A good upload experience (multiple uploads, progress bars, pure html/js).
 
 It should be noted that while a major point of this project was to remove many things from CKEditor, all that stuff is still in there and can be easily re-enabled.
+
+== Dependency Status
+
+{<img src="https://gemnasium.com/bastiaanterhorst/rich.png" />}[https://gemnasium.com/bastiaanterhorst/rich/]
 
 == Quick install
 
@@ -105,11 +109,11 @@ This is the file manager.
 
 == Rich in production mode
 
-Rich works fine in production mode, as long as you make sure to precompile your assets. Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So make sure you precompile your assets before starting production mode (something you most likely are doing anyway).
+Rich works just fine in production mode. To accomodate the structure of the CKEditor source, Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So the following works as you would expect:
 
   rake assets:precompile
 
-Rich will also clean up these CKEditor files when you clean your assets. So the following works as expected.
+Rich will also clean up these CKEditor files when you clean your assets. Like this:
 
   rake assets:clean
   
@@ -124,7 +128,7 @@ Take a look at the generated <tt>rich.rb</tt> initializer and – if you want to
 
 === CKEditor configuration
 
-Rich attempts to provide you with a sensible set of buttons and capabilities. But of course, you might disagree. To that end, you can configure CKEditor through the <tt>editor</tt> directive, either globally through the initializer, or per editor instance as an option.
+Rich attempts to provide you with a sensible set of buttons and capabilities. But of course, you might disagree. To that end, you can configure CKEditor through the <tt>config</tt> directive, either globally through the initializer, or per editor instance as an option.
 
 === Editor styles
 
@@ -140,8 +144,9 @@ When you change styles after uploading files, you will need to re-process those 
 
 == Planned features
 
-* Scoping assets to other objects
-* Drag & drop uploading
+* upload non-image files
+* scoping assets to other objects
+* drag & drop uploading
 * separate form control to select/upload images without CKEditor
 * localization support
 
