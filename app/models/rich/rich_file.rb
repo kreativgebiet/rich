@@ -43,11 +43,11 @@ module Rich
       uris = {}
       
       rich_file.styles.each do |style|
-        uris[style[0]] = rich_file.url(style[0].to_sym)
+        uris[style[0]] = rich_file.url(style[0].to_sym, false)
       end
       
       # manualy add the original size
-      uris["original"] = rich_file.url(:original)
+      uris["original"] = rich_file.url(:original, false)
       
       self.uri_cache = uris.to_json
     end
