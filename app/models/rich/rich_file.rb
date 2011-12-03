@@ -4,6 +4,9 @@ require 'mime/types'
 module Rich
   class RichFile < ActiveRecord::Base
     
+    scope :images, where("rich_rich_files.simplified_type = 'image'")
+    scope :files, where("rich_rich_files.simplified_type = 'file'")
+    
     paginates_per 27
     
     has_attached_file :rich_file, :styles => Proc.new {|a| a.instance.set_styles }
