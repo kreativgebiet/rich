@@ -1,4 +1,4 @@
-= {<img src="https://github.com/bastiaanterhorst/rich/raw/non-image-uploads/app/assets/images/rich/rich.png" />}[Rich Rich] Rich
+= {<img src="https://github.com/bastiaanterhorst/rich/raw/upload-other-files/app/assets/images/rich/rich.png" />}[Rich] Rich
 
 Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
