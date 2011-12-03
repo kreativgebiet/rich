@@ -161,6 +161,8 @@ When you change styles after uploading files, you will need to re-process those 
 * Valum's FileUploader - https://github.com/valums/file-uploader
 * Rack Raw Upload - https://github.com/newbamboo/rack-raw-upload
 * Paperclip - https://github.com/thoughtbot/paperclip
+* Silk icons - http://www.famfamfam.com/lab/icons/silk/
+* Iconic icons - http://somerandomdude.com/work/iconic/
 
 == Copyright
 
