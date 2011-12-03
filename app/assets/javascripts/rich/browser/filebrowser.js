@@ -33,6 +33,10 @@ rich.Browser.prototype = {
 		});
 		
 		browser.selectStyle(def);
+		
+		if(opt.length < 2) {
+			$('#styles').hide();
+		}
 	},
 	
 	setLoading: function(loading) {
@@ -68,9 +72,10 @@ rich.Browser.prototype = {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
 		var type = $(item).data('rich-asset-type');
+		var name = $(item).data('rich-asset-name');
 		
 		// differentiate between CKEditor browsing and direct asset selection
-		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id);
+		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);
 		
 		// wait a short while before closing the window or regaining focus
 		var self = this;

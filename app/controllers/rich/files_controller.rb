@@ -3,7 +3,12 @@ module Rich
     
     def index
       # list all files
-      @items = RichFile.order("created_at DESC").page params[:page]
+      
+      if(params[:type] == "images")
+        @items = RichFile.images.order("created_at DESC").page params[:page]
+      else
+        @items = RichFile.files.order("created_at DESC").page params[:page]
+      end
       
       # stub for new file
       @rich_asset = RichFile.new
