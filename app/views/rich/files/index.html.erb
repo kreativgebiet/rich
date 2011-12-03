@@ -3,8 +3,8 @@
 	<div id="loading" style="display:none;"></div>
 
   <div id="insert-toggle">
-    <a href="#" id="insert-many" title="Insert many images (keep browser open)">Insert many</a>
-    <a href="#" id="insert-one" title="Insert one image">Insert one</a>  
+    <a href="#" id="insert-many" title="Insert many (keep browser open)">Insert many</a>
+    <a href="#" id="insert-one" title="Insert one">Insert one</a>  
   </div>
 
   <ul id="styles" class="scopes">
@@ -14,7 +14,7 @@
 </header>
 
 <div id="legacy-form"><%= form_for(@rich_asset, :url => files_path) do |f| %>
-  <p><%= f.file_field :image%></p>
+  <p><%= f.file_field :rich_file%></p>
   <%= f.submit("Upload") %>
 <% end %>
 </div>
@@ -25,9 +25,9 @@
     <div id="upload" class="qq-upload-button placeholder">
       <div class="spinner"></div>
     </div>
-    <p>Upload an image</p>
+    <p>Upload a file</p>
   </li>
 
-	<%= render :partial => "image", :collection => @items, :as => :file %>
+	<%= render :partial => "file", :collection => @items, :as => :file %>
 
 </ul>

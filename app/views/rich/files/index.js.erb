@@ -1,1 +1,1 @@
-<% if @items.count > 0 %>$("#items").append("<%= escape_javascript(render :partial => "image", :collection => @items, :as => :file) %>");<% end %>
+<% if @items.count > 0 %>$("#items").append("<%= escape_javascript(render :partial => "file", :collection => @items, :as => :file) %>");<% end %>

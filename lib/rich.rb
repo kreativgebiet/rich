@@ -59,10 +59,21 @@ module Rich
     # merge in local overrides
     editor_options.merge!(overrides) if overrides
     
-    puts editor_options.inspect
-    
     editor_options
 
+  end
+  
+  def self.simplified_type_for(mime)
+      #todo: abstract this array into something configurable
+    if ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'].include?(mime)
+      "image"
+    else
+      "file"
+    end
+  end
+  
+  def self.is_allowed_type(simplified_type)
+    true
   end
   
   def self.setup

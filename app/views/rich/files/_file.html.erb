@@ -1,0 +1,10 @@
+<li class="clickable">
+  <img  id="file<%= file.id %>"
+        src="<%= thumb_for_file(file) %>" 
+        data-uris="<%= file.uri_cache %>"
+        data-rich-asset-id="<%= file.id %>"
+				data-rich-asset-type="<%= file.simplified_type %>"
+  />
+  <p><%= file.rich_file_file_name %></p>
+  <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this file?", :class => "delete", :title => "Delete this file" %>
+</li>

@@ -24,7 +24,7 @@ CKEDITOR.plugins.add('richimage',
 	
 		// register a callback that actually inserts a selected image
         editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id, type){
-			this.insertHtml('<img src="' + url + '" alt="" data-rich-image-id="' + id + '" />');
+			this.insertHtml('<img src="' + url + '" alt="" data-rich-file-id="' + id + '" />');
 		}, editor );
 		
 		// clean up the callback
