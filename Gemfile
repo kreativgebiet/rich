@@ -13,17 +13,17 @@ gemspec
 # To use debugger
 # gem 'ruby-debug'
 
-gem 'jquery-rails'
-gem 'sass-rails'
+#gem 'jquery-rails'
+#gem 'sass-rails'
 
-#testing
-gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git', :branch => '0.3.x-stable'
+
+# Development: Formtastic
+#gem 'formtastic'
+
+# Development: AA
+#gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git', :branch => '0.3.x-stable'
 #gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git', :branch => 'master'
-
-gem "meta_search",    '>= 1.1.0.pre'
-gem 'inherited_resources'
-
-#gem 'rack-raw-upload', :git => "https://github.com/newbamboo/rack-raw-upload.git"
-
-gem 'uglifier'
+#gem "meta_search",    '>= 1.1.0.pre'
+#gem 'inherited_resources'
+#gem 'uglifier'
 
