@@ -17,7 +17,6 @@ rich.Browser = function(){
 rich.Browser.prototype = {
 	
 	initialize: function() {
-		
 		// intialize styles
 		this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
 		
@@ -123,10 +122,10 @@ var browser;
 $(function(){
 	
 	browser = new rich.Browser();
-	new rich.Uploader();
-
 	browser.initialize();
 	
+	new rich.Uploader();
+
 	// hook up insert mode switching
 	$('#insert-one, #insert-many').click(function(e){
 		browser.toggleInsertionMode(true);

@@ -20,6 +20,15 @@ module Rich
   mattr_accessor :insert_many
   @@insert_many = false
   
+  mattr_accessor :allow_document_uploads
+  @@allow_document_uploads = false
+  
+  mattr_accessor :allowed_image_types
+  @@allowed_image_types = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg']
+  
+  mattr_accessor :allowed_document_types
+  @@allowed_document_types = :all
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
@@ -55,25 +64,35 @@ module Rich
       :insert_many => self.insert_many
     }
     editor_options = self.editor.merge(base)
-       
+    
     # merge in local overrides
     editor_options.merge!(overrides) if overrides
+    
+    # remove the filebrowser if allow_document_uploads is false (the default)
+    unless allow_document_uploads
+      editor_options[:toolbar][1].delete("richFile")
+    end
     
     editor_options
 
   end
   
-  def self.simplified_type_for(mime)
-      #todo: abstract this array into something configurable
-    if ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'].include?(mime)
-      "image"
-    else
-      "file"
+  def self.validate_mime_type(mime, simplified_type)
+    # does the mimetype match the given simplified type?
+    puts "matching:" + mime + " TO " + simplified_type
+    
+    false # assume the worst
+    
+    if simplified_type == "image"
+      if allowed_image_types.include?(mime)
+        true
+      end
+    elsif simplified_type == "file"
+      if allowed_document_types == :all || allowed_document_types.include?(mime)
+        true
+      end
     end
-  end
-  
-  def self.is_allowed_type(simplified_type)
-    true
+    
   end
   
   def self.setup

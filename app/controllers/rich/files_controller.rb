@@ -4,7 +4,7 @@ module Rich
     def index
       # list all files
       
-      if(params[:type] == "images")
+      if(params[:type] == "image")
         @items = RichFile.images.order("created_at DESC").page params[:page]
       else
         @items = RichFile.files.order("created_at DESC").page params[:page]
@@ -34,7 +34,7 @@ module Rich
     end
     
     def create
-      @file = RichFile.new
+      @file = RichFile.new(:simplified_type => params[:simplified_type]) #make sure the type is set
       
       # use the file from Rack Raw Upload
       if(params[:file])

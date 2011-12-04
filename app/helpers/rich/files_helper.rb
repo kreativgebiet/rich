@@ -2,10 +2,10 @@ module Rich
   module FilesHelper
     
     def thumb_for_file(file)
-      if file.image?
+      if file.simplified_type == "image"
         file.rich_file.url(:thumb)
       else
-        asset_path "rich/missing.png"
+        asset_path "rich/document-thumb.png"
       end
     end
     

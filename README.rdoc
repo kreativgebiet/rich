@@ -158,6 +158,7 @@ When you change styles after uploading files, you will need to re-process those 
 
 == Tools used
 
+* Ckeditor - http://ckeditor.com/
 * Valum's FileUploader - https://github.com/valums/file-uploader
 * Rack Raw Upload - https://github.com/newbamboo/rack-raw-upload
 * Paperclip - https://github.com/thoughtbot/paperclip

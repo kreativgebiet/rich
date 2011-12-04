@@ -6,7 +6,8 @@ rich.Uploader = function(){
 	
 	this._options = {
 		uploadButtonId: 'upload',
-		insertionPoint: 'uploadBlock'
+		insertionPoint: 'uploadBlock',
+		uploadType: $.QueryString["type"]
 	};
 	
 	// create the qq uploader
@@ -16,7 +17,9 @@ rich.Uploader = function(){
 		multiple: true,
 		maxConnections: 3,
 		action: $("#new_rich_rich_file").attr("action"),
-		params: { authenticity_token: $("input[name='authenticity_token']").attr("value") },
+		params: { authenticity_token: $("input[name='authenticity_token']").attr("value"),
+		 					simplified_type: this._options.uploadType
+		},
 		debug: true,
 		onComplete: function(id, fileName, responseJSON) { self.uploadComplete(id, fileName, responseJSON); },
 		onSubmit: function(id, fileName) { self.uploadSubmit(id, fileName); },

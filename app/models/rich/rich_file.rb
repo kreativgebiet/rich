@@ -20,12 +20,9 @@ module Rich
     after_create :cache_style_uris_and_save
     before_update :cache_style_uris
     
-    def image?
-      Rich.simplified_type_for(MIME::Types.type_for(rich_file_file_name)[0].content_type) == "image"
-    end
     
     def set_styles
-      if image?
+      if self.simplified_type=="image"
         Rich.image_styles
       else
         {}
@@ -67,9 +64,8 @@ module Rich
     
     def check_content_type
       self.rich_file.instance_write(:content_type, MIME::Types.type_for(rich_file_file_name)[0].content_type)
-      self.simplified_type = Rich.simplified_type_for(self.rich_file_content_type)
       
-      unless Rich.is_allowed_type(self.simplified_type)
+      unless Rich.validate_mime_type(self.rich_file_content_type, self.simplified_type)
         self.errors[:base] << "'#{self.rich_file_file_name}' is not the right type."
       end
     end

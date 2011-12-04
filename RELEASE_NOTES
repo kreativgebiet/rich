@@ -1,11 +1,12 @@
 Release notes
 Matters to consider. Or ignore at your own peril.
 
+
 0.0.9
-- refactored all mentions of Image to File to prepare for uploads of other types
-  - added a migration
+- refactored all mentions of Image to File and add non-image uploads (turned off by default)
+  - added a migration which adds a field containing a simplified mime type.
   - the data-rich-image-id attributed added to inserted images has been renamed to data-rich-file-id
-  - 
+  - the image storage path has changed! in order to prevent possible conflicts with other attachments, the path Rich uses is now namespaced. rename your path from: /public/system/images to /public/system/rich_files
   
 
 0.0.8

@@ -42,7 +42,7 @@ CKEDITOR.plugins.add('richimage',
 				params.default_style = editor.config.default_style;
 				params.allowed_styles = editor.config.allowed_styles;
 				params.insert_many = editor.config.insert_many;
-				params.type = "images"
+				params.type = "image"
 				var url = addQueryString(editor.config.richBrowserUrl, params );
 				editor.popup(url, 860, 400);
 			}
@@ -56,7 +56,7 @@ CKEDITOR.plugins.add('richimage',
 				params.default_style = "original";
 				params.allowed_styles = "original";
 				params.insert_many = editor.config.insert_many;
-				params.type = "files"
+				params.type = "file"
 				var url = addQueryString(editor.config.richBrowserUrl, params );
 				editor.popup(url, 860, 400);
 			}
