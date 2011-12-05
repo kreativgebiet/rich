@@ -1,6 +1,6 @@
 = Rich
 
-Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
+{<img src="https://github.com/bastiaanterhorst/rich/raw/upload-other-files/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.1. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
 
 Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2).
 
@@ -158,9 +158,12 @@ When you change styles after uploading files, you will need to re-process those 
 
 == Tools used
 
+* Ckeditor - http://ckeditor.com/
 * Valum's FileUploader - https://github.com/valums/file-uploader
 * Rack Raw Upload - https://github.com/newbamboo/rack-raw-upload
 * Paperclip - https://github.com/thoughtbot/paperclip
+* Silk icons - http://www.famfamfam.com/lab/icons/silk/
+* Iconic icons - http://somerandomdude.com/work/iconic/
 
 == Copyright
 

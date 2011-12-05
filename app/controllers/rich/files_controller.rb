@@ -3,10 +3,15 @@ module Rich
     
     def index
       # list all files
-      @items = RichImage.order("created_at DESC").page params[:page]
+      
+      if(params[:type] == "image")
+        @items = RichFile.images.order("created_at DESC").page params[:page]
+      else
+        @items = RichFile.files.order("created_at DESC").page params[:page]
+      end
       
       # stub for new file
-      @rich_asset = RichImage.new
+      @rich_asset = RichFile.new
       
       respond_to do |format|
         format.js
@@ -16,24 +21,24 @@ module Rich
     end
     
     def show
-      # show is used to retrieve single images through XHR requests after an image has been uploaded
+      # show is used to retrieve single files through XHR requests after a file has been uploaded
       
       if(params[:id])
         # list all files
-        @file = RichImage.find(params[:id])
+        @file = RichFile.find(params[:id])
         render :layout => false
       else 
-        render :text => "Image not found"
+        render :text => "File not found"
       end
       
     end
     
     def create
-      @file = RichImage.new
+      @file = RichFile.new(:simplified_type => params[:simplified_type]) #make sure the type is set
       
       # use the file from Rack Raw Upload
       if(params[:file])
-        @file.image = params[:file]
+        @file.rich_file = params[:file]
       end
       
       if @file.save
@@ -47,7 +52,7 @@ module Rich
     
     def destroy  
       if(params[:id])
-        image = RichImage.delete(params[:id])
+        rich_file = RichFile.delete(params[:id])
         @fileid = params[:id]
       end
     end

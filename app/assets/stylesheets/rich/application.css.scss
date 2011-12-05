@@ -91,9 +91,7 @@ header {
   float: right;
   height: $headerHeight;
   overflow: hidden;
-  margin: 0 $margin 0 5px;
-  padding-left: 25px;
-  background: image-url('rich/menu-dash.png') no-repeat left center;
+  margin: 0 $margin 0 0;
 }
 
 #insert-many, #insert-one {
@@ -244,8 +242,9 @@ header {
 ul.scopes {
 	
 	list-style: none;
-	margin: 0 0 0 ($margin/4*3);
-	padding: 0;
+	margin: 0 15px 0 ($margin/4*3);
+	padding: 0 10px 0 0;
+  background: image-url('rich/menu-dash.png') no-repeat right 23px;
 	float: right;
 	
 	li {
