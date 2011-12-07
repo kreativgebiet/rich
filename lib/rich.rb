@@ -32,6 +32,7 @@ module Rich
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
+    :height => 400,
     :stylesSet  =>  [],
     :extraPlugins => 'stylesheetparser,richimage',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
