@@ -6,7 +6,7 @@ module Rich
   mattr_accessor :image_styles
   @@image_styles = {
     :thumb => "100x100#"
-  }  
+  }
   
   mattr_accessor :allowed_styles
   @@allowed_styles = :all
@@ -34,14 +34,14 @@ module Rich
   @@editor = {
     :height => 400,
     :stylesSet  =>  [],
-    :extraPlugins => 'stylesheetparser,richimage',
+    :extraPlugins => 'stylesheetparser,richimage,MediaEmbed',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
     :contentsCss => '/assets/rich/editor.css',
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
-    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', 'richFile', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
+    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', 'richFile','MediaEmbed', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
     
     :richBrowserUrl => '/rich/files/',
     

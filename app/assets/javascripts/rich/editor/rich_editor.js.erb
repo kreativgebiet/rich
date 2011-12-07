@@ -18,6 +18,8 @@ function addQueryString( url, params ) {
 // richImageOwnerType
 // richImageOwnerId
 
+CKEDITOR.plugins.addExternal('MediaEmbed', '<%= asset_path('ckeditor-contrib/plugins/MediaEmbed/') %>');
+
 CKEDITOR.plugins.add('richimage',
 {
     init: function(editor) {
