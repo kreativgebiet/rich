@@ -23,6 +23,9 @@ module Rich
   mattr_accessor :allow_document_uploads
   @@allow_document_uploads = false
   
+  mattr_accessor :allow_embeds
+  @@allow_embeds = false
+  
   mattr_accessor :allowed_image_types
   @@allowed_image_types = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg']
   
@@ -62,7 +65,9 @@ module Rich
     base = {
       :allowed_styles => self.allowed_styles,
       :default_style => self.default_style,
-      :insert_many => self.insert_many
+      :insert_many => self.insert_many,
+      :allow_document_uploads => self.allow_document_uploads,
+      :allow_embeds => self.allow_embeds
     }
     editor_options = self.editor.merge(base)
     
@@ -70,8 +75,12 @@ module Rich
     editor_options.merge!(overrides) if overrides
     
     # remove the filebrowser if allow_document_uploads is false (the default)
-    unless allow_document_uploads
+    unless editor_options[:allow_document_uploads]
       editor_options[:toolbar][1].delete("richFile")
+    end
+    
+    unless editor_options[:allow_embeds]
+      editor_options[:toolbar][1].delete("MediaEmbed")
     end
     
     editor_options

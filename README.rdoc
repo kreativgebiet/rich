@@ -130,6 +130,8 @@ Take a look at the generated <tt>rich.rb</tt> initializer and – if you want to
 
 Rich attempts to provide you with a sensible set of buttons and capabilities. But of course, you might disagree. To that end, you can configure CKEditor through the <tt>config</tt> directive, either globally through the initializer, or per editor instance as an option.
 
+Rich also includes a few settings that manipulate CKEditor settings, but are a bit easier to use. For example, you can set <tt>:allow_embeds</tt> to <tt>true</tt> to load a media embed plugin (think Youtube, Vimeo, etc.)
+
 === Editor styles
 
 When you run the generator a css file is created for you in <tt>app/assets/stylesheets/rich/editor.css</tt>. Use this stylesheet to define the contents of the Styles drop down in CKEditor.
