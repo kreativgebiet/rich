@@ -7,8 +7,13 @@ namespace :rich do
   desc "Copy CKEditor files to /public/assets for production"
   task :assetize_ckeditor => :environment do
     puts "Rich - Copying CKEditor to your assets folder"
+    
     mkdir_p Rails.root.join('public/assets/ckeditor')
     cp_r Rich::Engine.root.join('vendor/assets/ckeditor/ckeditor/.'), Rails.root.join('public/assets/ckeditor')
+    
+    mkdir_p Rails.root.join('public/assets/ckeditor-contrib')
+    cp_r Rich::Engine.root.join('vendor/assets/ckeditor/ckeditor-contrib/.'), Rails.root.join('public/assets/ckeditor-contrib')
+    
   end
   
   desc "Clear CKEditor files from /public/assets"
@@ -16,6 +21,7 @@ namespace :rich do
     puts "Rich - Removing CKEditor from your assets folder"
     begin
       rm_r Rails.root.join('public/assets/ckeditor')
+      rm_r Rails.root.join('public/assets/ckeditor-contrib')
     rescue
       # the folder may not exist
     end
