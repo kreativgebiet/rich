@@ -1,0 +1,12 @@
+// CKEditor plugin configuration
+
+function addQueryString( url, params ) {
+	var queryString = [];
+	if (!params) return url;
+	else {
+		for (var i in params) queryString.push(i + "=" + encodeURIComponent( params[i]));
+	}
+	return url + ( ( url.indexOf( "?" ) != -1 ) ? "&" : "?" ) + queryString.join( "&" );
+}
+	
+CKEDITOR.plugins.addExternal('richfile', '<%= asset_path('ckeditor-contrib/plugins/richfile/') %>');

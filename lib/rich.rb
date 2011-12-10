@@ -24,7 +24,7 @@ module Rich
   mattr_accessor :editor
   @@editor = {
     :stylesSet  =>  [],
-    :extraPlugins => 'stylesheetparser,richimage',
+    :extraPlugins => 'stylesheetparser,richfile',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
     :contentsCss => '/assets/rich/editor.css',
     :removeDialogTabs => 'link:advanced;link:target',
