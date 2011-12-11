@@ -26,7 +26,7 @@
 					params.insert_many = editor.config.insert_many;
 					params.type = "image"
 					var url = addQueryString(editor.config.richBrowserUrl, params );
-					editor.popup(url, 860, 400);
+					editor.popup(url, 860, 500);
 				}
 			});
 
@@ -40,7 +40,7 @@
 					params.insert_many = editor.config.insert_many;
 					params.type = "file"
 					var url = addQueryString(editor.config.richBrowserUrl, params );
-					editor.popup(url, 860, 400);
+					editor.popup(url, 860, 500);
 				}
 			});
 
