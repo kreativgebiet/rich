@@ -45,9 +45,8 @@ module Rich
     :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
     :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', 'richFile','MediaEmbed', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
-    
+    :language => I18n.default_locale,
     :richBrowserUrl => '/rich/files/',
-    
     :uiColor => '#f4f4f4'
   }
   # End configuration defaults
@@ -73,6 +72,9 @@ module Rich
     
     # merge in local overrides
     editor_options.merge!(overrides) if overrides
+    
+    # update the language to the currently selected locale
+    editor_options[:language] = I18n.locale
     
     # remove the filebrowser if allow_document_uploads is false (the default)
     unless editor_options[:allow_document_uploads]

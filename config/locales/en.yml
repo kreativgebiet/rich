@@ -1,0 +1,9 @@
+en:
+  available_styles: "Styles"
+  upload_a_file: "Upload a file"
+  insert_one: "Insert one"
+  insert_one_tip: "Insert one"
+  insert_many: "Insert many"
+  insert_many_tip: "Insert many (keep browser open)"
+  delete: "Delete this file"
+  delete_confirm: "Are you sure you want to delete this file?"

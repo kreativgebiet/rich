@@ -1,0 +1,9 @@
+nl:
+  available_styles: "Stijlen"
+  upload_a_file: "Uploaden"
+  insert_one: "Enkele invoegen"
+  insert_one_tip: "Enkele invoegen"
+  insert_many: "Meerdere invoegen"
+  insert_many_tip: "Meerdere invoegen (houd venster open)"
+  delete: "Verwijder dit bestand"
+  delete_confirm: "Dit bestand echt verwijderen?"
