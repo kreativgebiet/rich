@@ -1,3 +1,5 @@
+// Rich CKEditor integration plugin - Bastiaan Terhorst
+
 (function(){
 
 	CKEDITOR.plugins.add('richfile',
@@ -7,11 +9,20 @@
 			// register a callback that actually inserts a selected image
 	    editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id, name){
 				this.insertHtml('<img src="' + url + '" alt="" data-rich-file-id="' + id + '" />');
-			}, editor );
+			}, editor);
 
 			editor._.insertFilefn = CKEDITOR.tools.addFunction(function(url, id, name){
 				this.insertHtml('<a href="' + url + '" data-rich-file-id="' + id + '">' + name + '</a>');
-			}, editor );
+			}, editor);
+			
+			// double click an image to replace it
+			editor.on( 'doubleclick', function(evt) {
+					var element = evt.data.element;
+
+					if (element.is('img') && !element.data('cke-realelement') && !element.isReadOnly()) {
+						editor.execCommand('insertRichImage');
+					}
+			});
 
 			// clean up the callback
 			editor.on( 'destroy', function () { CKEDITOR.tools.removeFunction( this._.insertImagefn ); } );
