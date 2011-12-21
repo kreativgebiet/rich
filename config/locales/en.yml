@@ -7,3 +7,4 @@ en:
   insert_many_tip: "Insert many (keep browser open)"
   delete: "Delete this file"
   delete_confirm: "Are you sure you want to delete this file?"
+  picker_browse: "Select or upload"

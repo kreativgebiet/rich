@@ -7,3 +7,4 @@ nl:
   insert_many_tip: "Meerdere invoegen (houd venster open)"
   delete: "Verwijder dit bestand"
   delete_confirm: "Dit bestand echt verwijderen?"
+  picker_browse: "Selecteer of upload"

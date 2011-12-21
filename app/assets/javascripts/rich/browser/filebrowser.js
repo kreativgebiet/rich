@@ -74,8 +74,12 @@ rich.Browser.prototype = {
 		var type = $(item).data('rich-asset-type');
 		var name = $(item).data('rich-asset-name');
 		
-		// differentiate between CKEditor browsing and direct asset selection
-		window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);
+		
+		if($.QueryString["CKEditor"]=='picker') {
+			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url)
+		} else {
+			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);			
+		}
 		
 		// wait a short while before closing the window or regaining focus
 		var self = this;
