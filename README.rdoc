@@ -126,6 +126,10 @@ Although generally not necessary, the underlying Rich tasks can be invoked direc
 
 Take a look at the generated <tt>rich.rb</tt> initializer and – if you want to dig deeper – the Rich sourcecode. The initializer guides you through the most important settings and configuration options.
 
+=== Localization
+
+Localization should be automatic. Rich uses the currently set locale (<tt>I18n.locale</tt>) for it's editor and file browser.
+
 === CKEditor configuration
 
 Rich attempts to provide you with a sensible set of buttons and capabilities. But of course, you might disagree. To that end, you can configure CKEditor through the <tt>config</tt> directive, either globally through the initializer, or per editor instance as an option.
@@ -166,6 +170,10 @@ When you change styles after uploading files, you will need to re-process those 
 * Paperclip - https://github.com/thoughtbot/paperclip
 * Silk icons - http://www.famfamfam.com/lab/icons/silk/
 * Iconic icons - http://somerandomdude.com/work/iconic/
+
+== Contributing
+
+Your contributions (small and large) are very welcome! Please fork the project, make your changes and send me a pull request. If you are considering adding new functionality, or if you found a bug, please open an issue on Github first.
 
 == Copyright
 
