@@ -35,6 +35,7 @@ rich.Browser.prototype = {
 		
 		if(opt.length < 2) {
 			$('#styles').hide();
+			browser.selectStyle(opt[0]);
 		}
 	},
 	
