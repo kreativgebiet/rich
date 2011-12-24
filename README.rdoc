@@ -54,7 +54,7 @@ In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
      <%= f.inputs do %>
        <%= f.input :name %>
        <%= f.input :title %>
-       <%= f.input :body, :as => :rich, :editor => { :defaultStyle => "myCrazyPaperclipStyle" } %>
+       <%= f.input :body, :as => :rich, :config => { :defaultStyle => "myCrazyPaperclipStyle" } %>
      <% end %>
      <%= f.buttons do %>
        <%= f.commit_button %>
@@ -68,7 +68,7 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
   form do |f|
     f.inputs "Basic info" do
       f.input :title
-      f.input :body, :as => :rich, :editor => { :width => '76%', :height => '400px' }
+      f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
     end
     f.buttons
   end
