@@ -54,7 +54,7 @@ In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
      <%= f.inputs do %>
        <%= f.input :name %>
        <%= f.input :title %>
-       <%= f.input :body, :as => :rich, :config => { :defaultStyle => "myCrazyPaperclipStyle" } %>
+       <%= f.input :body, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle" } %>
      <% end %>
      <%= f.buttons do %>
        <%= f.commit_button %>
