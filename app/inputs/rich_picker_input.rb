@@ -1,6 +1,6 @@
 if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].version.version[0,1] == "2")
     
-    class RichAssetInput < ::Formtastic::Inputs::StringInput  
+    class RichPickerInput < ::Formtastic::Inputs::StringInput
   
       # todo:
       # differentiate between rich_asset and rich_asset_url
