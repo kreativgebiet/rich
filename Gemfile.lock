@@ -45,8 +45,6 @@ GEM
     builder (3.0.0)
     cocaine (0.2.0)
     erubis (2.7.0)
-    formtastic (2.0.2)
-      rails (~> 3.0)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
@@ -106,7 +104,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.5)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -118,6 +115,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  formtastic
   rich!
-  sqlite3
