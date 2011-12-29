@@ -40,7 +40,8 @@ rich.Uploader.prototype = {
 			});
     } else {
 				$('#up'+id+' .spinner').first().addClass("error");
-				$('#up'+id+' .spinner').first().removeClass("spinning");		
+				$('#up'+id+' .spinner').first().removeClass("spinning");
+                $('#up'+id+' .progress-bar').first().remove();
     }
   },
 
