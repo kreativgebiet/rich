@@ -4,6 +4,6 @@
 - unless field.value.to_s.html_safe == ''
 	%br
 	%br
-	%img{:src => field.value.html_safe, :style => 'height: 100px'}
+	%img{:src => field.value.html_safe, :style => 'height: 100px', :class => 'rich-image-preview'}
 = javascript_tag do
 	$(function(){$('##{form.dom_id(field)}_field a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{form.dom_id(field)}', #{Rich.options(field.config).to_json.html_safe})})})
