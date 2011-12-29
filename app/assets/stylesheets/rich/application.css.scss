@@ -109,7 +109,8 @@ header {
 #insert-one {
   background-image: image-url('rich/insert-one.png');
 }
-
+      
+// Default thumbnail view
 #items {
 	list-style: none;
 	margin: 0 0 0 $margin;
@@ -231,7 +232,66 @@ header {
 		background-position: 0 -32px;
 	}
 	
-	
+}   
+
+// Condensed list view
+#items.list {
+
+  li {
+    width: auto;
+    height: 32px;
+    float: none;
+    margin-bottom: 16px;
+
+    img, .placeholder {
+      height: 32px;
+      width: 32px;
+      float: left;
+      margin-right: 16px;
+      line-height: 32px;
+      border: none;
+    }
+
+    .spinner {
+      margin: 0;
+    }
+
+    .progress .progress-bar {
+      background: $light;
+      height: 4px;
+      float: left;
+      @include rounded;
+      margin-top: 28px;
+    }
+
+    
+    p {
+      color: $dark;
+      font-size: 14px;
+      width: auto;
+      height: 32px;
+      line-height: 32px;
+      float: left;
+      cursor: default;
+    }
+
+    .delete {
+        position: relative;
+        float: left;
+        text-indent: -9999px;
+        margin: 8px 0 0 0;
+        width:$margin;
+        height: $margin;
+        background: image-url('rich/x-red.png') no-repeat right ($margin / 2 - 5);
+        opacity: 0.1;
+    }
+
+    #uploadBlock:hover .placeholder .spinner {
+      background-position: 0 0px;
+    }
+
+  }
+
 }
 
 .clickable:hover {
