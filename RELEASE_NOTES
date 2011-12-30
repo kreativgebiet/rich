@@ -2,11 +2,18 @@ Release notes
 Matters to consider. Or ignore at your own peril.
 
 
-0.0.9
+0.1
 - refactored all mentions of Image to File and add non-image uploads (turned off by default)
   - added a migration which adds a field containing a simplified mime type.
   - the data-rich-image-id attributed added to inserted images has been renamed to data-rich-file-id
   - the image storage path has changed! in order to prevent possible conflicts with other attachments, the path Rich uses is now namespaced. rename your path from: /public/system/images to /public/system/rich_files
+- added the rich_picker for Rails Admin and Formtastic (and, by extension, Active Admin)
+  - this allows you to link to a Rich file without having to embed a full CKEditor instance
+- localization
+  - english and dutch included
+- a list view mode, the default when viewing non-image files
+  - can be toggled in the upper-right hand corner
+  - override the default display mode using view_mode in your config hash (this can only be set per instance)
   
 
 0.0.8
@@ -23,4 +30,4 @@ Matters to consider. Or ignore at your own peril.
 
 
 <= 0.0.6
-Unaccustomed to the darkness, he stumbled.
+- Really, I have no clue.
