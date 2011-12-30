@@ -150,10 +150,11 @@ When you change styles after uploading files, you will need to re-process those 
 
 == Planned features
 
-* upload non-image files (almost there)
 * scoping assets to other objects
 * drag & drop uploading
-* separate form control to select/upload images without CKEditor (almost there)
+* finding/filtering assets
+* live image cropping
+* live image rotation
 
 == Inspiration
 
