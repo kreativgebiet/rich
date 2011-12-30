@@ -2,7 +2,7 @@ Release notes
 Matters to consider. Or ignore at your own peril.
 
 
-0.1
+1.0
 - refactored all mentions of Image to File and add non-image uploads (turned off by default)
   - added a migration which adds a field containing a simplified mime type.
   - the data-rich-image-id attributed added to inserted images has been renamed to data-rich-file-id
