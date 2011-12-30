@@ -87,14 +87,18 @@ header {
 	margin-left: 20px;
 }
 
-#insert-toggle {
+#insert-toggle, #view-toggle {
   float: right;
   height: $headerHeight;
   overflow: hidden;
+  margin: 0 $margin/2 0 0;
+}
+
+#view-toggle {
   margin: 0 $margin 0 0;
 }
 
-#insert-many, #insert-one {
+#insert-many, #insert-one, #view-list, #view-grid {
   display: block;
   width: 16px;
   height: $headerHeight;
@@ -109,7 +113,15 @@ header {
 #insert-one {
   background-image: image-url('rich/insert-one.png');
 }
-      
+
+#view-grid {
+  background-image: image-url('rich/view-grid.png');
+}
+
+#view-list {
+  background-image: image-url('rich/view-list.png');
+}
+
 // Default thumbnail view
 #items {
 	list-style: none;

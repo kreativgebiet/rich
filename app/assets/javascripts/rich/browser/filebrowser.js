@@ -9,7 +9,8 @@ rich.Browser = function(){
 		insertionModeMany: false,
 		currentPage: 1,
 		loading: false,
-		reachedBottom: false
+		reachedBottom: false,
+        viewModegrid: true
 	};
 	
 };
@@ -23,6 +24,7 @@ rich.Browser.prototype = {
 		// initialize image insertion mode
 		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
 		this.toggleInsertionMode(false);
+    this.toggleViewMode(false);
 	},
 	
 	initStyles: function(opt, def) {
@@ -54,7 +56,7 @@ rich.Browser.prototype = {
 		this._options.currentStyle = name;
 		$('#styles li').removeClass('selected');
 		$('#style-'+name).addClass('selected');	
-  },
+    },
 
 	toggleInsertionMode: function(switchMode) {
 		if(switchMode==true) this._options.insertionModeMany = !this._options.insertionModeMany;
@@ -67,6 +69,24 @@ rich.Browser.prototype = {
 	    $('#insert-many').hide();
 	  }
 	},
+
+    toggleViewMode: function(switchMode) {
+      if(switchMode==true) {
+        this._options.viewModeGrid = !this._options.viewModeGrid;
+      } else {
+        this._options.viewModeGrid = $('#items').hasClass("list");
+      }
+
+      if(this._options.viewModeGrid == true) {
+        $('#view-grid').hide();
+        $('#view-list').show();
+        $('#items').addClass('list');
+      } else {
+        $('#view-grid').show();
+        $('#view-list').hide();
+        $('#items').removeClass('list');
+      }
+    },
 	
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
@@ -134,6 +154,13 @@ $(function(){
 	// hook up insert mode switching
 	$('#insert-one, #insert-many').click(function(e){
 		browser.toggleInsertionMode(true);
+    e.preventDefault();
+    return false;
+  });
+
+  // hook up insert view switching
+  $('#view-grid, #view-list').click(function(e){
+    browser.toggleViewMode(true);
     e.preventDefault();
     return false;
   });

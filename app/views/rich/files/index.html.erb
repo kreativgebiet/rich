@@ -2,6 +2,11 @@
   
 	<div id="loading" style="display:none;"></div>
 
+  <div id="view-toggle">
+    <a href="#" id="view-grid" title="<%= t(:view_grid_tip) %>"><%= t(:view_grid) %></a>
+    <a href="#" id="view-list" title="<%= t(:view_list_tip) %>"><%= t(:view_list) %></a>
+  </div>
+
   <div id="insert-toggle">
     <a href="#" id="insert-many" title="<%= t(:insert_many_tip) %>"><%= t(:insert_many) %></a>
     <a href="#" id="insert-one" title="<%= t(:insert_one_tip) %>"><%= t(:insert_one) %></a>  
@@ -19,7 +24,7 @@
 <% end %>
 </div>
 
-<ul id="items">
+<ul id="items" <%= 'class="list"'.html_safe if @type != "image" %>>
   
   <li id="uploadBlock">
     <div id="upload" class="qq-upload-button placeholder">

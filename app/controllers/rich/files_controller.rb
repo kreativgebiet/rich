@@ -2,9 +2,9 @@ module Rich
   class FilesController < ApplicationController
     
     def index
-      # list all files
-      
-      if(params[:type] == "image")
+      @type = params[:type]
+
+      if(@type == "image")
         @items = RichFile.images.order("created_at DESC").page params[:page]
       else
         @items = RichFile.files.order("created_at DESC").page params[:page]
