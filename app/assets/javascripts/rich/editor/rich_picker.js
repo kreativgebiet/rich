@@ -15,7 +15,7 @@ rich.AssetPicker.prototype = {
 		params.allowed_styles = options.allowed_styles;
 		params.insert_many = options.insert_many;
 		params.type = options.type || "image";
-    params.viewMode = (options.type == "image") ? "grid" : "list";
+    params.viewMode = options.view_mode || "grid";
 		params.dom_id = dom_id;
 		var url = addQueryString(options.richBrowserUrl, params );
 		window.open(url, 'filebrowser', "width=860,height=500")

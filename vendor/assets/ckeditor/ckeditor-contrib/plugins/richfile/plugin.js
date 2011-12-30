@@ -36,7 +36,7 @@
 					params.allowed_styles = editor.config.allowed_styles;
 					params.insert_many = editor.config.insert_many;
 					params.type = "image";
-          params.viewMode = "grid";
+          params.viewMode = editor.config.view_mode || "grid";
 					var url = addQueryString(editor.config.richBrowserUrl, params );
 					editor.popup(url, 860, 500);
 				}
@@ -51,7 +51,7 @@
 					params.allowed_styles = "original";
 					params.insert_many = editor.config.insert_many;
 					params.type = "file";
-          params.viewMode = "list";
+          params.viewMode = editor.config.view_mode || "list";
 					var url = addQueryString(editor.config.richBrowserUrl, params );
 					editor.popup(url, 860, 500);
 				}
