@@ -10,7 +10,7 @@ rich.Browser = function(){
 		currentPage: 1,
 		loading: false,
 		reachedBottom: false,
-        viewModegrid: true
+    viewModeGrid: true
 	};
 	
 };
@@ -74,7 +74,7 @@ rich.Browser.prototype = {
       if(switchMode==true) {
         this._options.viewModeGrid = !this._options.viewModeGrid;
       } else {
-        this._options.viewModeGrid = $('#items').hasClass("list");
+        this._options.viewModeGrid = ($.QueryString["viewMode"]=="grid") ? false : true;
       }
 
       if(this._options.viewModeGrid == true) {
