@@ -30,11 +30,11 @@ namespace :rich do
   desc "Re-generate image styles"
   task :refresh_assets => :environment do
     # re-generate images
-    ENV['CLASS'] = "Rich::RichImage"
+    ENV['CLASS'] = "Rich::RichFile"
     Rake::Task["paperclip:refresh"].invoke
     
     # re-generate uri cache
-    Rich::RichImage.find_each(&:save)
+    Rich::RichFile.find_each(&:save)
   end
 end
 
