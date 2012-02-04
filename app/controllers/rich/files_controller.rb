@@ -1,6 +1,8 @@
 module Rich
   class FilesController < ApplicationController
     
+    layout "rich/application"
+    
     def index
       @type = params[:type]
 
