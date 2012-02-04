@@ -14,7 +14,7 @@ module Rich
       end
       
       def setup_route
-        route "mount Rich::Engine => '/rich'"
+        route "mount Rich::Engine => '/rich', :as => 'rich'"
       end
       
       def install_editor_styles

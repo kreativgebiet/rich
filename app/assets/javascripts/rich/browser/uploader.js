@@ -16,7 +16,7 @@ rich.Uploader = function(){
 	  button: document.getElementById(self._options.uploadButtonId),
 		multiple: true,
 		maxConnections: 3,
-		action: $("#new_rich_rich_file").attr("action"),
+		action: $("#new_rich_file").attr("action"),
 		params: { authenticity_token: $("input[name='authenticity_token']").attr("value"),
 		 					simplified_type: this._options.uploadType
 		},

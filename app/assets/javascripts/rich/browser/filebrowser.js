@@ -10,7 +10,7 @@ rich.Browser = function(){
 		currentPage: 1,
 		loading: false,
 		reachedBottom: false,
-    viewModeGrid: true
+		viewModeGrid: true
 	};
 	
 };
@@ -24,7 +24,7 @@ rich.Browser.prototype = {
 		// initialize image insertion mode
 		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
 		this.toggleInsertionMode(false);
-    this.toggleViewMode(false);
+    	this.toggleViewMode(false);
 	},
 	
 	initStyles: function(opt, def) {
