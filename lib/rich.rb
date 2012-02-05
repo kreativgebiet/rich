@@ -1,3 +1,8 @@
+if Object.const_defined?("RailsAdmin")
+  require "rich/rails_admin/config/fields/types/rich_picker"
+  require "rich/rails_admin/config/fields/types/rich_editor"
+end
+
 require "rich/engine"
 
 module Rich
@@ -112,6 +117,11 @@ module Rich
   end
   
   def self.insert
+    
+    
+    
+    
+    
     # manually inject into Formtastic 1. V2 is extended autmatically.
     if Object.const_defined?("Formtastic")
       if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
