@@ -100,7 +100,6 @@ To use the image picker on a string field, do this:
 
   field :title, :rich_picker do
     config({
-      :type => 'image',
       :allowed_styles => [:original],
       :view_mode => "list"
     })
@@ -110,6 +109,9 @@ To use the image picker on a string field, do this:
 
 This is the editor with default settings (shown here in Rails Admin).
 {<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png" />}[https://github.com/bastiaanterhorst/rich/]
+
+This is the file picker (Rich without CKEditor, again in Rails Admin).
+{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-picker.png" />}[https://github.com/bastiaanterhorst/rich/]
 
 This is the file manager.
 {<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-filemanager.png" />}[https://github.com/bastiaanterhorst/rich/]
@@ -170,7 +172,7 @@ To enable uploads of non-image files, set the following in your Rich initializer
 
 This will enable a new button on your CKEditor toolbar where you can upload regular files. Keep in mind that even if an image is uploaded through this method, it will not go through any processing you might have set up for your images.
 
-Non-image uploads also work from within the file picker. A Rails Admin example:
+Non-image uploads also work from within the file picker when you pass in the <tt>:type => 'file'</tt> option. A Rails Admin example:
 
   field :title, :rich_picker do
     config({
