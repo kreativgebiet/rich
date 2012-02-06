@@ -108,7 +108,7 @@ To use the image picker on a string field, do this:
   
 == Screenshots
 
-This is the editor with default settings.
+This is the editor with default settings (shown here in Rails Admin).
 {<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png" />}[https://github.com/bastiaanterhorst/rich/]
 
 This is the file manager.
