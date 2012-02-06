@@ -2,4 +2,4 @@
 
 = javascript_include_tag "rich/base.js"
 = javascript_tag do
-  $(function(){ CKEDITOR.replace('#{form.dom_id(field)}', #{Rich.options(field.config).to_json.html_safe}); });
+  $(function(){ CKEDITOR.replace('#{form.dom_id(field)}', #{Rich.options(field.config, field.scope_type, field.scope_id).to_json.html_safe}); });

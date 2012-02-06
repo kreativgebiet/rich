@@ -10,5 +10,15 @@ module RailsAdmin::Config::Fields::Types
     register_instance_option(:partial) do
       :form_rich_picker
     end
+    
+    
+    def scope_type
+      bindings[:form].object_name
+    end
+    
+    def scope_id
+      bindings[:object].id
+    end
+    
   end
 end

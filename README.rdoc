@@ -1,6 +1,6 @@
 = Rich
 
-{<img src="https://github.com/bastiaanterhorst/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.1 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager.
+{<img src="https://github.com/bastiaanterhorst/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.1 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager. The file manager can also be used separate from CKEditor.
 
 Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2).
 
@@ -54,6 +54,7 @@ In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
      <%= f.inputs do %>
        <%= f.input :name %>
        <%= f.input :title %>
+	   <%= f.input :featured_image, :as => :rich_picker %>
        <%= f.input :body, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle" } %>
      <% end %>
      <%= f.buttons do %>
@@ -68,7 +69,8 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
   form do |f|
     f.inputs "Basic info" do
       f.input :title
-      f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
+      f.input :featured_image, :as => :rich_picker, :config => { :style => 'width: 400px !important;' }
+	  f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
     end
     f.buttons
   end
@@ -81,12 +83,7 @@ If you're annoyed by the fact that the Rich editor overlaps the field label (I w
   
 === Rails Admin
 
-To use Rich in your RA forms, first add the following lines to your <tt>/config/initializers/rails_admin.rb</tt>.
-
-  require 'rich/integrations/rails_admin_editor'
-  RailsAdmin::Config::Fields::Types::register(Rich::Integrations::RailsAdmin::RichEditor)
-  
-This will enable the <tt>rich_editor</tt> field type. You can use this field as follows:
+To use Rich in your RA forms, use the following in your initializer:
 
   config.model Post do
     edit do
@@ -97,6 +94,16 @@ This will enable the <tt>rich_editor</tt> field type. You can use this field as 
          })
       end
     end
+  end
+
+To use the image picker on a string field, do this:
+
+  field :title, :rich_picker do
+    config({
+      :type => 'image',
+      :allowed_styles => [:original],
+      :view_mode => "list"
+    })
   end
   
 == Screenshots
@@ -148,9 +155,52 @@ When you change styles after uploading files, you will need to re-process those 
 
   rake rich:refresh_assets
 
+=== Using the file manager without CKEditor
+
+Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above. One important thing to note is that this requires a string field on the receiving object. A direct connection to the <tt>Rich::RichFile</tt> object is not supported at this time.
+
+=== Non-image uploads
+
+To enable uploads of non-image files, set the following in your Rich initializer:
+
+  # enable document uploads. default is false.
+  config.allow_document_uploads = true
+  # restrict the type of files that can be uploaded. defaults to :all for no restrictions.
+  config.allowed_document_types = ['application/pdf']
+
+This will enable a new button on your CKEditor toolbar where you can upload regular files. Keep in mind that even if an image is uploaded through this method, it will not go through any processing you might have set up for your images.
+
+Non-image uploads also work from within the file picker. A Rails Admin example:
+
+  field :title, :rich_picker do
+    config({
+      :type => 'file',
+      :allowed_styles => [:original] #only original makes sense for non-images
+    })
+  end
+
+=== Media embedding (Youtube, Vimeo, etc.)
+
+Set <tt>:allow_embeds</tt> to <tt>true</tt> to enable an extra button on the CKEditor toolbar that enables you to insert embed code. This works by virtue of the MediaEmbed plugin for CKEditor. It's not pretty, but it works.
+
+=== Scoping (filtering in the file manager)
+
+It is possible to scope any files available in the file manager to the current object you are editing. This works by associating your objects type and its <tt>id</tt> with any uploaded files.
+
+To enable scoping for a Rich editor or picker, simply pass in the <tt>:scoped</tt> option and set it to <tt>true</tt>. A Rails Admin example:
+
+  field :body, :rich_editor do
+    config({ 
+      :scoped => true
+    })
+  end
+
+Note that it is up to you to determine if scoping is possible. For example, a new object has no id yet, so there is nothing to scope to (yet). You could hide Rich in that case, until the object has been saved. If you do enable Rich but there is no id to scope to, Rich will disable scoping until an id has been set. This will effectively hide any files previously uploaded (before the save), which is most likely not what you want. So think twice about using this option, and implement it correctly when you do.
+
+Also note that this is not secure. At all. It is purely meant as a convenience to save you from wading through tons of irrelevant files. If need to hide files from prying eyes, you need something else.
+
 == Planned features
 
-* scoping assets to other objects
 * drag & drop uploading
 * finding/filtering assets
 * live image cropping

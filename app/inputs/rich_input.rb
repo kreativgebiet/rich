@@ -3,7 +3,9 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
   class RichInput < ::Formtastic::Inputs::TextInput  
     def to_html
 
-      editor_options = Rich.options(options[:config])
+      scope_type = object_name
+      scope_id = object.id
+      editor_options = Rich.options(options[:config], scope_type, scope_id)
 
       input_wrapping do
         label_html <<

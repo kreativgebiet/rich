@@ -7,7 +7,9 @@ module Rich
 
       module InstanceMethods
         def rich_input(method, options)
-          editor_options = Rich.options(options[:config])
+          scope_type = object_name
+          scope_id = object.id
+          editor_options = Rich.options(options[:config], scope_type, scope_id)
           dom_id = "#{sanitized_object_name}_#{generate_association_input_name(method)}"
 
           (
@@ -18,7 +20,10 @@ module Rich
 
         def rich_picker_input(method, options)
 
-          editor_options = Rich.options(options[:config])
+          scope_type = object_name
+          scope_id = object.id
+          editor_options = Rich.options(options[:config], scope_type, scope_id)
+
           dom_id = "#{sanitized_object_name}_#{generate_association_input_name(method)}"
 
           local_input_options = {

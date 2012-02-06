@@ -56,7 +56,7 @@ module Rich
   }
   # End configuration defaults
   
-  def self.options(overrides={})
+  def self.options(overrides={}, scope_type=nil, scope_id=nil)
     # merge in editor settings configured elsewhere
     
     if(self.allowed_styles == :all)
@@ -88,6 +88,17 @@ module Rich
     
     unless editor_options[:allow_embeds]
       editor_options[:toolbar][1].delete("MediaEmbed")
+    end
+    
+    # object scoping
+    if(editor_options[:scoped] == true)
+      if(scope_type != nil && scope_id != nil)
+        editor_options[:scope_type] = scope_type
+        editor_options[:scope_id] = scope_id
+      else
+        # cannot scope new objects
+        editor_options[:scoped] = false
+      end
     end
     
     editor_options

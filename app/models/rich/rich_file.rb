@@ -1,5 +1,6 @@
 require 'cgi'
 require 'mime/types'
+require 'kaminari'
 
 module Rich
   class RichFile < ActiveRecord::Base

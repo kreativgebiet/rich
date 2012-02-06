@@ -15,7 +15,12 @@ rich.AssetPicker.prototype = {
 		params.allowed_styles = options.allowed_styles;
 		params.insert_many = options.insert_many;
 		params.type = options.type || "image";
-    params.viewMode = options.view_mode || "grid";
+		params.viewMode = options.view_mode || "grid";
+		params.scoped = options.scoped || false;
+		if(params.scoped == true) {
+			params.scope_type = options.scope_type
+			params.scope_id = options.scope_id;
+		}
 		params.dom_id = dom_id;
 		var url = addQueryString(options.richBrowserUrl, params );
 		window.open(url, 'filebrowser', "width=860,height=500")
@@ -25,7 +30,7 @@ rich.AssetPicker.prototype = {
 		$(dom_id).val(asset);
 		$(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
   }
-	
+
 };
 
 // Rich Asset input

@@ -2,9 +2,11 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
     
     class RichPickerInput < ::Formtastic::Inputs::StringInput
 
-      def to_html
-        editor_options = Rich.options(options[:config])
-
+      def to_html 
+        scope_type = object_name
+        scope_id = object.id
+        editor_options = Rich.options(options[:config], scope_type, scope_id)
+        
         local_input_options = {
           :class => 'rich-picker',
           :style => editor_options[:style]

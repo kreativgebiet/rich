@@ -36,7 +36,12 @@
 					params.allowed_styles = editor.config.allowed_styles;
 					params.insert_many = editor.config.insert_many;
 					params.type = "image";
-          params.viewMode = editor.config.view_mode || "grid";
+					params.scoped = editor.config.scoped || false;
+					if(params.scoped == true) {
+						params.scope_type = editor.config.scope_type
+						params.scope_id = editor.config.scope_id;
+					}
+					params.viewMode = editor.config.view_mode || "grid";
 					var url = addQueryString(editor.config.richBrowserUrl, params );
 					editor.popup(url, 860, 500);
 				}
@@ -51,7 +56,11 @@
 					params.allowed_styles = "original";
 					params.insert_many = editor.config.insert_many;
 					params.type = "file";
-          params.viewMode = editor.config.view_mode || "list";
+					if(params.scoped == true) {
+						params.scope_type = editor.config.scope_type
+						params.scope_id = editor.config.scope_id;
+					}
+					params.viewMode = editor.config.view_mode || "list";
 					var url = addQueryString(editor.config.richBrowserUrl, params );
 					editor.popup(url, 860, 500);
 				}

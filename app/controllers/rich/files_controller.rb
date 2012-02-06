@@ -5,11 +5,19 @@ module Rich
     
     def index
       @type = params[:type]
-
-      if(@type == "image")
-        @items = RichFile.images.order("created_at DESC").page params[:page]
+      
+      if(params[:scoped] == 'true')
+        if(@type == "image")
+          @items = RichFile.images.order("created_at DESC").where("owner_type = ? AND owner_id = ?", params[:scope_type], params[:scope_id]).page params[:page]
+        else
+          @items = RichFile.files.order("created_at DESC").where("owner_type = ? AND owner_id = ?", params[:scope_type], params[:scope_id]).page params[:page]
+        end        
       else
-        @items = RichFile.files.order("created_at DESC").page params[:page]
+        if(@type == "image")
+          @items = RichFile.images.order("created_at DESC").page params[:page]
+        else
+          @items = RichFile.files.order("created_at DESC").page params[:page]
+        end        
       end
       
       # stub for new file
@@ -37,6 +45,11 @@ module Rich
     
     def create
       @file = RichFile.new(:simplified_type => params[:simplified_type]) #make sure the type is set
+      
+      if(params[:scoped] == 'true')
+        @file.owner_type = params[:scope_type]
+        @file.owner_id = params[:scope_id].to_i
+      end
       
       # use the file from Rack Raw Upload
       if(params[:file])
