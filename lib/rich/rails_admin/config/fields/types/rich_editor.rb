@@ -13,7 +13,13 @@ module RailsAdmin::Config::Fields::Types
     end
         
     def scope_type
-      bindings[:form].object_name
+      
+      # Use association name if existent
+      if bindings[:form].object_name.scan(/.*\[(.*)_attributes\]/).nil?
+        bindings[:form].object_name
+      else
+        bindings[:form].object_name.scan(/.*\[(.*)_attributes\]/).to_s
+      end
     end
     
     def scope_id
