@@ -91,13 +91,31 @@ module Rich
     end
     
     # object scoping
-    if(editor_options[:scoped] == true)
-      if(scope_type != nil && scope_id != nil)
-        editor_options[:scope_type] = scope_type
-        editor_options[:scope_id] = scope_id
+    # todo: support scoped=string to scope to collections, set id to 0
+    unless editor_options[:scoped] == nil
+      
+      # true signifies object level scoping
+      if editor_options[:scoped] == true
+        
+        if(scope_type != nil && scope_id != nil)
+          editor_options[:scope_type] = scope_type
+          editor_options[:scope_id] = scope_id
+        else
+          # cannot scope new objects
+          editor_options[:scoped] = false
+        end
+        
       else
-        # cannot scope new objects
-        editor_options[:scoped] = false
+        
+        # not true (but also not nil) signifies scoping to a collection
+        if(scope_type != nil)
+          editor_options[:scope_type] = editor_options[:scoped]
+          editor_options[:scope_id] = 0
+          editor_options[:scoped] = true
+        else
+          editor_options[:scoped] = false
+        end
+        
       end
     end
     

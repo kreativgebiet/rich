@@ -1,6 +1,9 @@
 Release notes
 Matters to consider. Or ignore at your own peril.
 
+1.0.2
+- collection support for the scoped file manager (see readme)
+
 1.0.1
 - the scoped filemanager now also works from within Rails Admin associations (thanks DunyaKirkali!)
 

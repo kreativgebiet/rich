@@ -187,9 +187,17 @@ Set <tt>:allow_embeds</tt> to <tt>true</tt> to enable an extra button on the CKE
 
 === Scoping (filtering in the file manager)
 
-It is possible to scope any files available in the file manager to the current object you are editing. This works by associating your objects type and its <tt>id</tt> with any uploaded files.
+It is possible to limit the files available in the file manager to a more relevant subset. This subset can either be comprised of collection of your choosing, or be tied to the current object you are editing (this works by associating your objects type and its <tt>id</tt> with any uploaded files).
 
-To enable scoping for a Rich editor or picker, simply pass in the <tt>:scoped</tt> option and set it to <tt>true</tt>. A Rails Admin example:
+To scope the file manager to a collection of your choosing, pass the collection name into the <tt>:scoped</tt> configuration option. This collection name is just a string; pick anything you like. In Rails Admin:
+
+  field :cover_images, :rich_editor do
+    config({ 
+      :scoped => "book covers"
+    })
+  end
+
+To scope the filemanager to a specific object, simply pass in <tt>true</tt>. Again for Rails Admin:
 
   field :body, :rich_editor do
     config({ 
@@ -197,11 +205,11 @@ To enable scoping for a Rich editor or picker, simply pass in the <tt>:scoped</t
     })
   end
 
-Note that it is up to you to determine if scoping is possible. For example, a new object has no id yet, so there is nothing to scope to (yet). You could hide Rich in that case, until the object has been saved. If you do enable Rich but there is no id to scope to, Rich will disable scoping until an id has been set. This will effectively hide any files previously uploaded (before the save), which is most likely not what you want. So think twice about using this option, and implement it correctly when you do.
+In the latter example (scoping to an object), it is up to you to determine if scoping is possible. For example, a new object has no id yet, so there is nothing to scope to (yet). You could hide Rich in that case, until the object has been saved. If you do enable Rich but there is no id to scope to, Rich will disable scoping until an id has been set. This will effectively hide any files previously uploaded (before the save), which is most likely not what you want. So think twice about using this option, and implement it correctly when you do.
 
-Also note that this is not secure. At all. It is purely meant as a convenience to save you from wading through tons of irrelevant files. If need to hide files from prying eyes, you need something else.
+Also note that none of this is secure. At all. It is purely meant as a convenience to save you from wading through tons of irrelevant files. If need to hide files from prying eyes, you need something else.
 
-== Planned features
+== Planned features & ideas
 
 * drag & drop uploading
 * finding/filtering assets
@@ -222,6 +230,7 @@ Also note that this is not secure. At all. It is purely meant as a convenience t
 * Paperclip - https://github.com/thoughtbot/paperclip
 * Silk icons - http://www.famfamfam.com/lab/icons/silk/
 * Iconic icons - http://somerandomdude.com/work/iconic/
+* Kaminari - https://github.com/amatsuda/kaminari
 
 == Contributing
 
