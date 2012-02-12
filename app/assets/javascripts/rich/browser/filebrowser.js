@@ -30,7 +30,7 @@ rich.Browser.prototype = {
 	initStyles: function(opt, def) {
 		opt=opt.split(',');
 		$.each(opt, function(index, value) { 
-		  $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
+			if(value != 'rich_thumb') $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
 		});
 		
 		browser.selectStyle(def);

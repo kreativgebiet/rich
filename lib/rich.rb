@@ -7,11 +7,17 @@ require "rich/engine"
 
 module Rich
  
-  # specify desired image styles here  
-  mattr_accessor :image_styles
+  # configure image styles
+  def self.image_styles
+      @@image_styles.merge({ :rich_thumb => "100x100#" })
+  end
+  def self.image_styles=(image_styles)
+    @@image_styles = image_styles
+  end
   @@image_styles = {
     :thumb => "100x100#"
   }
+  
   
   mattr_accessor :allowed_styles
   @@allowed_styles = :all
@@ -122,10 +128,10 @@ module Rich
     editor_options
 
   end
-  
+    
   def self.validate_mime_type(mime, simplified_type)
     # does the mimetype match the given simplified type?
-    puts "matching:" + mime + " TO " + simplified_type
+    #puts "matching:" + mime + " TO " + simplified_type
     
     false # assume the worst
     
