@@ -149,7 +149,7 @@ Rich also includes a few settings that manipulate CKEditor settings, but are a b
 
 When you run the generator a css file is created for you in <tt>app/assets/stylesheets/rich/editor.css</tt>. Use this stylesheet to define the contents of the Styles drop down in CKEditor.
 
-=== Image configuration
+=== Image configuration & (re)processing
 
 The styles you define in the initializer are passed to Paperclip directly, so the syntax is identical. See https://github.com/thoughtbot/paperclip/wiki/Thumbnail-Generation for more information.
 

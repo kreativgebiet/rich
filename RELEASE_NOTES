@@ -1,6 +1,9 @@
 Release notes
 Matters to consider. Or ignore at your own peril.
 
+1.0.3
+- thumbnails internally by Rich have been refactored into a (hidden for you) rich_thumb style. This means you can now freely override all styles in your initializer without messing up the file manager. If you already have Rich running, remember run: rake rich:refresh_assets
+
 1.0.2
 - collection support for the scoped file manager (see readme)
 
