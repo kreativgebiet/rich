@@ -127,7 +127,6 @@ rich.Browser.prototype = {
         type: 'get',
         dataType: 'script',
         success: function(e) {
-					console.log(e);
 					if(e=="") self._options.reachedBottom = true;
 					self.setLoading(false);
         }
