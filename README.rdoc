@@ -151,7 +151,7 @@ When you run the generator a css file is created for you in <tt>app/assets/style
 
 === Image configuration & (re)processing
 
-The styles you define in the initializer are passed to Paperclip directly, so the syntax is identical. See https://github.com/thoughtbot/paperclip/wiki/Thumbnail-Generation for more information.
+The styles you define in the initializer are passed to Paperclip directly, so the syntax is identical. See https://github.com/thoughtbot/paperclip/wiki/Thumbnail-Generation for more information. You can also set additional processing options using <tt>convert_options</tt>. See your Rich initializer for more information.
 
 When you change styles after uploading files, you will need to re-process those old files. To accomplish this, run the following command (avoid the standard Paperclip task!).
 

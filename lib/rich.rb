@@ -17,7 +17,9 @@ module Rich
   @@image_styles = {
     :thumb => "100x100#"
   }
-  
+
+  mattr_accessor :convert_options
+  @@convert_options = {}
   
   mattr_accessor :allowed_styles
   @@allowed_styles = :all

@@ -29,6 +29,16 @@ if Object.const_defined?("Rich")
     config.image_styles = {
       :thumb => "100x100#"
     }
+
+    # == Convert options
+    #
+    # You can pass additional commands to ImageMagick to set image quality,
+    # apply a blur, and other fancy tricks.
+    #
+    # Example (this will make your image look terrible):
+    # config.convert_options = {
+    #     :large => '-quality 1'
+    # }
     
     # == Allowed styles (in file manager)
     # 
