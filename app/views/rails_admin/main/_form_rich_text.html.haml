@@ -1,5 +1,6 @@
 = form.send 'text_area', field.method_name, field.html_attributes.reverse_merge((hdv = field.html_default_value).nil? ? {} : { :value => hdv })
 
+= javascript_include_tag "rich/base.js"
 :javascript
   var instance = CKEDITOR.instances['#{form.dom_id(field)}'];
   if(instance) { CKEDITOR.remove(instance); }

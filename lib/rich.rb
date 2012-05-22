@@ -45,6 +45,15 @@ module Rich
   mattr_accessor :allowed_document_types
   @@allowed_document_types = :all
   
+  mattr_accessor :file_storage
+  @@file_storage
+  
+  mattr_accessor :s3_credentials
+  @@s3_credentials
+  
+  mattr_accessor :file_path
+  @@file_path
+  
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
