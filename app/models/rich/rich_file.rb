@@ -4,7 +4,9 @@ require 'kaminari'
 
 module Rich
   class RichFile < ActiveRecord::Base
-    
+
+    attr_accessible :rich_file_file_name, :rich_file_content_type, :rich_file_file_size, :rich_file_updated_at, :owner_type, :owner_id, :uri_cache, :simplified_type
+
     scope :images, where("rich_rich_files.simplified_type = 'image'")
     scope :files, where("rich_rich_files.simplified_type = 'file'")
     
@@ -22,6 +24,8 @@ module Rich
 
     after_create :cache_style_uris_and_save
     before_update :cache_style_uris
+
+
     
     
     def set_styles
