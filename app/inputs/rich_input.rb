@@ -10,9 +10,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
       input_wrapping do
         label_html <<
         builder.text_area(method, input_html_options) <<
-        #javascript_tag("$(function(){$('##{dom_id}').ckeditor(function() { }, #{editor_options.to_json} );});")
-        # doing this might be insecure?
-        "<script>$(function(){$('##{dom_id}').ckeditor(function() { }, #{editor_options.to_json} );});</script>".html_safe
+        "<script>CKEDITOR.replace('#{dom_id}', #{editor_options.to_json.html_safe});</script>".html_safe  
       end
     end
   end
