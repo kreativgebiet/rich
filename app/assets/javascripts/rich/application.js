@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rich/base
 //= require fileuploader
 //= require rich/browser/extensions
 //= require rich/browser/uploader
