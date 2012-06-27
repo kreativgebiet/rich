@@ -1,2 +1,4 @@
 // Include Rich
-//= require rich/base.js
+//= require rich/base
+
+console.log("loaded");
