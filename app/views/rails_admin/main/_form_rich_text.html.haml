@@ -1,15 +1,5 @@
 = form.send 'text_area', field.method_name, field.html_attributes.reverse_merge((hdv = field.html_default_value).nil? ? {} : { :value => hdv })
 
-- source = asset_path("ckeditor/ckeditor")
-- source_two = asset_path("ckeditor/adapters/jquery")
-- source_three = asset_path("rich/editor/rich_editor")
-- source_four = asset_path("rich/editor/rich_picker")
-
-%script{:type => "text/javascript", :src  => source}
-%script{:type => "text/javascript", :src  => source_two}
-%script{:type => "text/javascript", :src  => source_three}
-%script{:type => "text/javascript", :src  => source_four}
-
 :javascript
   var instance = CKEDITOR.instances['#{form.dom_id(field)}'];
   if(instance) { CKEDITOR.remove(instance); }
