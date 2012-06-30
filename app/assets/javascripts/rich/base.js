@@ -3,3 +3,4 @@
 //= require ckeditor/ckeditor
 //= require ckeditor/adapters/jquery
 //= require rich/editor/rich_editor
+//= require rich/editor/rich_picker
