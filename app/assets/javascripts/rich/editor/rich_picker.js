@@ -18,12 +18,12 @@ rich.AssetPicker.prototype = {
 		params.viewMode = options.view_mode || "grid";
 		params.scoped = options.scoped || false;
 		if(params.scoped == true) {
-			params.scope_type = options.scope_type
+			params.scope_type = options.scope_type;
 			params.scope_id = options.scope_id;
 		}
 		params.dom_id = dom_id;
 		var url = addQueryString(options.richBrowserUrl, params );
-		window.open(url, 'filebrowser', "width=860,height=500")
+		window.open(url, 'filebrowser', "width=860,height=500");
   },
 
 	setAsset: function(dom_id, asset){

@@ -63,6 +63,5 @@ rich.Uploader.prototype = {
 			// start spinning
 			$('#up'+id+' .spinner').first().addClass("spinning");
 		}
-	},
-
+	}
 };
