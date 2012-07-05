@@ -39,10 +39,10 @@
 		        var content = window.frames[i].document.getElementById("embed").value;
 		     }
 		  }
-		  final_html = 'MediaEmbedInsertData|---' + escape('<div class="media_embed">'+content+'</div>') + '---|MediaEmbedInsertData';
+		  final_html = 'MediaEmbedInsertData|---' + escape('<p class="media_embed">'+content+'</p>') + '---|MediaEmbedInsertData';
                     editor.insertHtml(final_html);
                     updated_editor_data = editor.getData();
-                    clean_editor_data = updated_editor_data.replace(final_html,'<div class="media_embed">'+content+'</div>');
+                    clean_editor_data = updated_editor_data.replace(final_html,'<p class="media_embed">'+content+'</p>');
                     editor.setData(clean_editor_data);
                  }
               };
