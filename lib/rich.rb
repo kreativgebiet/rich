@@ -61,7 +61,7 @@ module Rich
     :stylesSet  =>  [],
     :extraPlugins => 'stylesheetparser,richfile,MediaEmbed',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
-    :contentsCss => '/assets/rich/editor.css',
+    :contentsCss => '/assets/rich/rich_editor.css',
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
@@ -163,11 +163,7 @@ module Rich
   end
   
   def self.insert
-    
-    
-    
-    
-    
+
     # manually inject into Formtastic 1. V2 is extended autmatically.
     if Object.const_defined?("Formtastic")
       if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
