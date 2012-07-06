@@ -18,7 +18,7 @@ module Rich
       end
       
       def install_editor_styles
-        copy_file '../../../../../app/assets/stylesheets/rich/rich_editor.css', 'app/assets/stylesheets/rich/rich_editor.css'
+        copy_file '../../../../../app/assets/stylesheets/rich/editor.css', 'app/assets/stylesheets/rich/editor.css'
       end
       
       def install_javascript

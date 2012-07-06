@@ -141,7 +141,7 @@ Rich also includes a few settings that manipulate CKEditor settings, but are a b
 
 === Editor styles
 
-When you run the generator a css file is created for you in <tt>app/assets/stylesheets/rich/rich_editor.css</tt>. Use this stylesheet to define the contents of the Styles drop down in CKEditor.
+When you run the generator a css file is created for you in <tt>app/assets/stylesheets/rich/editor.css</tt>. Use this stylesheet to define the contents of the Styles drop down in CKEditor.
 
 === Image configuration & (re)processing
 
