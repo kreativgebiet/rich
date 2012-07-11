@@ -5,7 +5,7 @@
 namespace :rich do
   
   desc "Copy CKEditor files to /public/assets for production"
-  task :assetize_ckeditor => :environment do
+  task :assetize_ckeditor do
     puts "Rich - Copying CKEditor to your assets folder"
     
     mkdir_p Rails.root.join('public/assets/ckeditor')
@@ -17,7 +17,7 @@ namespace :rich do
   end
   
   desc "Clear CKEditor files from /public/assets"
-  task :clean_ckeditor => :environment do
+  task :clean_ckeditor do
     puts "Rich - Removing CKEditor from your assets folder"
     begin
       rm_r Rails.root.join('public/assets/ckeditor')
