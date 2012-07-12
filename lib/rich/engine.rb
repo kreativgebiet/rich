@@ -1,5 +1,6 @@
 require 'paperclip'
 require 'rack/raw_upload'
+require "rich/authorize"
     
 module Rich
   class Engine < Rails::Engine
@@ -9,6 +10,13 @@ module Rich
       app.config.assets.precompile += %w(rich/base.js rich/editor.css rich/rich_editor.css)
       app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files']
     end
-    
+
+    initializer 'myengine.app_controller' do |app|
+      ActiveSupport.on_load(:action_controller) do
+        include Rich::Authorize
+      end
+    end
+
+
   end
 end

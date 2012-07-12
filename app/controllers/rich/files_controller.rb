@@ -1,6 +1,8 @@
 module Rich
   class FilesController < ApplicationController
-    
+
+    before_filter :authenticate_rich_user
+
     layout "rich/application"
     
     def index
