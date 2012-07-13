@@ -11,7 +11,7 @@ module Rich
       app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files']
     end
 
-    initializer 'myengine.app_controller' do |app|
+    initializer 'rich.include_authorization' do |app|
       ActiveSupport.on_load(:action_controller) do
         include Rich::Authorize
       end
