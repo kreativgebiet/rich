@@ -439,7 +439,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 .cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button .cke_icon{
 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
-.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_rtl .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_button.cke_noalphafix .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button.cke_noalphafix .cke_icon{filter:;}.cke_skin_BootstrapCK-Skin .cke_button .cke_label{
+.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_rtl .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_button.cke_noalphafix .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_rtl .cke_button.cke_noalphafix .cke_icon{filter:none;}.cke_skin_BootstrapCK-Skin .cke_button .cke_label{
 cursor:default;
 display:none;
 padding-left:3px;
@@ -472,7 +472,7 @@ cursor:default;
 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_ie6 .cke_button .cke_buttonarrow{
-filter:;
+filter:none;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_toolbar,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_button a,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_button a.cke_off,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_button .cke_icon,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_button .cke_buttonarrow,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_separator,.cke_skin_BootstrapCK-Skin .cke_browser_gecko .cke_toolbar_start{
 display:block;
@@ -538,7 +538,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
 .cke_browser_ie6 .cke_skin_BootstrapCK-Skin .cke_menuitem .cke_icon,.cke_browser_ie .cke_skin_BootstrapCK-Skin .cke_menuitem.cke_noalphafix .cke_icon{
-filter:;
+filter:none;
 }
 .cke_skin_BootstrapCK-Skin .cke_menuitem .cke_disabled .cke_icon{
 filter:alpha(opacity=70);
@@ -551,7 +551,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
 .cke_browser_ie6 .cke_skin_BootstrapCK-Skin .cke_menuitem .cke_disabled .cke_icon,.cke_browser_ie .cke_skin_BootstrapCK-Skin .cke_menuitem.cke_noalphafix .cke_disabled .cke_icon{
-filter:;
+filter:none;
 }
 .cke_skin_BootstrapCK-Skin .cke_menuitem .cke_icon_wrapper{
 background-color:#D3D3D3;
