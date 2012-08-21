@@ -6,7 +6,7 @@ end
 require "rich/engine"
 
 module Rich
- 
+
   # configure image styles
   def self.image_styles
       @@image_styles.merge({ :rich_thumb => "100x100#" })
@@ -61,7 +61,7 @@ module Rich
     :stylesSet  =>  [],
     :extraPlugins => 'stylesheetparser,richfile,MediaEmbed,audio',
     :removePlugins => 'scayt,menubutton,contextmenu,image,forms',
-    :contentsCss => '/assets/rich/editor.css',
+    :contentsCss => :default,
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
@@ -94,7 +94,11 @@ module Rich
     
     # merge in local overrides
     editor_options.merge!(overrides) if overrides
-    
+
+    # if the contentcss is set to :default, use the asset pipeline
+    editor_options[:contentsCss] = ActionController::Base.helpers.stylesheet_path('rich/editor.css') if editor_options[:contentsCss] == :default
+
+
     # update the language to the currently selected locale
     editor_options[:language] = I18n.locale
     
@@ -163,11 +167,6 @@ module Rich
   end
   
   def self.insert
-    
-    
-    
-    
-    
     # manually inject into Formtastic 1. V2 is extended autmatically.
     if Object.const_defined?("Formtastic")
       if(Gem.loaded_specs["formtastic"].version.version[0,1] == "1")
