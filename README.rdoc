@@ -26,7 +26,7 @@ Rich is available as a Ruby Gem, which makes installation very easy.
   gem 'rich'
   # the edge (unstable) version can be had using:
   # gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
-  
+
 After updating your bundle, run the installer.
 
   $> rails generate rich:install
@@ -34,10 +34,10 @@ After updating your bundle, run the installer.
 The installer sets up a route, creates an initializer for configuration and adds a javascript and CSS file. It also creates a migration, so we need to migrate the database.
 
   $> rake db:migrate
-  
+
 As a last step, secure the file manager by setting your authentication method in <tt>/config/initializers/rich.rb</tt>. If you're using Devise with an AdminUser model (incidentally, the Active Admin defaults):
   config.authentication_method = :authenticate_admin_user!
-  
+
 You're good to go.
 
 == Usage
@@ -51,17 +51,17 @@ To use Rich, it's javascript file must be loaded. By default, this is already se
 In your formtastic form, use <tt>:as => :rich</tt> to insert Rich. Like so:
 
   <%= semantic_form_for @post do |f| %>
-     <%= f.inputs do %>
-       <%= f.input :name %>
-       <%= f.input :title %>
-       <%= f.input :featured_image, :as => :rich_picker %>
-       <%= f.input :body, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle" } %>
-     <% end %>
-     <%= f.buttons do %>
-       <%= f.commit_button %>
-     <% end %>
-   <% end %>
-   
+    <%= f.inputs do %>
+      <%= f.input :name %>
+      <%= f.input :title %>
+      <%= f.input :featured_image, :as => :rich_picker %>
+      <%= f.input :body, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle" } %>
+    <% end %>
+    <%= f.buttons do %>
+      <%= f.commit_button %>
+    <% end %>
+  <% end %>
+
 === Active Admin
 
 Since Active Admin actually uses Formtastic, you can use it with Rich out of the box. In your model configuration file, set up your form like this. Make sure you add <tt>//= require rich</tt> to your <tt>app/assets/javascripts/active_admin.js</tt>.
@@ -70,11 +70,11 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
     f.inputs "Basic info" do
       f.input :title
       f.input :featured_image, :as => :rich_picker, :config => { :style => 'width: 400px !important;' }
-	    f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
+      f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
     end
     f.buttons
   end
-  
+
 === Rails Admin
 
 To use Rich in your RA forms, use the following in your initializer:
@@ -83,9 +83,9 @@ To use Rich in your RA forms, use the following in your initializer:
     edit do
       field :title
       field :body, :rich_editor do
-         config({ 
-           :insert_many => true 
-         })
+        config({
+          :insert_many => true
+        })
       end
     end
   end
@@ -98,7 +98,7 @@ To use the image picker on a string field, do this:
       :view_mode => "list"
     })
   end
-  
+
 == Screenshots
 
 This is the editor with default settings (shown here in Rails Admin).
@@ -119,7 +119,7 @@ Rich works just fine in production mode. To accomodate the structure of the CKEd
 Rich will also clean up these CKEditor files when you clean your assets. Like this:
 
   rake assets:clean
-  
+
 Although generally not necessary, the underlying Rich tasks can be invoked directly.
 
   rake rich:assetize_ckeditor
@@ -186,7 +186,7 @@ It is possible to limit the files available in the file manager to a more releva
 To scope the file manager to a collection of your choosing, pass the collection name into the <tt>:scoped</tt> configuration option. This collection name is just a string; pick anything you like. In Rails Admin:
 
   field :cover_images, :rich_editor do
-    config({ 
+    config({
       :scoped => "book covers"
     })
   end
@@ -194,7 +194,7 @@ To scope the file manager to a collection of your choosing, pass the collection 
 To scope the filemanager to a specific object, simply pass in <tt>true</tt>. Again for Rails Admin:
 
   field :body, :rich_editor do
-    config({ 
+    config({
       :scoped => true
     })
   end
