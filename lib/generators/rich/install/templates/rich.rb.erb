@@ -16,6 +16,18 @@ if Object.const_defined?("Rich")
     # you are editing. To disable this:
     #   config.editor[:startupOutlineBlocks] = false
     
+    # == File Storage
+    # 
+    # Rich uses paperclip for uploads. You can configure
+    # paperclip to use Amazon's S3 service for file storage
+    # or use the local file system.
+    
+    #config.file_strage = :s3
+    config.file_storage = :file
+    
+    # http://rubydoc.info/gems/paperclip/Paperclip/Storage/S3
+    #config.s3_credentials = "path/to/s3.yml"
+    
     # == Image styles
     # 
     # Rich uses paperclip for image processing. You can
