@@ -23,7 +23,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
 
           field  <<
           " <a href='#{Rich.editor[:richBrowserUrl]}' class='button'>#{I18n.t('picker_browse')}</a>".html_safe <<
-          "</br></br><img class='rich-image-preview' src='#{@object.send(method).empty? ? editor_options[:placeholder_image] : @object.send(method) }' style='height: 100px' />".html_safe <<
+          "</br></br><img class='rich-image-preview' src='#{@object.send(method).nil? ? editor_options[:placeholder_image] : @object.send(method) }' style='height: 100px' />".html_safe <<
           "<script>$(function(){$('##{input_html_options[:id]}_input a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{input_html_options[:id]}', #{editor_options.to_json.html_safe})})})</script>".html_safe
 
         end
