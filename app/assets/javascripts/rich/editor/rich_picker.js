@@ -27,7 +27,7 @@ rich.AssetPicker.prototype = {
   },
 
 	setAsset: function(dom_id, asset, id){
-		var split_field_name = $(dom_id).attr('name').split('_')
+		var split_field_name = $(dom_id).attr('id').split('_')
 		if (split_field_name[split_field_name.length - 1] == "id") {
 			$(dom_id).val(id);
 		} else {
