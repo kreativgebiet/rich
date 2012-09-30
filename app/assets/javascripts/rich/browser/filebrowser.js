@@ -96,7 +96,7 @@ rich.Browser.prototype = {
 		
 		
 		if($.QueryString["CKEditor"]=='picker') {
-			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url)
+			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id)
 		} else {
 			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);			
 		}
