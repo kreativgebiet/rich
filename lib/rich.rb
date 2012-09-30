@@ -46,7 +46,7 @@ module Rich
   @@allowed_document_types = :all
   
   mattr_accessor :file_storage
-  @@file_storage
+  @@file_storage = :filesystem
   
   mattr_accessor :s3_credentials
   @@s3_credentials
