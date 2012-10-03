@@ -17,7 +17,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
           label_html <<
           if editor_options[:hidden_input] == true
             field = builder.hidden_field(method, local_input_options.merge(input_html_options)) 
-            if scope_id && !scope_id.empty?
+            if scope_id && scope_id > 0
               rich_file = Rich::RichFile.find(scope_id)
               img_path = rich_file.rich_file(editor_options[:preview_size])
               if editor_options[:preview_size]
