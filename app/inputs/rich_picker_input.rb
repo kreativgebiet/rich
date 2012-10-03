@@ -17,15 +17,15 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
           label_html <<
           if editor_options[:hidden_input] == true
             field = builder.hidden_field(method, local_input_options.merge(input_html_options)) 
-            img = image_tag(Rich::RichFile.find(@object.send(method)).rich_file, :class => 'rich-image-preview', :style => 'max-width: 100px;')
+            img_path = Rich::RichFile.find(@object.send(method)
           else
             field = builder.text_field(method, local_input_options.merge(input_html_options)) 
-            img = image_tag(@object.send(method), :class => 'rich-image-preview', :style => 'max-width: 100px;')
+            img_path = editor_options[:placeholder_image]
           end
 
           field  <<
           " <a href='#{Rich.editor[:richBrowserUrl]}' class='button'>#{I18n.t('picker_browse')}</a>".html_safe <<
-          img <<
+          "</br></br><img class='rich-image-preview' src='#{img_path}' style='max-width: 100px' />".html_safe <<
           "<script>$(function(){$('##{input_html_options[:id]}_input a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{input_html_options[:id]}', #{editor_options.to_json.html_safe})})})</script>".html_safe
 
         end
