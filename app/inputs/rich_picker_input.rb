@@ -17,10 +17,10 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
           label_html <<
           if editor_options[:hidden_input] == true
             field = builder.hidden_field(method, local_input_options.merge(input_html_options)) 
-            img = builder.image_tag(Rich::RichFile.find(@object.send(method)), :class => 'rich-image-preview', :style => 'max-width: 100px;')
+            img = bimage_tag(Rich::RichFile.find(@object.send(method)).rich_file, :class => 'rich-image-preview', :style => 'max-width: 100px;')
           else
             field = builder.text_field(method, local_input_options.merge(input_html_options)) 
-            img = builder.image_tag(@object.send(method), :class => 'rich-image-preview', :style => 'max-width: 100px;')
+            img = image_tag(@object.send(method), :class => 'rich-image-preview', :style => 'max-width: 100px;')
           end
 
           field  <<
