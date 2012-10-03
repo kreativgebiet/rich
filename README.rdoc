@@ -157,6 +157,8 @@ Besides from within the editor, the file manager can also be used on it's own. S
 
 Pass the config option <tt>:hidden_input => true</tt> to use a hidden text field.
 
+Pass the config option <tt>:preview_size => :thumb</tt> to specify the size of the file you want to preview, otherwise the original will be shown.
+
 Pass the config option <tt>:placeholder_image => image_path('placeholder.png')</tt> to show a placeholder image that will be replaced when an asset has been selected.
 
 You might use this in a relation like this in ActiveAdmin:
@@ -166,7 +168,7 @@ You might use this in a relation like this in ActiveAdmin:
       f.input :title
     end
     f.has_many :assets do |asset_form|
-      asset_form.input :rich_file_id, :as => :rich_picker, :config => {:style => 'width: 400px !important;', :allowed_styles => [:original], :hidden_input => true, :placeholder_image => image_path('placeholder.png')}
+      asset_form.input :rich_file_id, :as => :rich_picker, :config => {:style => 'width: 400px !important;', :hidden_input => true, :placeholder_image => image_path('placeholder.png'), :preview_size => :thumb}
     end
     f.buttons
   end

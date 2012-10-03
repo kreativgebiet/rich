@@ -18,7 +18,11 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
           if editor_options[:hidden_input] == true
             field = builder.hidden_field(method, local_input_options.merge(input_html_options)) 
             if scope_id
-              img_path = Rich::RichFile.find(scope_id).rich_file
+              rich_file = Rich::RichFile.find(scope_id)
+              img_path = rich_file.rich_file(editor_options[:preview_size])
+              if editor_options[:preview_size]
+                img_width = rich_file.set_styles[editor_options[:preview_size]].split('x').first
+              end
             end
           else
             field = builder.text_field(method, local_input_options.merge(input_html_options)) 
@@ -27,7 +31,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
 
           field  <<
           " <a href='#{Rich.editor[:richBrowserUrl]}' class='button'>#{I18n.t('picker_browse')}</a>".html_safe <<
-          "</br></br><img class='rich-image-preview' src='#{img_path}' style='max-width: 100px' />".html_safe <<
+          "</br></br><img class='rich-image-preview' src='#{img_path}' width='#{img_width}'/>".html_safe <<
           "<script>$(function(){$('##{input_html_options[:id]}_input a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{input_html_options[:id]}', #{editor_options.to_json.html_safe})})})</script>".html_safe
 
         end
