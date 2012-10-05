@@ -153,7 +153,25 @@ When you change styles after uploading files, you will need to re-process those 
 
 === Using the file manager without CKEditor
 
-Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above. One important thing to note is that this requires a string field on the receiving object. A direct connection to the <tt>Rich::RichFile</tt> object is not supported at this time.
+Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above. One important thing to note is that this requires a string field on the receiving object. If you provide an input field that's #ID ends in <tt>_id</tt>, the picker will return the ID of the <tt>Rich::RichFile</tt> object (for use in a relation perhaps?). If the #ID of the input ends in anything else, it will return the URL of the asset you selected.
+
+Pass the config option <tt>:hidden_input => true</tt> to use a hidden text field.
+
+Pass the config option <tt>:preview_width => '100px'</tt> to specify the size of the image you want to preview, otherwise the full size version of the image you pick will be shown.
+
+Pass the config option <tt>:placeholder_image => image_path('placeholder.png')</tt> to show a placeholder image that will be replaced when an asset has been selected.
+
+You might use this in a relation like this in ActiveAdmin:
+
+  form do |f|
+    f.inputs do
+      f.input :title
+    end
+    f.has_many :assets do |asset_form|
+      asset_form.input :rich_file_id, :as => :rich_picker, :config => {:style => 'width: 400px !important;', :hidden_input => true, :placeholder_image => image_path('placeholder.png'), :preview_size => :thumb}
+    end
+    f.buttons
+  end
 
 === Non-image uploads
 
