@@ -53,7 +53,18 @@ module Rich
   
   mattr_accessor :file_path
   @@file_path
-  
+
+  # configuration for picker
+  mattr_accessor :placeholder_image
+  @@placeholder_image = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" # a transparent pixel
+
+  mattr_accessor :preview_size
+  @@preview_size = "auto"
+
+  mattr_accessor :hidden_input
+  @@hidden_input = false
+  # end configuration for picker
+
   # Configuration defaults (these map directly to ckeditor settings)
   mattr_accessor :editor
   @@editor = {
@@ -88,7 +99,10 @@ module Rich
       :default_style => self.default_style,
       :insert_many => self.insert_many,
       :allow_document_uploads => self.allow_document_uploads,
-      :allow_embeds => self.allow_embeds
+      :allow_embeds => self.allow_embeds,
+      :placeholder_image => self.placeholder_image,
+      :preview_size => self.preview_size,
+      :hidden_input => self.hidden_input
     }
     editor_options = self.editor.merge(base)
     
