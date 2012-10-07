@@ -157,7 +157,7 @@ Besides from within the editor, the file manager can also be used on it's own. S
 
 Pass the config option <tt>:hidden_input => true</tt> to use a hidden text field.
 
-Pass the config option <tt>:preview_width => '100px'</tt> to specify the size of the image you want to preview, otherwise the full size version of the image you pick will be shown.
+Pass the config option <tt>:preview_size => '100px'</tt> to specify the size of the image you want to preview, otherwise the full size version of the image you pick will be shown.
 
 Pass the config option <tt>:placeholder_image => image_path('placeholder.png')</tt> to show a placeholder image that will be replaced when an asset has been selected.
 
