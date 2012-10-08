@@ -14,10 +14,13 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         }
 
         input_wrapping do
-          if rich_file_id
+          if rich_file_id #if there is a rich_file_id set already, find the RichFile
             rich_file = Rich::RichFile.find(rich_file_id)
-            img_path = rich_file.rich_file
-          else
+            img_path = rich_file.rich_file if rich_file
+          end
+
+          #if there isn't a rich_file_id or the rich_file wasn't found, use the default img_path
+          if !rich_file_id || !rich_file
             img_path = editor_options[:placeholder_image]
           end
 
