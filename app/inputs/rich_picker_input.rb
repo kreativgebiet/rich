@@ -14,15 +14,15 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         }
 
         input_wrapping do
-          if rich_file_id #if there is a rich_file_id set already, find the RichFile
-            rich_file = Rich::RichFile.find(rich_file_id)
-            img_path = rich_file.rich_file if rich_file
-          end
 
-          #if there isn't a rich_file_id or the rich_file wasn't found, use the default img_path
-          if !rich_file_id || !rich_file
+          # try to find the RichFile. If it doesn't exist, use the placeholder image
+          begin
+            rich_file = Rich::RichFile.find(rich_file_id)
+            img_path = rich_file.rich_file 
+          rescue Activerecord::RecordNotFound
             img_path = editor_options[:placeholder_image]
           end
+
 
           label_html <<
           if editor_options[:hidden_input] == true
