@@ -6,6 +6,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         scope_type = object_name
         scope_id = object.id
         editor_options = Rich.options(options[:config], scope_type, scope_id)
+        rich_file_id = object.send(method) if method
         
         local_input_options = {
           :class => 'rich-picker',
@@ -13,8 +14,8 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         }
 
         input_wrapping do
-          if scope_id
-            rich_file = Rich::RichFile.find(scope_id)
+          if rich_file_id
+            rich_file = Rich::RichFile.find(rich_file_id)
             img_path = rich_file.rich_file
           else
             img_path = editor_options[:placeholder_image]
@@ -29,7 +30,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
 
           field  <<
           " <a href='#{Rich.editor[:richBrowserUrl]}' class='button'>#{I18n.t('picker_browse')}</a>".html_safe <<
-          "</br></br>#{scope_id} - #{scope_type} - #{object.class}<img class='rich-image-preview' src='#{img_path}' width='#{editor_options[:preview_width]}'/>".html_safe <<
+          "</br></br><img class='rich-image-preview' src='#{img_path}' width='#{editor_options[:preview_width]}'/>".html_safe <<
           "<script>$(function(){$('##{input_html_options[:id]}_input a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{input_html_options[:id]}', #{editor_options.to_json.html_safe})})})</script>".html_safe
 
         end
