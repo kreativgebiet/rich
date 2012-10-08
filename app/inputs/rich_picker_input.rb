@@ -19,7 +19,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
           begin
             rich_file = Rich::RichFile.find(rich_file_id)
             img_path = rich_file.rich_file 
-          rescue Activerecord::RecordNotFound
+          rescue ActiveRecord::RecordNotFound
             img_path = editor_options[:placeholder_image]
           end
 
