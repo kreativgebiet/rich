@@ -6,6 +6,7 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         scope_type = object_name
         scope_id = object.id
         editor_options = Rich.options(options[:config], scope_type, scope_id)
+        rich_file_id = object.send(method) if method
         
         local_input_options = {
           :class => 'rich-picker',
@@ -13,12 +14,15 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         }
 
         input_wrapping do
-          if scope_id
-            rich_file = Rich::RichFile.find(scope_id)
-            img_path = rich_file.rich_file
-          else
+
+          # try to find the RichFile. If it doesn't exist, use the placeholder image
+          begin
+            rich_file = Rich::RichFile.find(rich_file_id)
+            img_path = rich_file.rich_file 
+          rescue ActiveRecord::RecordNotFound
             img_path = editor_options[:placeholder_image]
           end
+
 
           label_html <<
           if editor_options[:hidden_input] == true
