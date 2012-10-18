@@ -9,3 +9,4 @@ test/dummy/.sass-cache/
 test/dummy/public/assets/
 .idea/
 rich.tmproj
+.rvmrc
