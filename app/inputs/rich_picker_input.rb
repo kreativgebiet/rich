@@ -13,33 +13,35 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
         }
 
         input_wrapping do
-          # where is the label!? -RH
           label_html <<
-          if editor_options[:hidden_input] == true
-            field = builder.hidden_field(method, local_input_options.merge(input_html_options))
-          else
-            field = builder.text_field(method, local_input_options.merge(input_html_options))
-          end
+          input_field(local_input_options) <<
+          button <<
+          preview <<
+          javascript
 
-          field << button
-          field << preview
-          field << javascript
         end
       end
 private
-      def image_path
-        method_value = object.send(method)
-        return unless method_value.present?
-        # TODO: need the asset path for this thing--or just use CSS & add a class -RH
-        # return editor_options[:document_thumb] if editor_options[:type].to_s == 'file'
-        return if editor_options[:type].to_s == 'file'
 
-        # using Formtastic::Helpers::InputHelper#column_type
-        #   should be :string or :integer -RH
+      def input_field(local_input_options)
+        if editor_options[:hidden_input] == true
+          builder.hidden_field(method, local_input_options.merge(input_html_options))
+        else
+          builder.text_field(method, local_input_options.merge(input_html_options))
+        end
+      end
+
+      def preview_image_path
+        method_value = object.send(method)
+
+        # return placeholder image if this is a non-image picker OR if there is no value set
+        return editor_options[:placeholder_image] if editor_options[:type].to_s == 'file'
+        return editor_options[:placeholder_image] unless method_value.present?
+
         column_type = column_for(method).type
         if column_type == :integer
           file = Rich::RichFile.find(method_value)
-          file.rich_file
+          file.rich_file.url(:rich_thumb) #we ask paperclip directly for the file, so asset paths should not be an issue
         else # should be :string
           method_value
         end
@@ -66,12 +68,12 @@ private
       end
 
       def preview
-        path = image_path
+        path = preview_image_path
         klass = "class='rich-image-preview'"
         style = "style='max-width:#{editor_options[:preview_size]}; max-height:#{editor_options[:preview_size]};'"
         if path
           %Q{
-             </br></br><img src='#{image_path}' #{klass} #{style} />
+             </br></br><img src='#{preview_image_path}' #{klass} #{style} />
           }.html_safe
         else
           %Q{

@@ -20,7 +20,7 @@ if Object.const_defined?("Rich")
     
     config.default_style = :large
     
-    config.authentication_method = :authenticate_admin_user!
+    #config.authentication_method = :authenticate_admin_user!
     
   end
   
