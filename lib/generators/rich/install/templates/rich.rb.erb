@@ -15,22 +15,7 @@ if Object.const_defined?("Rich")
     # By default, Rich visualizes what type of element
     # you are editing. To disable this:
     #   config.editor[:startupOutlineBlocks] = false
-    
-    # == File Storage
-    # 
-    # Rich uses paperclip for uploads. You can configure
-    # paperclip to use Amazon's S3 service for file storage
-    # or use the local file system.
-    #
-    #   config.file_storage = :s3
-    #
-    # The default is to use the local filesystem
-    #   config.file_storage = :filesystem
 
-    # S3 credentials
-    # If you're using S3 to store your uploads, configure its credentials here
-    # See http://rubydoc.info/gems/paperclip/Paperclip/Storage/S3
-    #   config.s3_credentials = "path/to/s3.yml"
     
     # == Image styles
     # 

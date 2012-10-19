@@ -14,9 +14,7 @@ module Rich
     
     has_attached_file :rich_file,
                       :styles => Proc.new {|a| a.instance.set_styles },
-                      :convert_options => Proc.new { |a| Rich.convert_options[a] },
-                      :storage => Rich.file_storage,
-                      :s3_credentials => Rich.s3_credentials
+                      :convert_options => Proc.new { |a| Rich.convert_options[a] }
     
     validates_attachment_presence :rich_file
     validate :check_content_type

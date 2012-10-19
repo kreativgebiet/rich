@@ -2,7 +2,7 @@
 
 {<img src="https://github.com/bastiaanterhorst/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.2 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager. The file manager can also be used separate from CKEditor.
 
-Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2). Uploaded files can be stored on the filesystem, or on S3.
+Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2). Uploaded files can be stored on the filesystem, or on S3 (via Paperclips built-in S3 support).
 
 == Goals
 

@@ -44,13 +44,7 @@ module Rich
   
   mattr_accessor :allowed_document_types
   @@allowed_document_types = :all
-  
-  mattr_accessor :file_storage
-  @@file_storage = :filesystem
-  
-  mattr_accessor :s3_credentials
-  @@s3_credentials
-  
+
   mattr_accessor :file_path
   @@file_path
 
@@ -173,7 +167,6 @@ module Rich
         true
       end
     end
-    
   end
   
   def self.setup
