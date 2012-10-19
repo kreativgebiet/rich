@@ -1,6 +1,6 @@
 = javascript_include_tag "rich/base.js"
 = form.send field.view_helper, field.method_name, field.html_attributes.merge({:style=> (if field.editor_options[:hidden_input]==true then "visibility:hidden;position:absolute" else "" end )})
 = link_to t('picker_browse').capitalize, Rich.editor[:richBrowserUrl], :class => "btn create"
-%img{:src => field.image_path, :style => "padding: 10px 0; display: block; max-width: #{field.editor_options[:preview_width]}; max-width: #{field.editor_options[:preview_size]};", :class => 'rich-image-preview'}
+%img{:src => field.preview_image_path, :style => "padding: 10px 0; display: block; max-width: #{field.editor_options[:preview_size]}; max-width: #{field.editor_options[:preview_size]};", :class => 'rich-image-preview'}
 = javascript_tag do
 	$(function(){$('##{form.dom_id(field)}_field a').click(function(e){ e.preventDefault(); assetPicker.showFinder('##{form.dom_id(field)}', #{field.editor_options.to_json.html_safe})})})
