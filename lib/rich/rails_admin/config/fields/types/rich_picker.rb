@@ -34,7 +34,7 @@ module RailsAdmin::Config::Fields::Types
           Rails.logger.info "numeric"
           # if the value is numeric we assume its an object id
           rich_file = Rich::RichFile.find(value)
-          rich_file.rich_file
+          rich_file.rich_file.url(:rich_thumb)
         else
           Rails.logger.info "string"
           # if not, we assume its a url
