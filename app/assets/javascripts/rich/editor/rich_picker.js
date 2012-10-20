@@ -26,7 +26,7 @@ rich.AssetPicker.prototype = {
 		window.open(url, 'filebrowser', "width=860,height=500")
   },
 
-	setAsset: function(dom_id, asset, id){
+	setAsset: function(dom_id, asset, id, type){
 		var split_field_name = $(dom_id).attr('id').split('_')
 		if (split_field_name[split_field_name.length - 1] == "id") {
 			$(dom_id).val(id);
@@ -34,7 +34,9 @@ rich.AssetPicker.prototype = {
 			$(dom_id).val(asset);
 		}
 
-		$(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
+    if(type=='image') {
+		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
+    }
   }
 
 };
