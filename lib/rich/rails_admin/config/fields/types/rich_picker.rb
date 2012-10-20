@@ -24,7 +24,7 @@ module RailsAdmin::Config::Fields::Types
       Rich.options(config, scope_type, scope_id)
     end
 
-    def image_path
+    def preview_image_path
       if value.to_s.html_safe != ""
         if (true if Float(value) rescue false)
           # if the value is numeric we assume its an object id
