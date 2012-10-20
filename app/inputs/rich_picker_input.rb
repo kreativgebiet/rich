@@ -68,6 +68,8 @@ private
       end
 
       def preview
+        return unless editor_options[:type] != 'file'
+
         path = preview_image_path
         klass = "class='rich-image-preview'"
         style = "style='max-width:#{editor_options[:preview_size]}; max-height:#{editor_options[:preview_size]};'"
