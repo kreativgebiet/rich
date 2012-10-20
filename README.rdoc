@@ -221,6 +221,20 @@ In the latter example (scoping to an object), it is up to you to determine if sc
 
 Also note that none of this is secure. At all. It is purely meant as a convenience to save you from wading through tons of irrelevant files. If need to hide files from prying eyes, you need something else.
 
+=== Uploading to S3
+
+Paperclip (which Rich uses to handle uploads) supports S3 out of the box. Just add the following to you environment:
+
+  Paperclip::Attachment.default_options.merge!(
+    :storage => :s3,
+    :bucket => ENV['S3_BUCKET'],
+    :url => "/system/:class/:attachment/:id/:style/:filename",
+    :s3_credentials => {
+      :access_key_id => ENV['S3_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['S3_SECRET_ACCESS_KEY']
+    }
+  )
+
 == Planned features & ideas
 
 * drag & drop uploading
