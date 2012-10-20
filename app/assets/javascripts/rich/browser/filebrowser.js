@@ -34,8 +34,11 @@ rich.Browser.prototype = {
 		});
 		
 		browser.selectStyle(def);
-		
-		if(opt.length < 2) {
+
+    //check if we are inserting an object
+    var split_field_name = $.QueryString["dom_id"].split('_');
+
+		if(opt.length < 2 || split_field_name[split_field_name.length - 1] == "id") {
 			$('#styles').hide();
 			browser.selectStyle(opt[0]);
 		}
