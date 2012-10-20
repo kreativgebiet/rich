@@ -53,7 +53,7 @@ module Rich
   @@placeholder_image = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" # a transparent pixel
 
   mattr_accessor :preview_size
-  @@preview_size = "auto"
+  @@preview_size = "100px"
 
   mattr_accessor :hidden_input
   @@hidden_input = false
