@@ -36,9 +36,10 @@ rich.Browser.prototype = {
 		browser.selectStyle(def);
 
     //check if we are inserting an object
-    var split_field_name = $.QueryString["dom_id"].split('_');
+    var dom_id_param = $.QueryString["dom_id"];
+    var split_field_name = dom_id_param ? dom_id_param.split('_') : null;
 
-		if(opt.length < 2 || split_field_name[split_field_name.length - 1] == "id") {
+		if(opt.length < 2 || (split_field_name && split_field_name[split_field_name.length - 1] == "id")) {
 			$('#styles').hide();
 			browser.selectStyle(opt[0]);
 		}
