@@ -153,13 +153,15 @@ When you change styles after uploading files, you will need to re-process those 
 
 === Using the file manager without CKEditor
 
-Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above. One important thing to note is that this requires a string field on the receiving object. If you provide an input field that's #ID ends in <tt>_id</tt>, the picker will return the ID of the <tt>Rich::RichFile</tt> object (for use in a relation perhaps?). If the #ID of the input ends in anything else, it will return the URL of the asset you selected.
+Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above.
 
-Pass the config option <tt>:hidden_input => true</tt> to use a hidden text field.
+When the field you connect the picker to defines a relation (i.e. it ends in <tt>_id</tt>), the picker will return a reference to Rich::RichFile object. If the field you connect the picker does not refine a relation but is instead a string, the picker will return a URL to the file chosen in the picker.
 
-Pass the config option <tt>:preview_size => '100px'</tt> to specify the size of the image you want to preview, otherwise the full size version of the image you pick will be shown.
+In the picker's configuration (or globally in your initializer), you can optionally pass the following:
 
-Pass the config option <tt>:placeholder_image => image_path('placeholder.png')</tt> to show a placeholder image that will be replaced when an asset has been selected.
+    :hidden_input => true # hide the textfield that is populated with the file ID or URL. Handy when creating relations (since the ID doesn't tell you much).
+    :preview_size => '100px' # specify the bounding box of the image preview
+    :placeholder_image => image_path('placeholder.png') # show a placeholder image that will be replaced when an asset has been selected
 
 You might use this in a relation like this in ActiveAdmin:
 
@@ -168,7 +170,7 @@ You might use this in a relation like this in ActiveAdmin:
       f.input :title
     end
     f.has_many :assets do |asset_form|
-      asset_form.input :rich_file_id, :as => :rich_picker, :config => {:style => 'width: 400px !important;', :hidden_input => true, :placeholder_image => image_path('placeholder.png'), :preview_size => :thumb}
+      asset_form.input :rich_file_id, :as => :rich_picker, :config => {:style => 'width: 400px !important;', :hidden_input => true, :placeholder_image => image_path('placeholder.png'), :preview_size => '200px'}
     end
     f.buttons
   end
@@ -264,6 +266,7 @@ Your contributions (small and large) are very welcome! Please fork the project, 
 
 == Copyright
 
-Rich was created by Bastiaan Terhorst and is sponsored by Perceptor (http://perceptor.nl).
+Rich, the affluent editor. By Bastiaan Terhorst and the Contributors[https://github.com/bastiaanterhorst/rich/graphs/contributors].
+Sponsored by Perceptor[http://perceptor.nl].
 
 This project is licenced under the MIT License. See MIT-LICENSE for details.
