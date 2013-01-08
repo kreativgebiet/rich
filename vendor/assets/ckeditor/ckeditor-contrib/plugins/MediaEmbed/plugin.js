@@ -1,49 +1,52 @@
 /*
-* @example An iframe-based dialog with custom button handling logics.
+* Embed Media Dialog based on http://www.fluidbyte.net/embed-youtube-vimeo-etc-into-ckeditor
+*
+* Plugin name:      mediaembed
+* Menu button name: MediaEmbed
+*
+* Youtube Editor Icon
+* http://paulrobertlloyd.com/
+*
+* @author Fabian Vogelsteller [frozeman.de]
+* @version 0.1
 */
 ( function() {
-    CKEDITOR.plugins.add( 'MediaEmbed',
+    CKEDITOR.plugins.add( 'mediaembed',
     {
-        requires: [ 'iframedialog' ],
         init: function( editor )
         {
            var me = this;
-           CKEDITOR.dialog.add( 'MediaEmbedDialog', function (editor)
+           CKEDITOR.dialog.add( 'MediaEmbedDialog', function ()
            {
               return {
-                 title : 'Embed Media Dialog',
+                 title : 'Embed Media',
                  minWidth : 550,
                  minHeight : 200,
                  contents :
                        [
                           {
                              id : 'iframe',
-                             label : 'Embed Media',
                              expand : true,
-                             elements :
-                                   [
-                                      {
-						               type : 'html',
-						               id : 'pageMediaEmbed',
-						               label : 'Embed Media',
-						               style : 'width : 100%;',
-						               html : '<iframe src="'+me.path+'/dialogs/mediaembed.html" frameborder="0" name="iframeMediaEmbed" id="iframeMediaEmbed" allowtransparency="1" style="width:100%;margin:0;padding:0;"></iframe>'
-						              }
-                                   ]
+                             elements :[{
+                                id : 'embedArea',
+                                type : 'textarea',
+                                label : 'Paste Embed Code Here',
+                                'autofocus':'autofocus',
+                                setup: function(element){
+                                },
+                                commit: function(element){
+                                }
+                              }]
                           }
                        ],
-                  onOk : function()
-                 {
-		  for (var i=0; i<window.frames.length; i++) {
-		     if(window.frames[i].name == 'iframeMediaEmbed') {
-		        var content = window.frames[i].document.getElementById("embed").value;
-		     }
-		  }
-		  final_html = 'MediaEmbedInsertData|---' + escape('<p class="media_embed">'+content+'</p>') + '---|MediaEmbedInsertData';
-                    editor.insertHtml(final_html);
-                    updated_editor_data = editor.getData();
-                    clean_editor_data = updated_editor_data.replace(final_html,'<p class="media_embed">'+content+'</p>');
-                    editor.setData(clean_editor_data);
+                  onOk : function() {
+                    for (var i=0; i<window.frames.length; i++) {
+                       if(window.frames[i].name == 'iframeMediaEmbed') {
+                          var content = window.frames[i].document.getElementById("embed").value;
+                       }
+                    }
+                    console.log(this.getContentElement( 'iframe', 'embedArea' ).getValue());
+                    editor.insertHtml(this.getContentElement( 'iframe', 'embedArea' ).getValue());
                  }
               };
            } );
@@ -54,7 +57,7 @@
             {
                 label: 'Embed Media',
                 command: 'MediaEmbed',
-                icon: this.path + 'images/icon.gif'
+                icon: this.path + 'images/icon.png'
             } );
         }
     } );
