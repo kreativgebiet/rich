@@ -11,7 +11,7 @@
 * @version 0.1
 */
 ( function() {
-    CKEDITOR.plugins.add( 'mediaembed',
+    CKEDITOR.plugins.add( 'MediaEmbed',
     {
         init: function( editor )
         {
@@ -45,7 +45,7 @@
                           var content = window.frames[i].document.getElementById("embed").value;
                        }
                     }
-                    console.log(this.getContentElement( 'iframe', 'embedArea' ).getValue());
+                    //console.log(this.getContentElement( 'iframe', 'embedArea' ).getValue());
                     editor.insertHtml(this.getContentElement( 'iframe', 'embedArea' ).getValue());
                  }
               };
