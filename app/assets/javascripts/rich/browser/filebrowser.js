@@ -174,7 +174,7 @@ $(function(){
 	});
 
 	// hook up item insertion
-	$('#items li img').live('click', function(e){
+	$('body').on('click', '#items li img', function(e){
 		browser.selectItem(e.target);
 	});
 	
