@@ -46,7 +46,8 @@ module Rich
     end
     
     def create
-      @file = RichFile.new(:simplified_type => params[:simplified_type]) #make sure the type is set
+
+      @file = RichFile.new(:simplified_type => params[:simplified_type])
       
       if(params[:scoped] == 'true')
         @file.owner_type = params[:scope_type]
@@ -55,6 +56,7 @@ module Rich
       
       # use the file from Rack Raw Upload
       if(params[:file])
+        params[:file].content_type = Mime::Type.lookup_by_extension(params[:file].original_filename.split('.').last.to_sym)
         @file.rich_file = params[:file]
       end
       
