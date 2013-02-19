@@ -175,7 +175,7 @@ header {
 		.spinner {
 			opacity: 0.3;
 			margin-left: ($imageSize - 2)/2 - 32/2;
-			margin-top: ($imageSize - 2 - $verticalCenterOffset)/2 - 32/2;
+			margin-top: 31px;
 			width: 32px;
 			height: 32px;
 			background: image-url('rich/plus.png') no-repeat top center;
