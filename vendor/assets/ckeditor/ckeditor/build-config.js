@@ -96,7 +96,8 @@ var CKBUILDER_CONFIG = {
 		'codemirror' : 1,
 		'iframedialog' : 1,
 		'stylesheetparser' : 1,
-		'autogrow' : 1
+		'autogrow' : 1,
+		'divarea' : 1
 	},
 	languages : {
 		'en' : 1,
