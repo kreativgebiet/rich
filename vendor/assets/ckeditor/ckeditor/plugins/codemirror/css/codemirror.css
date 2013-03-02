@@ -61,7 +61,7 @@
 .CodeMirror div.CodeMirror-cursor.CodeMirror-overwrite {}
 
 /* DEFAULT THEME */
-.cm-s-default { font:13px/1.4em monospace; }
+
 .cm-s-default .cm-keyword {color: #708;}
 .cm-s-default .cm-atom {color: #219;}
 .cm-s-default .cm-number {color: #164;}
@@ -148,6 +148,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror-gutters {
   position: absolute; left: 0; top: 0;
   height: 100%;
+  padding-bottom: 30px;
   z-index: 3;
 }
 .CodeMirror-gutter {
@@ -197,6 +198,10 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   position: relative;
   z-index: 2;
   overflow: auto;
+}
+
+.CodeMirror-widget {
+  display: inline-block;
 }
 
 .CodeMirror-wrap .CodeMirror-scroll {
