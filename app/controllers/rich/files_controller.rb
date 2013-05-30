@@ -26,8 +26,8 @@ module Rich
       @rich_asset = RichFile.new
       
       respond_to do |format|
-        format.js
         format.html
+        format.js
       end
       
     end
