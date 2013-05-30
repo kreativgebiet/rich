@@ -55,18 +55,21 @@ module Rich
       end
       
       # use the file from Rack Raw Upload
-      if(params[:file])
-        params[:file].content_type = Mime::Type.lookup_by_extension(params[:file].original_filename.split('.').last.to_sym)
-        @file.rich_file = params[:file]
+      file_params = params[:file] || params[:qqfile]
+      if(file_params)
+        file_params.content_type = Mime::Type.lookup_by_extension(file_params.original_filename.split('.').last.to_sym)
+        @file.rich_file = file_params
       end
       
       if @file.save
-        render :json => { :success => true, :rich_id => @file.id }
+        response = { :success => true, :rich_id => @file.id }
       else
-        render :json => { :success => false, 
-                          :error => "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
-                          :params => params.inspect }
+        response = { :success => false,
+                     :error => "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
+                     :params => params.inspect }
       end
+
+      render :json => response, :content_type => "text/html"
     end
     
     def destroy  
