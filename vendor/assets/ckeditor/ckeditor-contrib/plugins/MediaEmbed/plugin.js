@@ -16,7 +16,7 @@
         init: function( editor )
         {
            var me = this;
-           CKEDITOR.dialog.add( 'MediaEmbedDialog', function ()
+           CKEDITOR.dialog.add( 'MediaEmbedDialog', function (instance)
            {
               return {
                  title : 'Embed Media',
@@ -46,7 +46,7 @@
                        }
                     }
                     //console.log(this.getContentElement( 'iframe', 'embedArea' ).getValue());
-                    editor.insertHtml(this.getContentElement( 'iframe', 'embedArea' ).getValue());
+                    instance.insertHtml(this.getContentElement( 'iframe', 'embedArea' ).getValue());
                  }
               };
            } );
@@ -58,6 +58,7 @@
                 label: 'Embed Media',
                 command: 'MediaEmbed',
                 icon: this.path + 'images/icon.png'
+                toolbar: 'mediaembed'
             } );
         }
     } );
