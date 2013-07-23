@@ -57,7 +57,7 @@
             {
                 label: 'Embed Media',
                 command: 'MediaEmbed',
-                icon: this.path + 'images/icon.png'
+                icon: this.path + 'images/icon.png',
                 toolbar: 'mediaembed'
             } );
         }
