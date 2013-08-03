@@ -5,7 +5,7 @@ module Rich
       if file.simplified_type == "image"
         file.rich_file.url(:rich_thumb)
       else
-        asset_path "rich/document-thumb.png"
+        asset_path "/assets/rich/document-thumb.png"
       end
     end
     
