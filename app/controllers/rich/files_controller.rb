@@ -2,6 +2,7 @@ module Rich
   class FilesController < ApplicationController
 
     before_filter :authenticate_rich_user
+    before_action :set_rich_file, only: [:show, :destroy]
 
     layout "rich/application"
     
@@ -37,7 +38,7 @@ module Rich
       
       if(params[:id])
         # list all files
-        @file = RichFile.find(params[:id])
+        @file = @rich_file
         render :layout => false
       else 
         render :text => "File not found"
@@ -47,7 +48,7 @@ module Rich
     
     def create
 
-      @file = RichFile.new(:simplified_type => params[:simplified_type])
+      @file = RichFile.new(rich_file_params)
       
       if(params[:scoped] == 'true')
         @file.owner_type = params[:scope_type]
@@ -74,10 +75,21 @@ module Rich
     
     def destroy  
       if(params[:id])
-        rich_file = RichFile.delete(params[:id])
+        @rich_file.destroy
         @fileid = params[:id]
       end
     end
+    
+    private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_rich_file
+        @rich_file = RichFile.find(params[:id])
+      end
+
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def rich_file_params
+        params.require(:rich_file).permit(:simplified_type, :rich_file_file_name, :rich_file_content_type, :rich_file_file_size, :rich_file_updated_at, :owner_type, :uri_cache, :owner_id)
+      end
     
   end
 end
