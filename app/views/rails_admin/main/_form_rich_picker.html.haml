@@ -1,4 +1,4 @@
-/= javascript_include_tag "rich/base.js"
+= javascript_include_tag "rich/base.js"
 = form.send field.view_helper, field.method_name, field.html_attributes.merge({:style=> (if field.editor_options[:hidden_input]==true then "visibility:hidden;position:absolute" else "" end )})
 = link_to t('picker_browse').capitalize, Rich.editor[:richBrowserUrl], :class => "btn create"
 - unless field.editor_options[:type]==:file
