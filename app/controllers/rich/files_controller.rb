@@ -48,7 +48,7 @@ module Rich
     
     def create
 
-      @file = RichFile.new(rich_file_params)
+      @file = RichFile.new
       
       if(params[:scoped] == 'true')
         @file.owner_type = params[:scope_type]
@@ -84,12 +84,6 @@ module Rich
       # Use callbacks to share common setup or constraints between actions.
       def set_rich_file
         @rich_file = RichFile.find(params[:id])
-      end
-
-      # Never trust parameters from the scary internet, only allow the white list through.
-      def rich_file_params
-        params.require(:rich_file).permit(:simplified_type, :rich_file_file_name, :rich_file_content_type, :rich_file_file_size, :rich_file_updated_at, :owner_type, :uri_cache, :owner_id)
-      end
-    
+      end    
   end
 end
