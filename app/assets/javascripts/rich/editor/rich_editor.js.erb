@@ -8,7 +8,3 @@ function addQueryString( url, params ) {
 	}
 	return url + ( ( url.indexOf( "?" ) != -1 ) ? "&" : "?" ) + queryString.join( "&" );
 }
-
-// load external plugins
-CKEDITOR.plugins.addExternal('MediaEmbed', '<%= asset_path('ckeditor-contrib/plugins/MediaEmbed/') %>');
-CKEDITOR.plugins.addExternal('richfile', '<%= asset_path('ckeditor-contrib/plugins/richfile/') %>');

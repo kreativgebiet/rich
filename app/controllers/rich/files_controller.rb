@@ -2,6 +2,7 @@ module Rich
   class FilesController < ApplicationController
 
     before_filter :authenticate_rich_user
+    before_action :set_rich_file, only: [:show, :destroy]
 
     layout "rich/application"
     
@@ -37,7 +38,7 @@ module Rich
       
       if(params[:id])
         # list all files
-        @file = RichFile.find(params[:id])
+        @file = @rich_file
         render :layout => false
       else 
         render :text => "File not found"
@@ -74,10 +75,15 @@ module Rich
     
     def destroy  
       if(params[:id])
-        rich_file = RichFile.delete(params[:id])
+        @rich_file.destroy
         @fileid = params[:id]
       end
     end
     
+    private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_rich_file
+        @rich_file = RichFile.find(params[:id])
+      end    
   end
 end
