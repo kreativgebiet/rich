@@ -77,6 +77,10 @@ Since Active Admin actually uses Formtastic, you can use it with Rich out of the
 
 === Rails Admin
 
+Since 1.4.7, it is the user's responsibility to create assets/javascripts/rails_admin/custom/ui.js and include rich
+
+  //= require rich/base
+
 To use Rich in your RA forms, use the following in your initializer:
 
   config.model Post do
