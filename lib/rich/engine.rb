@@ -7,7 +7,14 @@ module Rich
     isolate_namespace Rich
 
     initializer "rich.add_middleware" do |app|
-      app.config.assets.precompile += %w(rich/base.js rich/editor.css)
+      app.config.assets.precompile += %W(
+              ckeditor/*.js
+              ckeditor/*.css
+              ckeditor/*.png
+              ckeditor/*.gif
+              ckeditor/*.html
+              ckeditor/*.md
+      )
       app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files']
     end
 
@@ -16,7 +23,5 @@ module Rich
         include Rich::Authorize
       end
     end
-
-
   end
 end
