@@ -74,7 +74,7 @@ module Rich
     
     def destroy  
       if(params[:id])
-        rich_file = RichFile.delete(params[:id])
+        rich_file = RichFile.destroy(params[:id])
         @fileid = params[:id]
       end
     end
