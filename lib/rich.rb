@@ -104,7 +104,7 @@ module Rich
     editor_options.merge!(overrides) if overrides
 
     # if the contentcss is set to :default, use the asset pipeline
-    editor_options[:contentsCss] = ActionController::Base.helpers.stylesheet_path(asset_path 'rich/editor.css') if editor_options[:contentsCss] == :default
+    editor_options[:contentsCss] = ActionController::Base.helpers.stylesheet_path('rich/editor.css') if editor_options[:contentsCss] == :default
 
 
     # update the language to the currently selected locale
