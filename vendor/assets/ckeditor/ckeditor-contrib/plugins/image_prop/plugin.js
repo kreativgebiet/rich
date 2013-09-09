@@ -27,7 +27,7 @@ CKEDITOR.plugins.add( 'image_prop', {
 
 			// The button placement in the toolbar (toolbar group name).
 			toolbar: 'insert',
-			icon: '/assets/rich/image_edit.png'
+      icon: this.path + 'images/icon.png'
 
 		});
 
