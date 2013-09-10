@@ -31,12 +31,14 @@ CKEDITOR.dialog.add( 'image_propDialog', function( editor ) {
 		        setup: function( element ) {
             	this.setValue( element.getAttribute( "data-caption" ) );
 		        },
-		        commit: function( element ) {
+           commit: function( element ) {
 			        var caption = this.getValue();
-	            if ( caption && element.getName() == 'img')
-	              	element.setAttribute( 'data-caption', caption );
-	            else if (element.getName() != 'img')
-	                element.removeAttribute( 'data-caption' );
+	            if ( caption && caption !== '' && element.getName() == 'img') {
+	              element.setAttribute( 'data-caption', caption );
+	            }
+	            else{
+	              element.removeAttribute( 'data-caption' );
+	            }
 		        }
 					}
 				]
