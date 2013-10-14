@@ -1,0 +1,15 @@
+it:
+  available_styles: "Formati"
+  upload_a_file: "Carica file"
+  insert_one: "Inserisci"
+  insert_one_tip: "Inserisci"
+  insert_many: "Inserisci molti"
+  insert_many_tip: "Inserisci molti (mantieni il browser aperto)"
+  view_grid: "Griglia"
+  view_grid_tip: "Visualizza come griglia"
+  view_list: "Lista"
+  view_list_tip: "Visualizza come lista"
+  delete: "Elimina"
+  delete_confirm: "Sei sicuro di voler eliminare questo File?"
+  picker_browse: "Seleziona o carica"
+
