@@ -2,11 +2,7 @@ module Rich
   class FilesController < ApplicationController
 
     before_filter :authenticate_rich_user
-    if Rails::VERSION::MAJOR >= 4
-      before_filter :set_rich_file, only: [:show, :destroy]
-    else
-      before_filter :set_rich_file, only: [:show, :destroy]
-    end
+    before_filter :set_rich_file, only: [:show, :destroy]
 
     layout "rich/application"
 
