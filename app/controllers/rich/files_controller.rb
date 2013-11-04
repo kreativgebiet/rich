@@ -3,7 +3,7 @@ module Rich
 
     before_filter :authenticate_rich_user
     if Rails::VERSION::MAJOR >= 4
-      before_action :set_rich_file, only: [:show, :destroy]
+      before_filter :set_rich_file, only: [:show, :destroy]
     else
       before_filter :set_rich_file, only: [:show, :destroy]
     end
