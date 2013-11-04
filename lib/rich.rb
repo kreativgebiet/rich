@@ -99,7 +99,8 @@ module Rich
       :allow_embeds => self.allow_embeds,
       :placeholder_image => self.placeholder_image,
       :preview_size => self.preview_size,
-      :hidden_input => self.hidden_input
+      :hidden_input => self.hidden_input,
+      :paginates_per => self.paginates_per
     }
     editor_options = self.editor.merge(base)
     
