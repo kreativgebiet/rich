@@ -229,7 +229,7 @@ Also note that none of this is secure. At all. It is purely meant as a convenien
 
 === Uploading to S3
 
-Paperclip (which Rich uses to handle uploads) supports S3 out of the box. Just add the following to you environment:
+Paperclip (which Rich uses to handle uploads) supports S3 out of the box. Just add the following to your environment:
 
   Paperclip::Attachment.default_options.merge!(
     :storage => :s3,
