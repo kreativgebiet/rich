@@ -116,11 +116,11 @@ module Rich
     
     # remove the filebrowser if allow_document_uploads is false (the default)
     unless editor_options[:allow_document_uploads]
-      editor_options[:toolbar][1].delete("richFile")
+      editor_options[:toolbar].map{|a| a.delete 'richFile'; a}
     end
     
     unless editor_options[:allow_embeds]
-      editor_options[:toolbar][1].delete("MediaEmbed")
+      editor_options[:toolbar].map{|a| a.delete 'MediaEmbed'; a}
     end
     
     # object scoping
