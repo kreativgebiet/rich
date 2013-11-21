@@ -6,7 +6,7 @@ Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic
 
 == Goals
 
-1. Keep the CKEditor source our of your project.
+1. Keep the CKEditor source out of your project.
 2. Sensible defaults. We don't want our users to insert tables, smilies or other frivolities that will do nothing but ruin a lovingly crafted design.
 3. Make it easy to customize these defaults.
 4. Implement a usable (and easily configurable) file manager that serves up images that fit your specific design.
