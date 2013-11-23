@@ -56,6 +56,7 @@
 					params.allowed_styles = "original";
 					params.insert_many = editor.config.insert_many;
 					params.type = "file";
+					params.scoped = editor.config.scoped || false;
 					if(params.scoped == true) {
 						params.scope_type = editor.config.scope_type
 						params.scope_id = editor.config.scope_id;
