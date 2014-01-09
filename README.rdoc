@@ -27,6 +27,13 @@ Rich is available as a Ruby Gem, which makes installation very easy.
   # the edge (unstable) version can be had using:
   # gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
 
+  # If you want to use Paperclip
+  gem 'paperclip'
+  
+  # If you want to use CarrierWave
+  # Be sure to set config.backend = :carrierwave in config/initializers/rich.rb
+  gem 'carrierwave'
+
 After updating your bundle, run the installer.
 
   $> rails generate rich:install
