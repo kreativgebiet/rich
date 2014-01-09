@@ -21,6 +21,12 @@ module RailsAdmin::Config::Fields::Types
       end
     end
 
+    # Compatibility with RailsAdmin 0.6.0 AND prior versions
+    # https://github.com/sferik/rails_admin/commit/494205b3a0e128bfc98084ac59b5ee378d3218a1
+    def form_default_value
+      self.respond_to?(:html_default_value) ? html_default_value : super
+    end
+
     def scope_id
       bindings[:object].id
     end
