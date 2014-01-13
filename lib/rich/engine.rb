@@ -1,4 +1,3 @@
-require 'paperclip'
 require 'rack/raw_upload'
 require "rich/authorize"
     
