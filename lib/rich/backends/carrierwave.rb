@@ -1,5 +1,6 @@
 raise "Please install CarrierWave: github.com/carrierwaveuploader/carrierwave" unless Object.const_defined?(:CarrierWave)
 require 'rich/utils/file_size_validator'
+require 'rich/backends/rich_file_uploader'
 
 module Rich
   module Backends
