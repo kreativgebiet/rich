@@ -90,6 +90,8 @@ end
 
 if Object.const_defined?("SimpleForm")
   class RichPickerInput < SimpleForm::Inputs::StringInput
+    include ActiveRecord::Calculations
+
     attr_reader :editor_options, :dom_id
 
     def input
@@ -124,8 +126,7 @@ if Object.const_defined?("SimpleForm")
       return editor_options[:placeholder_image] if editor_options[:type].to_s == 'file'
       return editor_options[:placeholder_image] unless method_value.present?
 
-      column_type = column_for(attribute_name).type
-      if column_type == :integer
+      if method_value.is_a? Integer
         file = Rich::RichFile.find(method_value)
         file.rich_file.url(:rich_thumb) #we ask paperclip directly for the file, so asset paths should not be an issue
       else # should be :string
