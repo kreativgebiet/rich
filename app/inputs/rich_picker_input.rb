@@ -90,8 +90,6 @@ end
 
 if Object.const_defined?("SimpleForm")
   class RichPickerInput < SimpleForm::Inputs::StringInput
-    include ActiveRecord::Calculations
-
     attr_reader :editor_options, :dom_id
 
     def input
