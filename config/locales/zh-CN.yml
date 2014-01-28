@@ -1,0 +1,19 @@
+zh-CN:
+  available_styles: "样式"
+  upload_a_file: "上传文件"
+  insert_one: "插入一个"
+  insert_one_tip: "插入一个"
+  insert_many: "插入多个"
+  insert_many_tip: "插入多个 (保持浏览窗口开启)"
+  view_grid: "网格浏览方式"
+  view_grid_tip: "网格浏览方式"
+  view_list: "列表浏览方式"
+  view_list_tip: "列表浏览方式"
+  delete: "删除这个文件"
+  delete_confirm: "你确定要删除这个文件吗?"
+  picker_browse: "选择或者上传"
+  errors:
+    messages:
+      wrong_size: "大小错误 (应该是 %{file_size})"
+      size_too_small: "太小 (应该至少 %{file_size})"
+      size_too_big: "太大 (应该不超过 %{file_size})"
