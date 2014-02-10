@@ -10,6 +10,7 @@ module Rich
           :styles => Proc.new {|a| a.instance.set_styles },
           :convert_options => Proc.new { |a| Rich.convert_options[a] }
 
+        do_not_validate_attachment_file_type :rich_file
         validates_attachment_presence :rich_file
         validate :check_content_type
         validates_attachment_size :rich_file, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
