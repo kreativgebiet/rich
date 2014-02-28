@@ -1,0 +1,19 @@
+en:
+  available_styles: "Версии"
+  upload_a_file: "Загрузить файл"
+  insert_one: "Вставить файл"
+  insert_one_tip: "Вставить файл"
+  insert_many: "Вставить файлы"
+  insert_many_tip: "Вставить файлы (держать браузер открытым)"
+  view_grid: "Таблица"
+  view_grid_tip: "Таблица"
+  view_list: "Список"
+  view_list_tip: "Список"
+  delete: "Удалить"
+  delete_confirm: "Вы уверены, что хотите удалить этот файл?"
+  picker_browse: "Выберите файл"
+  errors:
+    messages:
+      wrong_size: "не верный размер файла (должен быть %{file_size})"
+      size_too_small: "слишком маленький размер файла (должен быть как минимум %{file_size})"
+      size_too_big: "слишком большой размер файла (должен быть не больше %{file_size})"
