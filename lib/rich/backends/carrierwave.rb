@@ -7,8 +7,21 @@ module Rich
     module CarrierWave
       extend ActiveSupport::Concern
 
+      module DefaultCarrierwaveVersions
+        Rich.image_styles.each do |name,size|
+          unless Rich.uploader.constantize.versions.include? name
+            version name do
+              process :resize_to_fit => size.gsub("#", "").split("x").map(&:to_i)
+            end
+          end
+        end
+      end
+
       included do
-        mount_uploader :rich_file_file_name, RichFileUploader
+        uploader = Rich.uploader.constantize
+        uploader.include(DefaultCarrierwaveVersions)
+
+        mount_uploader :rich_file_file_name, uploader
         alias_method :rich_file, :rich_file_file_name
         alias_method :rich_file=, :rich_file_file_name=
 
@@ -66,6 +79,7 @@ module Rich
       module ClassMethods
 
       end
+
     end
   end
 
