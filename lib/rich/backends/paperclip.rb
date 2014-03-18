@@ -75,5 +75,5 @@ module Rich
     end
   end
 
-  RichFile.send(:include, Backends::Paperclip)
+  Rich::RichFile.send(:include, Backends::Paperclip)
 end
