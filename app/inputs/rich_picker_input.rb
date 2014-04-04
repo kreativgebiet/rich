@@ -38,7 +38,7 @@ private
         return editor_options[:placeholder_image] if editor_options[:type].to_s == 'file'
         return editor_options[:placeholder_image] unless method_value.present?
 
-        column_type = column_for(method).type
+        column_type = column_for(method) ? column_for(method).type : :string
         if column_type == :integer
           file = Rich::RichFile.find(method_value)
           file.rich_file.url(:rich_thumb) #we ask paperclip directly for the file, so asset paths should not be an issue
