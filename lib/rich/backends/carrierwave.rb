@@ -10,7 +10,7 @@ module Rich
       module DefaultCarrierwaveVersions
         Rich.image_styles.each do |name,size|
           unless Rich.uploader.constantize.versions.include? name
-            version name do
+            Rich.uploader.constantize.send :version, name.to_s do
               process :resize_to_fit => size.gsub("#", "").split("x").map(&:to_i)
             end
           end
