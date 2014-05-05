@@ -59,7 +59,7 @@ module Rich
       file_params = params[:file] || params[:qqfile]
       if(file_params)
         file_params.content_type = Mime::Type.lookup_by_extension(file_params.original_filename.split('.').last.to_sym)
-        @file.rich_file = file_params
+        @file.rich_file_file_name = file_params
       end
 
       if @file.save
