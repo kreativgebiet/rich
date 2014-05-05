@@ -23,11 +23,11 @@ module Rich
       end
   
       def rich_file
-        rich_file_file_name
+        self.rich_file_file_name
       end
 
       def rich_file=(val)
-        rich_file_file_name = val
+        self.rich_file_file_name = val
       end
   
       def uri_cache
