@@ -1,4 +1,11 @@
-= Rich
+= UPDATE June 2014
+Hello, im working on getting rich to fully work on Rails 4 and fixing old issues.
+Expect a new branch any time soon, please if you found any issues let us know!
+Later on we will deploy our gem at rubygems.org
+
+Best Regards - Renews
+
+== Rich
 
 {<img src="https://github.com/bastiaanterhorst/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.2 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager. The file manager can also be used separate from CKEditor.
 
