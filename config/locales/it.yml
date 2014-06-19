@@ -12,4 +12,8 @@ it:
   delete: "Elimina"
   delete_confirm: "Sei sicuro di voler eliminare questo File?"
   picker_browse: "Seleziona o carica"
-
+  errors:
+    messages:
+      wrong_size: "dimensione errata (dimensione richiesta: %{file_size})"
+      size_too_small: "dimensione troppo piccola (dimensione minima: %{file_size})"
+      size_too_big: "dimensione troppo grande (dimensione massima: %{file_size})"
