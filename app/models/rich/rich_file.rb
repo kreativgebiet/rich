@@ -5,8 +5,8 @@ require 'kaminari'
 module Rich
   class RichFile < ActiveRecord::Base
 
-    scope :images, where("rich_rich_files.simplified_type = 'image'")
-    scope :files, where("rich_rich_files.simplified_type = 'file'")
+    scope :images,  lambda { where("rich_rich_files.simplified_type = 'image'") }
+    scope :files,   lambda { where("rich_rich_files.simplified_type = 'file'") }
 
     paginates_per Rich.options[:paginates_per]
 
