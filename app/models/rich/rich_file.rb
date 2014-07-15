@@ -13,7 +13,9 @@ module Rich
     has_attached_file :rich_file,
                       :styles => Proc.new {|a| a.instance.set_styles },
                       :convert_options => Proc.new { |a| Rich.convert_options[a] }
-    do_not_validate_attachment_file_type :rich_file
+    if self.respond_to?(:do_not_validate_attachment_file_type)
+      do_not_validate_attachment_file_type :rich_file
+    end
     validates_attachment_presence :rich_file
     validate :check_content_type
     validates_attachment_size :rich_file, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
