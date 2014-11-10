@@ -3,7 +3,7 @@
 var rich = rich || {};
 
 rich.Browser = function(){
-	
+
 	this._options = {
 		currentStyle: '',
 		insertionModeMany: false,
@@ -12,27 +12,27 @@ rich.Browser = function(){
 		reachedBottom: false,
 		viewModeGrid: true
 	};
-	
+
 };
 
 rich.Browser.prototype = {
-	
+
 	initialize: function() {
 		// intialize styles
 		this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
-		
+
 		// initialize image insertion mode
 		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
 		this.toggleInsertionMode(false);
     	this.toggleViewMode(false);
 	},
-	
+
 	initStyles: function(opt, def) {
 		opt=opt.split(',');
-		$.each(opt, function(index, value) { 
+		$.each(opt, function(index, value) {
 			if(value != 'rich_thumb') $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
 		});
-		
+
 		browser.selectStyle(def);
 
     //check if we are inserting an object
@@ -44,27 +44,27 @@ rich.Browser.prototype = {
 			browser.selectStyle(opt[0]);
 		}
 	},
-	
+
 	setLoading: function(loading) {
 		this._options.loading = loading;
-		
+
 		if(loading == true) {
 			// $('#loading').css({visibility: 'visible'});
-			$('#loading').fadeIn();
+			$('#loading').fadeIn().css("display","inline-block");
 		} else {
 			$('#loading').fadeOut();
 		}
 	},
-	
+
 	selectStyle: function(name) {
 		this._options.currentStyle = name;
 		$('#styles li').removeClass('selected');
-		$('#style-'+name).addClass('selected');	
+		$('#style-'+name).addClass('selected');
     },
 
 	toggleInsertionMode: function(switchMode) {
 		if(switchMode==true) this._options.insertionModeMany = !this._options.insertionModeMany;
-		
+
 		if(this._options.insertionModeMany == true) {
 	    $('#insert-one').hide();
 	    $('#insert-many').show();
@@ -91,31 +91,36 @@ rich.Browser.prototype = {
         $('#items').removeClass('list');
       }
     },
-	
+
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
 		var type = $(item).data('rich-asset-type');
 		var name = $(item).data('rich-asset-name');
-		
-		
+
+    var form = $(item).parent().find('form');
+    var $form = $(form);
+    var alt = $form.find('.input-alt').val();
+    var title = $form.find('.input-title').val();
+
+
 		if($.QueryString["CKEditor"]=='picker') {
-			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type);
+			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type, alt, title);
 		} else {
-			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);			
+			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name, alt, title);
 		}
-		
+
 		// wait a short while before closing the window or regaining focus
 		var self = this;
 		window.setTimeout(function(){
-			    if(self._options.insertionModeMany == false) {  			
+			    if(self._options.insertionModeMany == false) {
 			  window.close();
 		  } else {
 		    window.focus();
 		  }
 		},100);
 	},
-	
+
 	loadNextPage: function() {
 		if (this._options.loading || this._options.reachedBottom) {
       return;
@@ -137,10 +142,20 @@ rich.Browser.prototype = {
       });
     }
 	},
-	
+
 	nearBottomOfWindow: function() {
 		return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
-	}
+	},
+
+  modified: function() {
+    $('#items li').on('keypress', '.input', function() {
+      $(this).parent().find('.update').fadeIn('fast');
+    })
+
+    $('#items li .update').on('click', function(e) {
+      $(this).fadeOut('fast');
+    })
+  }
 
 };
 
@@ -148,10 +163,10 @@ rich.Browser.prototype = {
 var browser;
 
 $(function(){
-	
+
 	browser = new rich.Browser();
 	browser.initialize();
-	
+
 	new rich.Uploader();
 
 	// hook up insert mode switching
@@ -177,10 +192,15 @@ $(function(){
 	$('body').on('click', '#items li img', function(e){
 		browser.selectItem(e.target);
 	});
-	
+
 	// fluid pagination
 	$(window).scroll(function(){
 		browser.loadNextPage();
 	});
-	
+
+	browser.modified();
+  $('ul#items').bind("DOMSubtreeModified", function() {
+    browser.modified();
+  });
+
 });
