@@ -1,3 +1,17 @@
+= Update November 2014
+
+Added basic Rails 4 support, fixing toolbar and adding alt and title fields for images.
+
+Run:
+  
+  rake db:migrate
+
+to get the new fields. That's all.
+
+{<img src="https://github.com/justonestep/rich/blob/feature/formtastic3-toolbar/screenshots/rich-filemanager_alt_title.png" />}
+{<img src="https://github.com/justonestep/rich/blob/feature/formtastic3-toolbar/screenshots/rich-filemanager_grid.png" />}
+{<img src="https://github.com/justonestep/rich/blob/feature/formtastic3-toolbar/screenshots/rich-filemanager_list.png" />}
+
 = UPDATE June 2014
 Hello, im working on getting rich to fully work on Rails 4 and fixing old issues.
 Expect a new branch any time soon, please if you found any issues let us know!
