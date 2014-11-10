@@ -2,7 +2,7 @@ module Rich
   class FilesController < ApplicationController
 
     before_filter :authenticate_rich_user
-    before_filter :set_rich_file, only: [:show, :destroy]
+    before_filter :set_rich_file, only: [:show, :destroy, :update]
 
     layout "rich/application"
 
@@ -29,6 +29,7 @@ module Rich
       respond_to do |format|
         format.html
         format.js
+        # format.js { render 'new_book_row', :format => :html, :layout => false }
       end
 
     end
@@ -73,6 +74,17 @@ module Rich
       render :json => response, :content_type => "text/html"
     end
 
+    def update
+      if (params[:id])
+        respond_to do |format|
+          if @rich_file.update(rich_file_params)
+            # redirect_to action: "index"
+            format.js
+          end
+        end
+      end
+    end
+
     def destroy
       if(params[:id])
         @rich_file.destroy
@@ -84,6 +96,10 @@ module Rich
       # Use callbacks to share common setup or constraints between actions.
       def set_rich_file
         @rich_file = RichFile.find(params[:id])
+      end
+
+      def rich_file_params
+        params.require(:rich_file).permit(:rich_file_file_alt, :rich_file_file_title)
       end
   end
 end
