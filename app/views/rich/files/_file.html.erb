@@ -1,11 +1,18 @@
 <li class="clickable">
   <img  id="file<%= file.id %>"
-        src="<%= thumb_for_file(file) %>" 
+        src="<%= thumb_for_file(file) %>"
         data-uris="<%= file.uri_cache %>"
         data-rich-asset-id="<%= file.id %>"
-				data-rich-asset-type="<%= file.simplified_type %>"
-				data-rich-asset-name="<%= file.rich_file_file_name %>"
+        data-rich-asset-type="<%= file.simplified_type %>"
+        data-rich-asset-name="<%= file.rich_file_file_name %>"
   />
   <p><%= file.rich_file_file_name %></p>
+  <%= form_for(file, :url => {:action => "update", :id => file.id}, :remote => true, :html => { 'data-type' => :html }) do |f| %>
+
+    <%= f.text_field :rich_file_file_title, placeholder: "Title", :class => "input input-title" %>
+    <%= f.text_field :rich_file_file_alt, placeholder: "Alt", :class => "input input-alt" %>
+
+    <%= f.submit 'Update', :remote => true, :class => "update" %>
+  <% end %>
   <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
 </li>
