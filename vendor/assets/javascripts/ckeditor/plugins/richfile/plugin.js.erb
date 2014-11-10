@@ -7,14 +7,14 @@
 	    init: function(editor) {
 
 			// register a callback that actually inserts a selected image
-	    editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id, name){
-				this.insertHtml('<img src="' + url + '" alt="" data-rich-file-id="' + id + '" />');
+	    editor._.insertImagefn = CKEDITOR.tools.addFunction(function(url, id, name, alt, title){
+				this.insertHtml('<img src="' + url + '" alt="' + alt + '" title="' + title + '" data-rich-file-id="' + id + '" />');
 			}, editor);
 
 			editor._.insertFilefn = CKEDITOR.tools.addFunction(function(url, id, name){
 				this.insertHtml('<a href="' + url + '" data-rich-file-id="' + id + '">' + name + '</a>');
 			}, editor);
-			
+
 			// double click an image to replace it
 			editor.on( 'doubleclick', function(evt) {
 					var element = evt.data.element;
@@ -63,6 +63,7 @@
 					}
 					params.viewMode = editor.config.view_mode || "list";
 					var url = addQueryString(editor.config.richBrowserUrl, params );
+
 					editor.popup(url, 860, 500);
 				}
 			});
@@ -78,6 +79,7 @@
 				command: 'insertRichFile',
 				icon: "<%= asset_path 'rich/files.png' %>"
 			});
+
 
 	    }
 	});
