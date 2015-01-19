@@ -1,4 +1,4 @@
-if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].version.version[0,1] == "2")
+if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].version.version[0,1] >= "2")
 
     class RichPickerInput < ::Formtastic::Inputs::StringInput
       include Formtastic::Helpers::InputHelper
