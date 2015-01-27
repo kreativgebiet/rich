@@ -1,9 +1,8 @@
-= UPDATE June 2014
-Hello, im working on getting rich to fully work on Rails 4 and fixing old issues.
-Expect a new branch any time soon, please if you found any issues let us know!
-Later on we will deploy our gem at rubygems.org
+= UPDATE
+I'm no longer interested in maintaining this gem since I no longer use it myself. 
+If anyone reading this would like to help out, please get in touch!
+- @bastiaanterhorst
 
-Best Regards - Renews
 
 == Rich
 
