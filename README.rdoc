@@ -1,12 +1,6 @@
-= UPDATE
-I'm no longer interested in maintaining this gem since I no longer use it myself. 
-If anyone reading this would like to help out, please get in touch!
-- @bastiaanterhorst
-
-
 == Rich
 
-{<img src="https://github.com/bastiaanterhorst/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.2 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager. The file manager can also be used separate from CKEditor.
+{<img src="https://github.com/kreativgebiet/rich/raw/master/app/assets/images/rich/rich.png" />}[https://github.com/bastiaanterhorst/rich/] Rich is an opinionated implementation of CKEditor for Rails 3.2 and up. It includes a stripped down toolbar, simplified dialogs and a custom file manager. The file manager can also be used separate from CKEditor.
 
 Presently, Rich integrates with Active Admin, Rails Admin and vanilla Formtastic (versions 1 and 2). Uploaded files can be stored on the filesystem, or on S3 (via Paperclips built-in S3 support).
 
@@ -22,7 +16,7 @@ It should be noted that while a major point of this project was to remove many t
 
 == Dependency Status
 
-{<img src="https://gemnasium.com/bastiaanterhorst/rich.png" />}[https://gemnasium.com/bastiaanterhorst/rich/]
+{<img src="https://gemnasium.com/kreativgebiet/rich.png" />}[https://gemnasium.com/kreativgebiet/rich/]
 
 == Quick install
 
@@ -31,11 +25,11 @@ Rich is available as a Ruby Gem, which makes installation very easy.
   # In your Gemfile (Rails >= 3.2)
   gem 'rich'
   # the edge (unstable) version can be had using:
-  # gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
+  # gem 'rich', :git => 'https://github.com/kreativgebiet/rich.git'
 
   # If you want to use Paperclip
   gem 'paperclip'
-  
+
   # If you want to use CarrierWave
   # Be sure to set config.backend = :carrierwave in config/initializers/rich.rb
   gem 'carrierwave'
@@ -119,13 +113,13 @@ To use the image picker on a string field, do this:
 == Screenshots
 
 This is the editor with default settings (shown here in Rails Admin).
-{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-editor-default.png" />}[https://github.com/bastiaanterhorst/rich/]
+{<img src="https://github.com/kreativgebiet/rich/raw/master/screenshots/rich-editor-default.png" />}[https://github.com/kreativgebiet/rich/]
 
 This is the file picker (Rich without CKEditor, again in Rails Admin).
-{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-picker.png" />}[https://github.com/bastiaanterhorst/rich/]
+{<img src="https://github.com/kreativgebiet/rich/raw/master/screenshots/rich-picker.png" />}[https://github.com/kreativgebiet/rich/]
 
 This is the file manager.
-{<img src="https://github.com/bastiaanterhorst/rich/raw/master/screenshots/rich-filemanager.png" />}[https://github.com/bastiaanterhorst/rich/]
+{<img src="https://github.com/kreativgebiet/rich/raw/master/screenshots/rich-filemanager.png" />}[https://github.com/kreativgebiet/rich/]
 
 == Rich in production mode
 
@@ -283,7 +277,7 @@ Your contributions (small and large) are very welcome! Please fork the project, 
 
 == Copyright
 
-Rich, the affluent editor. By Bastiaan Terhorst and the Contributors[https://github.com/bastiaanterhorst/rich/graphs/contributors].
+Rich, the affluent editor. By Bastiaan Terhorst and the Contributors[https://github.com/kreativgebiet/rich/graphs/contributors].
 Sponsored by Perceptor[http://perceptor.nl].
 
 This project is licenced under the MIT License. See MIT-LICENSE for details.
