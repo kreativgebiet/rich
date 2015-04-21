@@ -74,7 +74,10 @@ module Rich
     :startupOutlineBlocks => true,
     :forcePasteAsPlainText => true,
     :format_tags => 'h3;p;pre',
-    :toolbar => [['Format','Styles'],['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'richImage', 'richFile','MediaEmbed', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']],
+    :toolbar => [%w(Styles Format Font FontSize), %w(Bold Italic Underline Strike Subscript Superscript),
+                 %w(JustifyLeft JustifyCenter JustifyRight JustifyBlock), %w(TextColor BGColor),
+                 %w(RemoveFormat), %w(NumberedList BulletedList Blockquote), %w(Link Unlink),
+                 %w(richImage richFile MediaEmbed), %w(Source ShowBlocks)],
     :language => I18n.default_locale,
     :richBrowserUrl => '/rich/files/',
     :uiColor => '#f4f4f4'
