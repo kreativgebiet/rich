@@ -7,17 +7,17 @@ module Rich
 
       included do
         has_attached_file :rich_file,
-          :styles => Proc.new {|a| a.instance.set_styles },
-          :convert_options => Proc.new { |a| Rich.convert_options[a] }
-
+                          :styles => Proc.new {|a| a.instance.set_styles },
+                          :convert_options => Proc.new { |a| Rich.convert_options[a] }
         do_not_validate_attachment_file_type :rich_file
         validates_attachment_presence :rich_file
         validate :check_content_type
         validates_attachment_size :rich_file, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
 
+        before_create :clean_file_name
+
         after_create :cache_style_uris_and_save
         before_update :cache_style_uris
-        before_create :clean_file_name
       end
 
       def set_styles
@@ -56,11 +56,10 @@ module Rich
         self.uri_cache = uris.to_json
       end
 
-      def clean_file_name      
+      def clean_file_name
         extension = File.extname(rich_file_file_name).gsub(/^\.+/, '')
         filename = rich_file_file_name.gsub(/\.#{extension}$/, '')
 
-          filename = CGI::unescape(filename)
         filename = CGI::unescape(filename)
 
         extension = extension.downcase
