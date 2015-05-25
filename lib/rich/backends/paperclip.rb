@@ -56,7 +56,7 @@ module Rich
         self.uri_cache = uris.to_json
       end
 
-      def clean_file_name      
+      def clean_file_name
         extension = File.extname(rich_file_file_name).gsub(/^\.+/, '')
         filename = rich_file_file_name.gsub(/\.#{extension}$/, '')
 

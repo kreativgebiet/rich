@@ -1,5 +1,5 @@
 <header>
-  
+
 	<div id="loading" style="display:none;"></div>
 
   <div id="view-toggle">
@@ -9,13 +9,13 @@
 
   <div id="insert-toggle">
     <a href="#" id="insert-many" title="<%= t(:insert_many_tip) %>"><%= t(:insert_many) %></a>
-    <a href="#" id="insert-one" title="<%= t(:insert_one_tip) %>"><%= t(:insert_one) %></a>  
+    <a href="#" id="insert-one" title="<%= t(:insert_one_tip) %>"><%= t(:insert_one) %></a>
   </div>
 
   <ul id="styles" class="scopes">
     <li class="label"><%= t(:available_styles) %></li>
   </ul>
-  
+
 </header>
 
 <div id="legacy-form"><%= form_for(@rich_asset, :url => files_path) do |f| %>
@@ -25,7 +25,7 @@
 </div>
 
 <ul id="items">
-  
+
   <li id="uploadBlock">
     <div id="upload" class="qq-upload-button placeholder">
       <div class="spinner"></div>

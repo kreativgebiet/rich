@@ -21,7 +21,7 @@ module Rich
 
         after_save :clear_uri_cache
       end
-  
+
       def rich_file
         self.rich_file_file_name
       end
@@ -29,7 +29,7 @@ module Rich
       def rich_file=(val)
         self.rich_file_file_name = val
       end
-  
+
       def uri_cache
         uri_cache_attribute = read_attribute(:uri_cache)
         if uri_cache_attribute.blank?
