@@ -11,6 +11,7 @@ module Rich
     paginates_per Rich.options[:paginates_per]
 
     has_attached_file :rich_file,
+                      :processors => Proc.new { Rich.image_processors },
                       :styles => Proc.new {|a| a.instance.set_styles },
                       :convert_options => Proc.new { |a| Rich.convert_options[a] }
     if self.respond_to?(:do_not_validate_attachment_file_type)
