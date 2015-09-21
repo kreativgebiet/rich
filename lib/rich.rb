@@ -25,7 +25,7 @@ module Rich
   def self.image_processors=(image_processors)
     @@image_processors = image_processors
   end
-  @@image_processors = []
+  @@image_processors = [:thumbnail]
 
   mattr_accessor :convert_options
   @@convert_options = {}
