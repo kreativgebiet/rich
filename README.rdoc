@@ -123,7 +123,7 @@ This is the file manager.
 
 == Rich in production mode
 
-Rich works just fine in production mode. To accomodate the structure of the CKEditor source, Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So the following works as you would expect:
+Rich works just fine in production mode. To accommodate the structure of the CKEditor source, Rich extends the <tt>assets:precompile</tt> task to make sure the full CKEditor source tree is copied to your assets folder. So the following works as you would expect:
 
   rake assets:precompile
 
