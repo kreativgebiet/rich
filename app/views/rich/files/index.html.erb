@@ -17,8 +17,7 @@
   </ul>
   
 </header>
-
-<div id="legacy-form"><%= form_for(@rich_asset, :url => files_path) do |f| %>
+<div id="legacy-form"><%= form_for(@rich_asset, :url => rich.files_path) do |f| %>
   <p><%= f.file_field :rich_file%></p>
   <%= f.submit("Upload") %>
 <% end %>
