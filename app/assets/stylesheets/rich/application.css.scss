@@ -88,12 +88,23 @@ header {
 	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))
 }
 
+#rich-search {
+  float: left;
+  margin: 10px;
+  input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid lightGray;
+    border-radius: 3px;
+  }
+}
+
 #loading {
-	background: image-url('rich/loading.png') no-repeat center;
-	width: 16px;
-	height: $headerHeight;
-	position: absolute;
-	margin-left: 20px;
+  float: left;
+  width: 16px;
+  height: $headerHeight;
+  margin-left: 20px;
+  background: image-url('rich/loading.png') no-repeat center;
 }
 
 #insert-toggle, #view-toggle {

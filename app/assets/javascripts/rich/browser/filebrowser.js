@@ -3,7 +3,7 @@
 var rich = rich || {};
 
 rich.Browser = function(){
-	
+
 	this._options = {
 		currentStyle: '',
 		insertionModeMany: false,
@@ -12,27 +12,27 @@ rich.Browser = function(){
 		reachedBottom: false,
 		viewModeGrid: true
 	};
-	
+
 };
 
 rich.Browser.prototype = {
-	
+
 	initialize: function() {
 		// intialize styles
 		this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
-		
+
 		// initialize image insertion mode
 		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
 		this.toggleInsertionMode(false);
     	this.toggleViewMode(false);
 	},
-	
+
 	initStyles: function(opt, def) {
 		opt=opt.split(',');
 		$.each(opt, function(index, value) {
 			if(value != 'rich_thumb') $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
 		});
-		
+
 		browser.selectStyle(def);
 
     //check if we are inserting an object
@@ -44,10 +44,10 @@ rich.Browser.prototype = {
 			browser.selectStyle(opt[0]);
 		}
 	},
-	
+
 	setLoading: function(loading) {
 		this._options.loading = loading;
-		
+
 		if(loading == true) {
 			// $('#loading').css({visibility: 'visible'});
 			$('#loading').fadeIn();
@@ -55,16 +55,16 @@ rich.Browser.prototype = {
 			$('#loading').fadeOut();
 		}
 	},
-	
+
 	selectStyle: function(name) {
 		this._options.currentStyle = name;
 		$('#styles li').removeClass('selected');
-		$('#style-'+name).addClass('selected');	
+		$('#style-'+name).addClass('selected');
     },
 
 	toggleInsertionMode: function(switchMode) {
 		if(switchMode==true) this._options.insertionModeMany = !this._options.insertionModeMany;
-		
+
 		if(this._options.insertionModeMany == true) {
 	    $('#insert-one').hide();
 	    $('#insert-many').show();
@@ -91,31 +91,59 @@ rich.Browser.prototype = {
         $('#items').removeClass('list');
       }
     },
-	
+
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
 		var type = $(item).data('rich-asset-type');
 		var name = $(item).data('rich-asset-name');
-		
-		
+
+
 		if($.QueryString["CKEditor"]=='picker') {
 			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type);
 		} else {
-			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);			
+			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);
 		}
-		
+
 		// wait a short while before closing the window or regaining focus
 		var self = this;
 		window.setTimeout(function(){
-			    if(self._options.insertionModeMany == false) {  			
+			    if(self._options.insertionModeMany == false) {
 			  window.close();
 		  } else {
 		    window.focus();
 		  }
 		},100);
 	},
-	
+
+  performSearch: function(query) {
+    this.showLoadingIconAndRefreshList();
+    this._options.searchQuery = query;
+
+    var self = this;
+    $.ajax({
+      url: window.location.href + '&search=' + query,
+      type: 'get',
+      dataType: 'script',
+      success: function(e) {
+        self.setLoading(false);
+      }
+    });
+  },
+
+  urlWithParams: function() {
+    var url = window.location.href;
+    if (this._options.searchQuery) url += '&search=' + this._options.searchQuery;
+    return url;
+  },
+
+  showLoadingIconAndRefreshList: function() {
+    this.setLoading(true);
+    this._options.currentPage = 1;
+    this._options.reachedBottom = false;
+    $('#items li:not(#uploadBlock)').remove();
+  },
+
 	loadNextPage: function() {
 		if (this._options.loading || this._options.reachedBottom) {
       return;
@@ -127,7 +155,7 @@ rich.Browser.prototype = {
 
 			var self = this;
       $.ajax({
-        url: window.location.href + '&page=' + this._options.currentPage,
+        url: this.urlWithParams() + '&page=' + this._options.currentPage,
         type: 'get',
         dataType: 'script',
         success: function(e) {
@@ -137,7 +165,7 @@ rich.Browser.prototype = {
       });
     }
 	},
-	
+
 	nearBottomOfWindow: function() {
 		return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
 	}
@@ -148,10 +176,10 @@ rich.Browser.prototype = {
 var browser;
 
 $(function(){
-	
+
 	browser = new rich.Browser();
 	browser.initialize();
-	
+
 	new rich.Uploader();
 
 	// hook up insert mode switching
@@ -177,10 +205,20 @@ $(function(){
 	$('body').on('click', '#items li img', function(e){
 		browser.selectItem(e.target);
 	});
-	
+
 	// fluid pagination
 	$(window).scroll(function(){
 		browser.loadNextPage();
 	});
-	
+
+  // search bar, triggered after idling for 1 second
+  var richSearchTimeout;
+  $('#rich-search input').keyup(function() {
+    clearTimeout(richSearchTimeout);
+    var input = this;
+    richSearchTimeout = setTimeout(function() {
+      browser.performSearch($(input).val());
+    }, 1000);
+  });
+
 });
