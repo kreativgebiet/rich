@@ -3,6 +3,8 @@
 //= depend_on_asset "rich/insert-one.png"
 //= depend_on_asset "rich/view-grid.png"
 //= depend_on_asset "rich/view-list.png"
+//= depend_on_asset "rich/sort-by-date.png"
+//= depend_on_asset "rich/sort-alphabetically.png"
 //= depend_on_asset "rich/plus.png"
 //= depend_on_asset "rich/plus-red.png"
 //= depend_on_asset "rich/x-red.png"
@@ -108,18 +110,18 @@ header {
   background: image-url('rich/loading.png') no-repeat center;
 }
 
-#insert-toggle, #view-toggle {
+#insert-toggle, #view-toggle, #sort-toggle {
   float: right;
   height: $headerHeight;
   overflow: hidden;
   margin: 0 $margin/2 0 0;
 }
 
-#view-toggle {
+#sort-toggle {
   margin: 0 $margin 0 0;
 }
 
-#insert-many, #insert-one, #view-list, #view-grid {
+#insert-many, #insert-one, #view-list, #view-grid, #sort-by-date, #sort-alphabetically {
   display: block;
   width: 16px;
   height: $headerHeight;
@@ -141,6 +143,14 @@ header {
 
 #view-list {
   background-image: image-url('rich/view-list.png');
+}
+
+#sort-by-date {
+  background-image: image-url('rich/sort-by-date.png');
+}
+
+#sort-alphabetically {
+  background-image: image-url('rich/sort-alphabetically.png');
 }
 
 // Default thumbnail view

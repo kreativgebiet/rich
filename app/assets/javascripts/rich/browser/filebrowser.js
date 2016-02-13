@@ -10,7 +10,8 @@ rich.Browser = function(){
 		currentPage: 1,
 		loading: false,
 		reachedBottom: false,
-		viewModeGrid: true
+		viewModeGrid: true,
+    sortAlphabetically: false
 	};
 
 };
@@ -92,6 +93,30 @@ rich.Browser.prototype = {
       }
     },
 
+  toggleSortOrder: function(switchMode) {
+    if(switchMode==true) this._options.sortAlphabetically = !this._options.sortAlphabetically;
+
+    if(this._options.sortAlphabetically == true) {
+      $('#sort-by-date').hide();
+      $('#sort-alphabetically').show();
+    } else {
+      $('#sort-by-date').show();
+      $('#sort-alphabetically').hide();
+    }
+
+    this.showLoadingIconAndRefreshList();
+
+    var self = this;
+    $.ajax({
+      url: this.urlWithParams(),
+      type: 'get',
+      dataType: 'script',
+      success: function(e) {
+        self.setLoading(false);
+      }
+    });
+  },
+
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
@@ -122,7 +147,7 @@ rich.Browser.prototype = {
 
     var self = this;
     $.ajax({
-      url: window.location.href + '&search=' + query,
+      url: this.urlWithParams(),
       type: 'get',
       dataType: 'script',
       success: function(e) {
@@ -133,6 +158,7 @@ rich.Browser.prototype = {
 
   urlWithParams: function() {
     var url = window.location.href;
+    if (this._options.sortAlphabetically) url += '&alpha=1';
     if (this._options.searchQuery) url += '&search=' + this._options.searchQuery;
     return url;
   },
@@ -226,6 +252,13 @@ $(function(){
   // hook up insert view switching
   $('#view-grid, #view-list').click(function(e){
     browser.toggleViewMode(true);
+    e.preventDefault();
+    return false;
+  });
+
+  // hook up sort order switching
+  $('#sort-by-date, #sort-alphabetically').click(function(e){
+    browser.toggleSortOrder(true);
     e.preventDefault();
     return false;
   });

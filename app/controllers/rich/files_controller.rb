@@ -19,7 +19,13 @@ module Rich
         @items = @items.where('rich_file_file_name LIKE ?', "%#{params[:search]}%")
       end
 
-      @items = @items.order("created_at DESC").page params[:page]
+      if params[:alpha].present?
+        @items = @items.order("rich_file_file_name ASC")
+      else
+        @items = @items.order("created_at DESC")
+      end
+
+      @items = @items.page params[:page]
 
       # stub for new file
       @rich_asset = RichFile.new
