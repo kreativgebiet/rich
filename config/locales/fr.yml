@@ -13,3 +13,5 @@ fr:
   delete_confirm: "Êtes-vous sûr de vouloir supprimer ce fichier ?"
   picker_browse: "Sélectionner ou envoyer"
   search_bar_placeholder: "Rechercher par nom de fichier"
+  filename_update_hover_hint: "Cliquer pour modifier le nom du fichier"
+  filename_update_input_placeholder: "Nom sans extension"

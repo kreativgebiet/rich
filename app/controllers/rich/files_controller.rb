@@ -2,7 +2,7 @@ module Rich
   class FilesController < ApplicationController
 
     before_filter :authenticate_rich_user
-    before_filter :set_rich_file, only: [:show, :destroy]
+    before_filter :set_rich_file, only: [:show, :update, :destroy]
 
     layout "rich/application"
 
@@ -69,6 +69,16 @@ module Rich
       end
 
       render :json => response, :content_type => "text/html"
+    end
+
+    def update
+      new_filename_without_extension = params[:filename].parameterize
+      if new_filename_without_extension.present?
+        new_filename = @rich_file.rename!(new_filename_without_extension)
+        render :json => { :success => true, :filename => new_filename, :uris => @rich_file.uri_cache }
+      else
+        render :nothing => true, :status => 500
+      end
     end
 
     def destroy

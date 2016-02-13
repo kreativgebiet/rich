@@ -168,7 +168,41 @@ rich.Browser.prototype = {
 
 	nearBottomOfWindow: function() {
 		return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
-	}
+	},
+
+  showNameEditInput: function(p_tag) {
+    var self = this;
+    p_tag.hide();
+    p_tag.siblings('a.delete').hide();
+    p_tag.after('<form><input type="text" placeholder="' + p_tag.data('input-placeholder') + '" /></form>');
+    var form = p_tag.siblings('form');
+    var hideInput = function() {
+      p_tag.siblings('a.delete').show();
+      p_tag.show();
+      form.remove();
+    }
+    form.find('input').focus().blur(hideInput).keydown(function(e) {
+      if (e.keyCode == 27) hideInput();
+    });
+    form.submit(function(e) {
+      e.preventDefault();
+      self.setLoading(true);
+      var newFilename = $(this).find('input').val();
+      $.ajax({
+        url: p_tag.data('update-url'),
+        type: 'PUT',
+        data: { filename: newFilename },
+        success: function(data) {
+          form.siblings('p').text(data.filename);
+          form.siblings('img').attr('data-uris', data.uris);
+        },
+        complete: function() {
+          hideInput();
+          self.setLoading(false);
+        }
+      });
+    });
+  }
 
 };
 
@@ -219,6 +253,11 @@ $(function(){
     richSearchTimeout = setTimeout(function() {
       browser.performSearch($(input).val());
     }, 1000);
+  });
+
+  // filename update
+  $('body').on('click', '#items li:not(#uploadBlock) p', function() {
+    browser.showNameEditInput($(this));
   });
 
 });
