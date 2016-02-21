@@ -20,6 +20,10 @@ module Rich
         before_update :cache_style_uris
       end
 
+      def filename
+        rich_file_file_name
+      end
+
       def set_styles
         if self.simplified_type=="image"
           Rich.image_styles

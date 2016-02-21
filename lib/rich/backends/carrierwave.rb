@@ -30,6 +30,10 @@ module Rich
         self.rich_file_file_name = val
       end
 
+      def filename
+        rich_file.file.filename
+      end
+
       def uri_cache
         uri_cache_attribute = read_attribute(:uri_cache)
         if uri_cache_attribute.blank?
