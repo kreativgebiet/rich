@@ -9,9 +9,16 @@ en:
   view_grid_tip: "View as grid"
   view_list: "View as list"
   view_list_tip: "View as list"
+  sort_by_date: "Sort by date, newest first"
+  sort_by_date_tip: "Sort by date, newest first"
+  sort_alphabetically: "Sort alphabetically"
+  sort_alphabetically_tip: "Sort alphabetically"
   delete: "Delete this file"
   delete_confirm: "Are you sure you want to delete this file?"
   picker_browse: "Select or upload"
+  search_bar_placeholder: "Search by file name"
+  filename_update_hover_hint: "Click to modify the file name"
+  filename_update_input_placeholder: "Name w/o extension"
   errors:
     messages:
       wrong_size: "is the wrong size (should be %{file_size})"

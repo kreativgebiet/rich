@@ -30,6 +30,10 @@ module Rich
         self.rich_file_file_name = val
       end
 
+      def filename
+        rich_file.file.filename
+      end
+
       def uri_cache
         uri_cache_attribute = read_attribute(:uri_cache)
         if uri_cache_attribute.blank?
@@ -48,7 +52,27 @@ module Rich
         uri_cache_attribute
       end
 
+      def rename!(new_filename_without_extension)
+        new_filename = new_filename_without_extension + '.' + rich_file.file.extension
+        rename_files!(new_filename)
+        rich_file.model.update_column(:rich_file_file_name, new_filename)
+        clear_uri_cache
+        new_filename
+      end
+
       private
+
+      def rename_files!(new_filename)
+        rename_file!(rich_file, new_filename)
+        rich_file.versions.keys.each do |version|
+          rename_file!(rich_file.send(version), "#{version}_#{new_filename}")
+        end
+      end
+
+      def rename_file!(version, new_filename)
+        path = version.path
+        FileUtils.move path, File.join(File.dirname(path), new_filename)
+      end
 
       def check_content_type
         unless Rich.validate_mime_type(self.rich_file_content_type, self.simplified_type)

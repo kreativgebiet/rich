@@ -20,6 +20,10 @@ module Rich
         before_update :cache_style_uris
       end
 
+      def filename
+        rich_file_file_name
+      end
+
       def set_styles
         if self.simplified_type=="image"
           Rich.image_styles
@@ -28,7 +32,22 @@ module Rich
         end
       end
 
+      def rename!(new_filename_without_extension)
+        new_filename = new_filename_without_extension + File.extname(rich_file_file_name)
+        rename_files!(new_filename)
+        update_column(:rich_file_file_name, new_filename)
+        cache_style_uris_and_save
+        new_filename
+      end
+
       private
+
+      def rename_files!(new_filename)
+        (rich_file.styles.keys+[:original]).each do |style|
+          path = rich_file.path(style)
+          FileUtils.move path, File.join(File.dirname(path), new_filename)
+        end
+      end
 
       def cache_style_uris_and_save
         cache_style_uris

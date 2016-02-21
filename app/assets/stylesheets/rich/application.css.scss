@@ -3,6 +3,8 @@
 //= depend_on_asset "rich/insert-one.png"
 //= depend_on_asset "rich/view-grid.png"
 //= depend_on_asset "rich/view-list.png"
+//= depend_on_asset "rich/sort-by-date.png"
+//= depend_on_asset "rich/sort-alphabetically.png"
 //= depend_on_asset "rich/plus.png"
 //= depend_on_asset "rich/plus-red.png"
 //= depend_on_asset "rich/x-red.png"
@@ -24,6 +26,7 @@ $dimmedText: #3bbfce;
 $subtle: #f3f3f3;
 $light: #888888;
 $dark: #686868;
+$hoverChangeName: #fcf8e3;
 
 
 $imageSize: 100px;
@@ -88,26 +91,37 @@ header {
 	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))
 }
 
-#loading {
-	background: image-url('rich/loading.png') no-repeat center;
-	width: 16px;
-	height: $headerHeight;
-	position: absolute;
-	margin-left: 20px;
+#rich-search {
+  float: left;
+  margin: 10px;
+  input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid lightGray;
+    border-radius: 3px;
+  }
 }
 
-#insert-toggle, #view-toggle {
+#loading {
+  float: left;
+  width: 16px;
+  height: $headerHeight;
+  margin-left: 20px;
+  background: image-url('rich/loading.png') no-repeat center;
+}
+
+#insert-toggle, #view-toggle, #sort-toggle {
   float: right;
   height: $headerHeight;
   overflow: hidden;
   margin: 0 $margin/2 0 0;
 }
 
-#view-toggle {
+#sort-toggle {
   margin: 0 $margin 0 0;
 }
 
-#insert-many, #insert-one, #view-list, #view-grid {
+#insert-many, #insert-one, #view-list, #view-grid, #sort-by-date, #sort-alphabetically {
   display: block;
   width: 16px;
   height: $headerHeight;
@@ -131,6 +145,14 @@ header {
   background-image: image-url('rich/view-list.png');
 }
 
+#sort-by-date {
+  background-image: image-url('rich/sort-by-date.png');
+}
+
+#sort-alphabetically {
+  background-image: image-url('rich/sort-alphabetically.png');
+}
+
 // Default thumbnail view
 #items {
 	list-style: none;
@@ -139,16 +161,17 @@ header {
 	padding-top: $headerHeight + $margin + 1;
 
 	li {
+    position: relative;
 		width: $imageSize;
 		height: $imageSize + $margin;
 		margin-right: $margin;
 		float: left;
 
 		* {
-				transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-				-moz-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-				-ms-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
-				-webkit-transition: opacity 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				transition: all 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-moz-transition: all 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-ms-transition: all 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
+				-webkit-transition: all 85ms ease-in, box-shadow 85ms ease-in, color 85ms ease-in;
 		}
 
 		.placeholder {
@@ -228,6 +251,23 @@ header {
 			color: $light;
 		}
 
+    &:not(#uploadBlock) {
+      p:hover {
+        cursor: text !important;
+        background: $hoverChangeName;
+      }
+    }
+
+    form {
+      input {
+        position: relative;
+        padding: 2px 3px;
+        border-radius: 3px;
+        border: 1px solid lightGray;
+        z-index: 10;
+      }
+    }
+
 		.delete {
 			position: absolute;
 			text-indent: -9999px;
@@ -255,6 +295,48 @@ header {
 
 }
 
+// Only for grid view
+#items:not(.list) {
+
+  li#uploadBlock {
+    p {
+      display: none;
+    }
+  }
+
+  li:not(#uploadBlock) {
+
+    &:hover p {
+      position: relative;
+      margin-top: 2px;
+      background: white;
+      height: auto;
+      padding: 0px 3px;
+      border: 1px solid lightGray;
+      border-radius: 3px;
+      z-index: 10;
+    }
+
+    p:hover {
+      background: $hoverChangeName;
+    }
+
+    form {
+      input {
+        top: 2px;
+        left: -15px;
+        width: 120px;
+      }
+    }
+
+    .delete {
+      top: 120px;
+    }
+
+  }
+
+}
+
 // Condensed list view
 #items.list {
 
@@ -268,7 +350,6 @@ header {
       height: 32px;
       width: 32px;
       float: left;
-      margin-right: 16px;
       line-height: 32px;
       border: none;
     }
@@ -291,9 +372,23 @@ header {
       font-size: 14px;
       width: auto;
       height: 32px;
+      margin-left: 8px;
+      padding: 0 8px;
       line-height: 32px;
       float: left;
       cursor: default;
+      border-radius: 3px;
+    }
+
+    form {
+      input {
+        float: left;
+        width: 210px;
+        margin-left: 8px;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 3px 5px;
+      }
     }
 
     .delete {

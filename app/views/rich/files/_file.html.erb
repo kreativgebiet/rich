@@ -4,8 +4,12 @@
         data-uris="<%= file.uri_cache %>"
         data-rich-asset-id="<%= file.id %>"
 				data-rich-asset-type="<%= file.simplified_type %>"
-				data-rich-asset-name="<%= file.rich_file_file_name %>"
+				data-rich-asset-name="<%= file.filename %>"
   />
-  <p><%= file.rich_file_file_name %></p>
+  <p data-update-url="<%= file_path(file) %>"
+     data-input-placeholder="<%= t('filename_update_input_placeholder') %>"
+     title="<%= t('filename_update_hover_hint') %>">
+    <%= file.filename %>
+  </p>
   <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
 </li>
