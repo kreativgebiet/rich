@@ -166,7 +166,7 @@ When you change styles after uploading files, you will need to re-process those 
 
 Besides from within the editor, the file manager can also be used on it's own. See the <tt>rich_picker</tt> examples above.
 
-When the field you connect the picker to defines a relation (i.e. it ends in <tt>_id</tt>), the picker will return a reference to Rich::RichFile object. If the field you connect the picker does not refine a relation but is instead a string, the picker will return a URL to the file chosen in the picker.
+If the field you connect the picker to is defined as an :integer column in the database, the picker will return a reference to Rich::RichFile object. If the field you connect the picker does not refine a relation but is instead a string, the picker will return a URL to the file chosen in the picker.
 
 In the picker's configuration (or globally in your initializer), you can optionally pass the following:
 
