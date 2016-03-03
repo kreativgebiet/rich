@@ -7,8 +7,8 @@ if (Object.const_defined?("Formtastic") && Gem.loaded_specs["formtastic"].versio
       scope_id = object.id
       editor_options = Rich.options(
                                     options[:config], 
-                                    options[:config].fetch(:scope_type, scope_type),
-                                    options[:config].fetch(:scope_id, scope_id)
+                                    options[:config].try(:fetch, :scope_type, scope_type),
+                                    options[:config].try(:fetch, :scope_id, scope_id)
                                   )
 
       input_wrapping do
