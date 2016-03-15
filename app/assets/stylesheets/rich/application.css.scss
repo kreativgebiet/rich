@@ -80,11 +80,12 @@ $fontSizeLarge: 16px;
 }
 
 header {
-	position: fixed;
+  display: block;
+  overflow: auto;
+	position: initial;
 	z-index: 999;
-	height: $headerHeight;
 	width: 100%;
-
+  padding-bottom: 5px;
 	background: $subtle;
 	border-bottom: 1px solid white;
 
@@ -158,7 +159,7 @@ header {
 	list-style: none;
 	margin: 0 0 0 $margin;
 	padding: 0;
-	padding-top: $headerHeight + $margin + 1;
+	padding-top: 20px;
 
 	li {
     position: relative;
@@ -421,7 +422,6 @@ ul.scopes {
 	margin: 0 15px 0 ($margin/4*3);
 	padding: 0 10px 0 0;
   background: image-url('rich/menu-dash.png') no-repeat right 23px;
-	float: right;
 
 	li {
 		float: left;
