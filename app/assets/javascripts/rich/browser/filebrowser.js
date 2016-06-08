@@ -97,7 +97,7 @@ rich.Browser.prototype = {
 		var id = $(item).data('rich-asset-id');
 		var type = $(item).data('rich-asset-type');
 		var name = $(item).data('rich-asset-name');
-		
+		console.log($(item));
 		
 		if($.QueryString["CKEditor"]=='picker') {
 			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type);
@@ -175,6 +175,7 @@ $(function(){
 
 	// hook up item insertion
 	$('body').on('click', '#items li img', function(e){
+		console.log("test")
 		browser.selectItem(e.target);
 	});
 	

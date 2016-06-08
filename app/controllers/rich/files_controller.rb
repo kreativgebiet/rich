@@ -37,7 +37,7 @@ module Rich
       
       if(params[:id])
         # list all files
-        @file = RichFile.find(params[:id])
+        @file = RichFile.find_by_id(params[:id])
         render :layout => false
       else 
         render :text => "File not found"
@@ -45,6 +45,15 @@ module Rich
       
     end
     
+    def update
+      if(params["id"])
+        @file = RichFile.find_by_id(params["id"])    
+        @file.title = params["image-title"].to_s
+        @file.save
+        puts @file.inspect
+      end  
+    end
+
     def create
 
       @file = RichFile.new(:simplified_type => params[:simplified_type])
@@ -75,6 +84,7 @@ module Rich
     def destroy  
       if(params[:id])
         rich_file = RichFile.delete(params[:id])
+        puts rich_file.inspect
         @fileid = params[:id]
       end
     end

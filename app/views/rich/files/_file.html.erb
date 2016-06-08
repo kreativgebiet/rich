@@ -8,4 +8,7 @@
   />
   <p><%= file.rich_file_file_name %></p>
   <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :confirm => t(:delete_confirm), :class => "delete", :title => t(:delete) %>
+  
+  <%= text_field_tag "image-title", "Hier den Bildtitel eingeben" %>
 </li>
+

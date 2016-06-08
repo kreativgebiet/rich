@@ -1,0 +1,16 @@
+<li class="clickable" style="margin-bottom:70px;">
+  <img  id="file<%= file.id %>"
+        src="<%= thumb_for_file(file) %>" 
+        data-uris="<%= file.uri_cache %>"
+        data-rich-asset-id="<%= file.id %>"
+				data-rich-asset-type="<%= file.simplified_type %>"
+				data-rich-asset-name="<%= file.rich_file_file_name %>"
+  />
+  <p><%= file.rich_file_file_name %></p>
+  <%= link_to "delete", "/rich/files/"+ file.id.to_s, :method => :delete, :remote => true, :confirm => t(:delete_confirm), :class => "delete", :title => t(:delete) %>
+  <%= form_tag("/rich/files/update/" + file.id.to_s , method: 'post', remote: true ) do %>
+  	<%= text_field_tag "image-title", file.title, placeholder: "Bildtitel", size: 9 %><span id="saved-<%= file.id %>" style="display:none">Gespeichert!</span>
+  	<%= submit_tag "Titel speichern"%>
+  <% end %>
+</li>
+
