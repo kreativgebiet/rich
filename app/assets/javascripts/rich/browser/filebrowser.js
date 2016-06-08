@@ -95,6 +95,8 @@ rich.Browser.prototype = {
 	selectItem: function(item) {
 		var url = $(item).data('uris')[this._options.currentStyle];
 		var id = $(item).data('rich-asset-id');
+		var title = "Titel allmost done";
+
 		var type = $(item).data('rich-asset-type');
 		var name = $(item).data('rich-asset-name');
 		console.log($(item));
