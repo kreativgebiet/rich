@@ -5,6 +5,6 @@ class RichInput < SimpleForm::Inputs::TextInput
     editor_options = Rich.options(options[:config], scope_type, scope_id)
 
     super <<
-    "<script>CKEDITOR.replace('#{object_name}_#{attribute_name}', #{editor_options.to_json.html_safe});</script>".html_safe
+    "<script>CKEDITOR.replace('#{object_name}[#{attribute_name}]', #{editor_options.to_json.html_safe});</script>".html_safe
   end
 end
