@@ -10,7 +10,7 @@ module RichPickerHelpers
     end
 
     def preview_image_path
-      method_value = object.send(method)
+      method_value = object.send(attr_method)
 
       # return placeholder image if this is a non-image picker OR if there is no value set
       return editor_options[:placeholder_image] if editor_options[:type].to_s == 'file'
@@ -121,7 +121,7 @@ if Object.const_defined?("SimpleForm")
       @builder
     end
 
-    def method
+    def attr_method
       attribute_name
     end
 
