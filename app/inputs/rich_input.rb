@@ -1,5 +1,5 @@
 class RichInput < SimpleForm::Inputs::TextInput
-  def input
+  def input(wrapper_options)
     scope_type = object_name
     scope_id = object.id
     editor_options = Rich.options(options[:config], scope_type, scope_id)

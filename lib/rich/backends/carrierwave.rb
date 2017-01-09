@@ -98,5 +98,5 @@ module Rich
     end
   end
 
-  Rich::RichFile.send(:include, Backends::CarrierWave)
+  # Rich::RichFile.send(:include, Backends::CarrierWave)
 end

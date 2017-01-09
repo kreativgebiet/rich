@@ -102,9 +102,10 @@ if Object.const_defined?("SimpleForm")
     include RichPickerHelpers
     attr_reader :dom_id
 
-    def input
+    def input(wrapper_options)
       @editor_options = Rich.options(options[:config], object_name, object.id)
-      @dom_id = "#{object_name}[#{attribute_name}]"
+      # @dom_id = "#{object_name}[#{attribute_name}]"
+      @dom_id = "#{object_name.gsub(/\]\[|\]\[|\[|\]/, '_')}#{attribute_name}"
 
       local_input_options = {
         :class => 'rich-picker',
