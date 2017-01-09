@@ -117,8 +117,6 @@ if Object.const_defined?("SimpleForm")
       javascript
     end
 
-  private
-
     def builder
       @builder
     end
