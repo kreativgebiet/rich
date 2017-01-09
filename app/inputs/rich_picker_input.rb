@@ -37,7 +37,7 @@ module RichPickerHelpers
       %Q{
           <script>
             $(function(){
-              $('.#{dom_id} a').click(function(e){
+              $('.#{dom_id}').next('a').click(function(e){
                 e.preventDefault(); assetPicker.showFinder('##{dom_id}', #{editor_options.to_json})
               });
             });
