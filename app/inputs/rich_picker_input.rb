@@ -104,7 +104,7 @@ if Object.const_defined?("SimpleForm")
 
     def input
       @editor_options = Rich.options(options[:config], object_name, object.id)
-      @dom_id = "#{object_name}_#{attribute_name}"
+      @dom_id = "#{object_name}[#{attribute_name}]"
 
       local_input_options = {
         :class => 'rich-picker',
