@@ -51,16 +51,18 @@ module Rich
     end
 
     def create
+      # use the file from Rack Raw Upload
+      file_params = params.fetch(:rich_file, {}).fetch(:rich_file, nil) || params[:qqfile]
 
-      @file = RichFile.new(:simplified_type => params[:simplified_type])
+      # simplified_type is only passed through via JS
+      # if using the legacy uploader, we need to determine file type via ActionDispatch::Http::UploadedFile#content_type so the validations on @file do not fail
+      @file = RichFile.new(:simplified_type => (params[:simplified_type] || (file_params.content_type =~ /image/i ? 'image' : 'file')))
 
       if(params[:scoped] == 'true')
         @file.owner_type = params[:scope_type]
         @file.owner_id = params[:scope_id].to_i
       end
 
-      # use the file from Rack Raw Upload
-      file_params = params[:file] || params[:qqfile]
       if(file_params)
         file_params.content_type = Mime::Type.lookup_by_extension(file_params.original_filename.split('.').last.to_sym)
         @file.rich_file = file_params
