@@ -14,7 +14,7 @@ module Rich
               ckeditor/*.html
               ckeditor/*.md
       )
-      app.middleware.use 'Rack::RawUpload', :paths => ['/rich/files']
+      app.middleware.use Rack::RawUpload, :paths => ['/rich/files']
     end
 
     initializer 'rich.include_authorization' do |app|
