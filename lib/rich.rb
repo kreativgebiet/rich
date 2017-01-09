@@ -195,7 +195,9 @@ module Rich
     if self.backend == :paperclip
       require 'rich/backends/paperclip'
     elsif self.backend == :carrierwave
-      require 'rich/backends/carrierwave'
+      unless Object.const_defined?(:CarrierWave)
+        require 'rich/backends/carrierwave'
+      end
     end
   end
 

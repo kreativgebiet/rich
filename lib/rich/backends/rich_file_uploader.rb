@@ -33,18 +33,21 @@ class RichFileUploader < CarrierWave::Uploader::Base
 
   Rich.image_styles.each do |name,size|
     version name do
-      process :resize_to_fit => size.gsub("#", "").split("x").map(&:to_i)
+      process resize_to_fit: size.gsub("#", "").split("x").map(&:to_i)
     end
   end
-  # version :rich_thumb do
-    # process :resize_to_fit => [100, 100]
-  # end
+
+  version :rich_thumb do
+    process resize_to_fit: [100, 100]
+  end
+
+  # version :rich_file
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def self.extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
