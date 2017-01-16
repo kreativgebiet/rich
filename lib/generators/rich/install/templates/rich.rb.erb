@@ -75,7 +75,7 @@ if Object.const_defined?("Rich")
 	#
 	# Default:
 	# config.allow_document_uploads = false
-		
+
 	# == Set allowed filetypes for non-image files
 	#
 	# If you want, you can restrict the types of documents that users can upload.
@@ -84,12 +84,18 @@ if Object.const_defined?("Rich")
 	# Note that for this to have any effect, you first need to enable document
 	# uploads using the setting above.
 	#
-	# Default, allow any file to be uploaded:
-	# config.allowed_document_types = :all
+    # Default, allow any file to be uploaded:
+    # config.allowed_document_types = :all
+    #
+    # Example, only allow PDF uploads:
+    # config.allowed_document_types = ['application/pdf']
+    #
+	# Default, allow any video file to be uploaded:
+	# config.allowed_video_types = :all
 	#
-	# Example, only allow PDF uploads:
-	# config.allowed_document_types = ['application/pdf']
-		
+	# Example, only allow mp4 uploads:
+	# config.allowed_video_types = ['application/mp4']
+
 	# == Asset insertion
 	#
 	# Set this to true to keep the filebrowser open after inserting an asset.

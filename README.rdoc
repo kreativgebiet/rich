@@ -206,6 +206,26 @@ Non-image uploads also work from within the file picker when you pass in the <tt
     })
   end
 
+=== Video uploads
+
+To enable uploads of video files, set the following in your Rich initializer:
+
+  # enable video uploads. default is false.
+  config.allow_video_uploads = true
+  # restrict the type of files that can be uploaded. defaults to :all for no restrictions.
+  config.allowed_video_types = ['application/mp4']
+
+This will enable a new button on your CKEditor toolbar where you can upload video files. Keep in mind that even if an image is uploaded through this method, it will not go through any processing you might have set up for your images.
+
+Video uploads also work from within the file picker when you pass in the <tt>:type => 'file'</tt> option. A Rails Admin example:
+
+  field :title, :rich_picker do
+    config({
+      :type => 'video',
+      :allowed_styles => [:original] #only original makes sense for non-images
+    })
+  end
+
 === Media embedding (Youtube, Vimeo, etc.)
 
 Set <tt>:allow_embeds</tt> to <tt>true</tt> to enable an extra button on the CKEditor toolbar that enables you to insert embed code. This works by virtue of the MediaEmbed plugin for CKEditor. It's not pretty, but it works.

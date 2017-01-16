@@ -9,7 +9,14 @@ module Rich
     def index
       @type = params[:type]
 
-      @items = @type == "image" ? RichFile.images : RichFile.files
+      @items = case @type
+      when 'file'
+        RichFile.files
+      when 'image'
+        RichFile.images
+      when 'video'
+        RichFile.videos
+      end
 
       if params[:scoped] == 'true'
         @items = @items.where("owner_type = ? AND owner_id = ?", params[:scope_type], params[:scope_id])
@@ -51,12 +58,25 @@ module Rich
     end
 
     def create
+      # require'pry-remote';binding.remote_pry
       # use the file from Rack Raw Upload
-      file_params = params.fetch(:rich_file, {}).fetch(:rich_file, nil) || params[:qqfile]
+      file_params = params.fetch(:rich_file, {}).fetch(:rich_file, nil) || (params[:qqfile].is_a?(ActionDispatch::Http::UploadedFile) ? params[:qqfile] : params[:file] )
 
       # simplified_type is only passed through via JS
       # if using the legacy uploader, we need to determine file type via ActionDispatch::Http::UploadedFile#content_type so the validations on @file do not fail
-      @file = RichFile.new(:simplified_type => (params[:simplified_type] || (file_params.content_type =~ /image/i ? 'image' : 'file')))
+      sim_file_type = if params[:simplified_type].present?
+        params[:simplified_type]
+      elsif file_params.content_type =~ /image/i
+        'image'
+      elsif file_params.content_type =~ /video/i
+        'video'
+      elsif file_params.content_type =~ /file/i
+        'file'
+      else
+        'file'
+      end
+
+      @file = RichFile.new(simplified_type: sim_file_type)
 
       if(params[:scoped] == 'true')
         @file.owner_type = params[:scope_type]
@@ -64,19 +84,19 @@ module Rich
       end
 
       if(file_params)
-        file_params.content_type = Mime::Type.lookup_by_extension(file_params.original_filename.split('.').last.to_sym)
+        file_params.content_type = Mime::Type.lookup_by_extension(file_params.try(:original_filename).try(:split, '.').try(:last).try(:to_sym) || params[:file] || params[:qqfile])
         @file.rich_file = file_params
       end
 
       if @file.save
-        response = { :success => true, :rich_id => @file.id }
+        response = { success: true, rich_id: @file.id }
       else
-        response = { :success => false,
-                     :error => "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
-                     :params => params.inspect }
+        response = { success: false,
+                     error: "Could not upload your file:\n- "+@file.errors.to_a[-1].to_s,
+                     params: params.inspect }
       end
 
-      render :json => response, :content_type => "text/html"
+      render json: response, content_type: "text/html"
     end
 
     def update

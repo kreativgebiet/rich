@@ -4,76 +4,76 @@ var rich = rich || {};
 
 rich.Browser = function(){
 
-	this._options = {
-		currentStyle: '',
-		insertionModeMany: false,
-		currentPage: 1,
-		loading: false,
-		reachedBottom: false,
-		viewModeGrid: true,
+  this._options = {
+    currentStyle: '',
+    insertionModeMany: false,
+    currentPage: 1,
+    loading: false,
+    reachedBottom: false,
+    viewModeGrid: true,
     sortAlphabetically: false
-	};
+  };
 
 };
 
 rich.Browser.prototype = {
 
-	initialize: function() {
-		// intialize styles
-		this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
+  initialize: function() {
+    // intialize styles
+    this.initStyles($.QueryString["allowed_styles"], $.QueryString["default_style"]);
 
-		// initialize image insertion mode
-		this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
-		this.toggleInsertionMode(false);
-    	this.toggleViewMode(false);
-	},
+    // initialize image insertion mode
+    this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
+    this.toggleInsertionMode(false);
+      this.toggleViewMode(false);
+  },
 
-	initStyles: function(opt, def) {
-		opt=opt.split(',');
-		$.each(opt, function(index, value) {
-			if(value != 'rich_thumb') $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
-		});
+  initStyles: function(opt, def) {
+    opt=opt.split(',');
+    $.each(opt, function(index, value) {
+      if(value != 'rich_thumb') $('#styles').append("<li class='scope' id='style-"+value+"' data-rich-style='"+value+"'>"+value+"</li>");
+    });
 
-		browser.selectStyle(def);
+    browser.selectStyle(def);
 
     //check if we are inserting an object
     var dom_id_param = $.QueryString["dom_id"];
     var split_field_name = dom_id_param ? dom_id_param.split('_') : null;
 
-		if(opt.length < 2 || (split_field_name && split_field_name[split_field_name.length - 1] == "id")) {
-			$('#styles').hide();
-			browser.selectStyle(opt[0]);
-		}
-	},
+    if(opt.length < 2 || (split_field_name && split_field_name[split_field_name.length - 1] == "id")) {
+      $('#styles').hide();
+      browser.selectStyle(opt[0]);
+    }
+  },
 
-	setLoading: function(loading) {
-		this._options.loading = loading;
+  setLoading: function(loading) {
+    this._options.loading = loading;
 
-		if(loading == true) {
-			// $('#loading').css({visibility: 'visible'});
-			$('#loading').fadeIn();
-		} else {
-			$('#loading').fadeOut();
-		}
-	},
+    if(loading == true) {
+      // $('#loading').css({visibility: 'visible'});
+      $('#loading').fadeIn();
+    } else {
+      $('#loading').fadeOut();
+    }
+  },
 
-	selectStyle: function(name) {
-		this._options.currentStyle = name;
-		$('#styles li').removeClass('selected');
-		$('#style-'+name).addClass('selected');
+  selectStyle: function(name) {
+    this._options.currentStyle = name;
+    $('#styles li').removeClass('selected');
+    $('#style-'+name).addClass('selected');
     },
 
-	toggleInsertionMode: function(switchMode) {
-		if(switchMode==true) this._options.insertionModeMany = !this._options.insertionModeMany;
+  toggleInsertionMode: function(switchMode) {
+    if(switchMode==true) this._options.insertionModeMany = !this._options.insertionModeMany;
 
-		if(this._options.insertionModeMany == true) {
-	    $('#insert-one').hide();
-	    $('#insert-many').show();
-	  } else {
-	    $('#insert-one').show();
-	    $('#insert-many').hide();
-	  }
-	},
+    if(this._options.insertionModeMany == true) {
+      $('#insert-one').hide();
+      $('#insert-many').show();
+    } else {
+      $('#insert-one').show();
+      $('#insert-many').hide();
+    }
+  },
 
     toggleViewMode: function(switchMode) {
       if(switchMode==true) {
@@ -117,29 +117,29 @@ rich.Browser.prototype = {
     });
   },
 
-	selectItem: function(item) {
-		var url = $(item).data('uris')[this._options.currentStyle];
-		var id = $(item).data('rich-asset-id');
-		var type = $(item).data('rich-asset-type');
-		var name = $(item).data('rich-asset-name');
+  selectItem: function(item) {
+    var url = $(item).data('uris')[this._options.currentStyle];
+    var id = $(item).data('rich-asset-id');
+    var type = $(item).data('rich-asset-type');
+    var name = $(item).data('rich-asset-name');
 
 
-		if($.QueryString["CKEditor"]=='picker') {
-			window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type);
-		} else {
-			window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);
-		}
+    if($.QueryString["CKEditor"]=='picker') {
+      window.opener.assetPicker.setAsset($.QueryString["dom_id"], url, id, type);
+    } else {
+      window.opener.CKEDITOR.tools.callFunction($.QueryString["CKEditorFuncNum"], url, id, name);
+    }
 
-		// wait a short while before closing the window or regaining focus
-		var self = this;
-		window.setTimeout(function(){
-			    if(self._options.insertionModeMany == false) {
-			  window.close();
-		  } else {
-		    window.focus();
-		  }
-		},100);
-	},
+    // wait a short while before closing the window or regaining focus
+    var self = this;
+    window.setTimeout(function(){
+          if(self._options.insertionModeMany == false) {
+        window.close();
+      } else {
+        window.focus();
+      }
+    },100);
+  },
 
   performSearch: function(query) {
     this.showLoadingIconAndRefreshList();
@@ -170,31 +170,31 @@ rich.Browser.prototype = {
     $('#items li:not(#uploadBlock)').remove();
   },
 
-	loadNextPage: function() {
-		if (this._options.loading || this._options.reachedBottom) {
+  loadNextPage: function() {
+    if (this._options.loading || this._options.reachedBottom) {
       return;
     }
 
     if(this.nearBottomOfWindow()) {
-			this.setLoading(true);
+      this.setLoading(true);
       this._options.currentPage++;
 
-			var self = this;
+      var self = this;
       $.ajax({
         url: this.urlWithParams() + '&page=' + this._options.currentPage,
         type: 'get',
         dataType: 'script',
         success: function(e) {
-					if(e=="") self._options.reachedBottom = true;
-					self.setLoading(false);
+          if(e=="") self._options.reachedBottom = true;
+          self.setLoading(false);
         }
       });
     }
-	},
+  },
 
-	nearBottomOfWindow: function() {
-		return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
-	},
+  nearBottomOfWindow: function() {
+    return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
+  },
 
   showNameEditInput: function(p_tag) {
     var self = this;
@@ -237,14 +237,14 @@ var browser;
 
 $(function(){
 
-	browser = new rich.Browser();
-	browser.initialize();
+  browser = new rich.Browser();
+  browser.initialize();
 
-	new rich.Uploader();
+  new rich.Uploader();
 
-	// hook up insert mode switching
-	$('#insert-one, #insert-many').click(function(e){
-		browser.toggleInsertionMode(true);
+  // hook up insert mode switching
+  $('#insert-one, #insert-many').click(function(e){
+    browser.toggleInsertionMode(true);
     e.preventDefault();
     return false;
   });
@@ -263,20 +263,20 @@ $(function(){
     return false;
   });
 
-	// hook up style selection
-	$('#styles li').click(function(e){
-		browser.selectStyle($(this).data('rich-style'));
-	});
+  // hook up style selection
+  $('#styles li').click(function(e){
+    browser.selectStyle($(this).data('rich-style'));
+  });
 
-	// hook up item insertion
-	$('body').on('click', '#items li img', function(e){
-		browser.selectItem(e.target);
-	});
+  // hook up item insertion
+  $('body').on('click', '#items li img', function(e){
+    browser.selectItem(e.target);
+  });
 
-	// fluid pagination
-	$(window).scroll(function(){
-		browser.loadNextPage();
-	});
+  // fluid pagination
+  $(window).scroll(function(){
+    browser.loadNextPage();
+  });
 
   // search bar, triggered after idling for 1 second
   var richSearchTimeout;

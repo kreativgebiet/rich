@@ -2,11 +2,11 @@
 
 var rich = rich || {};
 rich.AssetPicker = function(){
-	
+
 };
 
 rich.AssetPicker.prototype = {
-	
+
 	showFinder: function(dom_id, options){
 		// open a popup
 		var params = {};
@@ -35,6 +35,10 @@ rich.AssetPicker.prototype = {
 		}
 
     if(type=='image') {
+		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
+    } else if(type=='file') {
+		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
+    } else if(type=='video') {
 		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
     }
   }
