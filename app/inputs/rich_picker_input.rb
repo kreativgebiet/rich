@@ -12,13 +12,15 @@ module RichPickerHelpers
     def preview_image_path
       method_value = object.send(attr_method)
 
-      # return placeholder image if this is a non-image picker OR if there is no value set
-      return editor_options[:placeholder_image] if editor_options[:type].to_s == 'file'
+      # return placeholder image if no value set (video and files are given placeholder/thumbs)
       return editor_options[:placeholder_image] unless method_value.present?
 
       if method_value.is_a? Integer
         file = Rich::RichFile.find(method_value)
-        file.rich_file.url(:rich_thumb) #we ask paperclip directly for the file, so asset paths should not be an issue
+        # we ask paperclip directly for the file, so asset paths should not be an issue
+        file.rich_file.url(:rich_thumb)  ||
+        file.rich_file.url(:video_thumb) ||
+        file.rich_file.url(:file_thumb)
       else # should be :string
         method_value
       end

@@ -36,6 +36,9 @@ module Rich
   mattr_accessor :allow_document_uploads
   @@allow_document_uploads = false
 
+  mattr_accessor :allow_video_uploads
+  @@allow_video_uploads = false
+
   mattr_accessor :allow_embeds
   @@allow_embeds = false
 
@@ -44,6 +47,9 @@ module Rich
 
   mattr_accessor :allowed_document_types
   @@allowed_document_types = :all
+
+  mattr_accessor :allowed_video_types
+  @@allowed_video_types = :all
 
   mattr_accessor :file_path
   @@file_path
@@ -125,6 +131,11 @@ module Rich
       editor_options[:toolbar].map{|a| a.delete 'richFile'; a}
     end
 
+    # remove the filebrowser if allow_document_uploads is false (the default)
+    unless editor_options[:allow_video_uploads]
+      editor_options[:toolbar].map{|a| a.delete 'richFile'; a}
+    end
+
     unless editor_options[:allow_embeds]
       editor_options[:toolbar].map{|a| a.delete 'MediaEmbed'; a}
     end
@@ -170,6 +181,10 @@ module Rich
 
     if simplified_type == "image"
       if allowed_image_types.include?(mime)
+        true
+      end
+    elsif simplified_type == "video"
+      if allowed_video_types == :all || allowed_video_types.include?(mime)
         true
       end
     elsif simplified_type == "file"
