@@ -23,6 +23,8 @@ module Rich
 
     after_save :clear_uri_cache
 
+    delegate :to_s, to: :filename
+
     def rich_file
       self.rich_file_file_name
     end
