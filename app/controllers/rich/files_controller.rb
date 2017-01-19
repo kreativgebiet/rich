@@ -58,7 +58,6 @@ module Rich
     end
 
     def create
-      # require'pry-remote';binding.remote_pry
       # use the file from Rack Raw Upload
       file_params = params.fetch(:rich_file, {}).fetch(:rich_file, nil) || (params[:qqfile].is_a?(ActionDispatch::Http::UploadedFile) ? params[:qqfile] : params[:file] )
 
