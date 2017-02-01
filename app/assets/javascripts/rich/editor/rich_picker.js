@@ -14,7 +14,8 @@ rich.AssetPicker.prototype = {
 		params.default_style = options.default_style;
 		params.allowed_styles = options.allowed_styles;
 		params.insert_many = options.insert_many;
-		params.type = options.type || "image";
+    params.type = options.type || "all";
+		// params.type = options.type || "image";
 		params.viewMode = options.view_mode || "grid";
 		params.scoped = options.scoped || false;
 		if(params.scoped == true) {
@@ -39,6 +40,8 @@ rich.AssetPicker.prototype = {
     } else if(type=='file') {
 		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
     } else if(type=='video') {
+		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
+    } else if(type=='all') {
 		  $(dom_id).siblings('img.rich-image-preview').first().attr({src: asset});
     }
   }
