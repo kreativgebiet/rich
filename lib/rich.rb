@@ -83,7 +83,7 @@ module Rich
     :toolbar => [%w(Styles Format Font FontSize), %w(Bold Italic Underline Strike Subscript Superscript),
                  %w(JustifyLeft JustifyCenter JustifyRight JustifyBlock), %w(TextColor BGColor),
                  %w(RemoveFormat), %w(NumberedList BulletedList Blockquote), %w(Link Unlink),
-                 %w(richImage richFile MediaEmbed), %w(Source ShowBlocks)],
+                 %w(richImage richFile richVideo MediaEmbed), %w(Source ShowBlocks)],
     :language => I18n.default_locale,
     :richBrowserUrl => '/rich/files/',
     :uiColor => '#f4f4f4'
@@ -108,6 +108,7 @@ module Rich
       :default_style => self.default_style,
       :insert_many => self.insert_many,
       :allow_document_uploads => self.allow_document_uploads,
+      :allow_video_uploads => self.allow_video_uploads,
       :allow_embeds => self.allow_embeds,
       :placeholder_image => self.placeholder_image,
       :preview_size => self.preview_size,
@@ -131,9 +132,9 @@ module Rich
       editor_options[:toolbar].map{|a| a.delete 'richFile'; a}
     end
 
-    # remove the filebrowser if allow_document_uploads is false (the default)
+    # remove the filebrowser if allow_video_uploads is false (the default)
     unless editor_options[:allow_video_uploads]
-      editor_options[:toolbar].map{|a| a.delete 'richFile'; a}
+      editor_options[:toolbar].map{|a| a.delete 'richVideo'; a}
     end
 
     unless editor_options[:allow_embeds]
