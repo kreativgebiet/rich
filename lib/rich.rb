@@ -194,7 +194,7 @@ module Rich
 
     if self.backend == :paperclip
       require 'rich/backends/paperclip'
-    elsif self.backend == :carrierwave
+    elsif self.backend == :carrierwave || self.backend == :carrierwave_rmagick
       require 'rich/backends/carrierwave'
     end
   end

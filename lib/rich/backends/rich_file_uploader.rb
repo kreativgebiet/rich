@@ -3,8 +3,11 @@
 class RichFileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  if Rich.backend == :carrierwave
+    include CarrierWave::MiniMagick
+  elsif Rich.backend == :carrierwave_rmagick
+    include CarrierWave::RMagick
+  end
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
