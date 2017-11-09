@@ -74,7 +74,7 @@ module Rich
     :height => 400,
     :stylesSet  =>  [],
     :extraPlugins => 'stylesheetparser,richfile,mediaembed,showblocks',
-    :removePlugins => 'scayt,image,forms',
+    :removePlugins => 'scayt,forms',
     :contentsCss => :default,
     :removeDialogTabs => 'link:advanced;link:target',
     :startupOutlineBlocks => true,
