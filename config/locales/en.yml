@@ -14,7 +14,7 @@ en:
   sort_alphabetically: "Sort alphabetically"
   sort_alphabetically_tip: "Sort alphabetically"
   delete: "Delete this file"
-  delete_confirm: "Are you sure you want to delete this file?"
+  delete_confirm: "Are you sure you want to delete this file? Any record still referencing this file may experience errors."
   picker_browse: "Select or upload"
   search_bar_placeholder: "Search by file name"
   filename_update_hover_hint: "Click to modify the file name"

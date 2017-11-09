@@ -22,8 +22,16 @@ module Rich
       }
 
     after_save :clear_uri_cache
+    after_destroy :unlink_from_associations
 
     delegate :to_s, to: :filename
+
+    def self.associated_models
+      Rails.application.eager_load!
+      ApplicationRecord.subclasses.select do |constant|
+        constant.reflect_on_all_associations(:belongs_to).any? { |ref| ref.options[:class_name] == 'Rich::RichFile' }
+      end
+    end
 
     def rich_file
       self.rich_file_file_name
@@ -65,6 +73,16 @@ module Rich
 
     private
 
+    def check_content_type
+      unless Rich.validate_mime_type(self.rich_file_content_type, self.simplified_type)
+        self.errors[:base] << "'#{self.rich_file_file_name}' is not the right type."
+      end
+    end
+
+    def clear_uri_cache
+      write_attribute(:uri_cache, nil)
+    end
+
     def rename_files!(new_filename)
       rename_file!(rich_file, new_filename)
       rich_file.versions.keys.each do |version|
@@ -77,9 +95,13 @@ module Rich
       FileUtils.move path, File.join(File.dirname(path), new_filename)
     end
 
-    def check_content_type
-      unless Rich.validate_mime_type(self.rich_file_content_type, self.simplified_type)
-        self.errors[:base] << "'#{self.rich_file_file_name}' is not the right type."
+    def unlink_from_associations
+      if (matching_reflections = self.class.associated_models).any?
+        matching_reflections.map do |constant|
+          constant.reflect_on_all_associations(:belongs_to).select { |ref| ref.options[:class_name] == 'Rich::RichFile' }.map do |ref|
+            constant.where(ref.options[:foreign_key] => self.id).update_all(ref.options[:foreign_key] => nil)
+          end
+        end
       end
     end
 
@@ -89,10 +111,6 @@ module Rich
         self.rich_file_file_size = rich_file.file.size
         self.rich_file_updated_at = Time.now
       end
-    end
-
-    def clear_uri_cache
-      write_attribute(:uri_cache, nil)
     end
 
     module ClassMethods
