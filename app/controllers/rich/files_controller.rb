@@ -23,7 +23,7 @@ module Rich
       end
 
       if params[:search].present?
-        @items = @items.where('rich_file_file_name LIKE ?', "%#{params[:search]}%")
+        @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%")
       end
 
       if params[:alpha].present?
