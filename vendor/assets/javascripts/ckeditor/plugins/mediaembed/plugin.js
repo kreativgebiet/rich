@@ -43,6 +43,7 @@
                        ],
                   onOk: function() {
                         var div = instance.document.createElement('div');
+                        div.setAttribute('class', 'iframe');
                         div.setHtml(this.getContentElement('iframe', 'embedArea').getValue());
                         instance.insertElement(div);
                   }
