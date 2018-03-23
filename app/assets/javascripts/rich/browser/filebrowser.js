@@ -281,7 +281,8 @@ $(function(){
     browser.loadNextPage();
   });
 
-  $(window).one('resize', function() {
+  // pagination for large windows with no scroll enabled
+  $(window).on('resize', function() {
     loadInterval = setInterval(function() {
       if ($('html').height() < $(window).height()) {
         browser.loadNextPage();
