@@ -282,9 +282,11 @@ $(function(){
   });
 
   $(window).one('resize', function() {
-    setInterval(function() {
+    loadInterval = setInterval(function() {
       if ($('html').height() < $(window).height()) {
         browser.loadNextPage();
+      } else {
+        clearInterval(loadInterval);
       }
     }, 1000);
   });
