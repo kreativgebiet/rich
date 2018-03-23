@@ -176,7 +176,7 @@ rich.Browser.prototype = {
     }
 
 
-    if(this.nearBottomOfWindow() || $(window).height() > this.height) {
+    if(this.nearBottomOfWindow() || $(window).height() > $(document).height) {
       this.setLoading(true);
       this._options.currentPage++;
 
