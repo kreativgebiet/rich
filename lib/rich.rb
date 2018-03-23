@@ -91,7 +91,7 @@ module Rich
   # End configuration defaults
 
   mattr_accessor :paginates_per
-  @@paginates_per = 34
+  @@paginates_per = 50
 
   def self.options(overrides={}, scope_type=nil, scope_id=nil)
     # merge in editor settings configured elsewhere
