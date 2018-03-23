@@ -176,7 +176,7 @@ rich.Browser.prototype = {
     }
 
 
-    if(this.nearBottomOfWindow() || $(window).height() > $(document).height) {
+    if(this.nearBottomOfWindow() || $(window).height() > this.height) {
       this.setLoading(true);
       this._options.currentPage++;
 
@@ -234,6 +234,8 @@ rich.Browser.prototype = {
 };
 
 
+
+
 var browser;
 
 $(function(){
@@ -277,6 +279,14 @@ $(function(){
   // fluid pagination
   $(window).scroll(function(){
     browser.loadNextPage();
+  });
+
+  $(window).one('resize', function() {
+    setInterval(function() {
+      if ($('html').height() < $(window).height()) {
+        browser.loadNextPage();
+      }
+    }, 1000);
   });
 
   // search bar, triggered after idling for 1 second
