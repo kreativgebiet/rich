@@ -1,15 +1,20 @@
-<li class="clickable">
-  <img  id="file<%= file.id %>"
-        src="<%= thumb_for_file(file) %>"
-        data-uris="<%= file.uri_cache %>"
-        data-rich-asset-id="<%= file.id %>"
-				data-rich-asset-type="<%= file.simplified_type %>"
-				data-rich-asset-name="<%= file.filename %>"
-  />
-  <p data-update-url="<%= file_path(file) %>"
-     data-input-placeholder="<%= t('filename_update_input_placeholder') %>"
-     title="<%= t('filename_update_hover_hint') %>">
-    <%= file.filename %>
-  </p>
-  <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
+<li >
+  <div > <!--- style="border-style: solid; height: 200px; width: 200px; margin: 100px; " --->
+    <img class="clickable" id="file<%= file.id %>"
+          src="<%= thumb_for_file(file) %>"
+          data-uris="<%= file.uri_cache %>"
+          data-rich-asset-id="<%= file.id %>"
+          data-rich-asset-type="<%= file.simplified_type %>"
+          data-rich-asset-name="<%= file.filename %>"
+    />
+    <p data-update-url="<%= file_path(file) %>"
+      data-input-placeholder="<%= t('filename_update_input_placeholder') %>"
+      title="<%= t('filename_update_hover_hint') %>">
+      <b><%= file.filename %></b>
+    </p>
+
+    <b>Filename: <input type="text" name="file[filename]" value="<%= file.filename %>" > ( <%= file.image_dimension_browser %> ) </b>
+    <b>Tags: <input type="text" name="file[tags]" value="<%= file.tags %>" > </b>
+    <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
+  </div>
 </li>
