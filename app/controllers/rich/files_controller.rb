@@ -50,7 +50,7 @@ module Rich
       if(params[:id])
         # list all files
         @file = @rich_file
-        render :layout => false
+        render :layout => true
       else
         render :text => "File not found"
       end

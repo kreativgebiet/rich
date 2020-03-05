@@ -10,7 +10,7 @@ rich.Browser = function(){
     currentPage: 1,
     loading: false,
     reachedBottom: false,
-    viewModeGrid: true,
+    viewModeGrid: false, // DEFAULT TO LIST
     sortAlphabetically: false
   };
 
@@ -25,7 +25,7 @@ rich.Browser.prototype = {
     // initialize image insertion mode
     this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
     this.toggleInsertionMode(false);
-      this.toggleViewMode(false);
+    this.toggleViewMode(true); //(true); -> List ||  (false); -> Grid
   },
 
   initStyles: function(opt, def) {

@@ -13,5 +13,9 @@ module Rich
       end
     end
 
+    def image_tags(file)
+      Rails.logger.info "IMAGE TAGS"
+    end
+
   end
 end

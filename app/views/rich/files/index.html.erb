@@ -2,7 +2,7 @@
 
   <div id="rich-search">
     <input type="text" placeholder="<%= t('search_bar_placeholder') %>"/>
-    <input type="text" placeholder="Search by tags"/>
+    <input type="text" placeholder="Search by tags (separate by comma)"/>
   </div>
 
 	<div id="loading" style="display:none;"></div>
@@ -12,10 +12,10 @@
     <a href="#" id="sort-alphabetically" title="<%= t(:sort_alphabetically_tip) %>"><%= t(:sort_alphabetically) %></a>
   </div>
 
-  <div id="view-toggle">
+  <!--div id="view-toggle">
     <a href="#" id="view-grid" title="<%= t(:view_grid_tip) %>"><%= t(:view_grid) %></a>
     <a href="#" id="view-list" title="<%= t(:view_list_tip) %>"><%= t(:view_list) %></a>
-  </div>
+  </div-->
 
   <div id="insert-toggle">
     <a href="#" id="insert-many" title="<%= t(:insert_many_tip) %>"><%= t(:insert_many) %></a>
@@ -34,7 +34,7 @@
 <% end %>
 </div>
 
-<ul id="items">
+<ul id="items" class="list">
 
   <li id="uploadBlock">
     <div id="upload" class="qq-upload-button placeholder">

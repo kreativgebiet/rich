@@ -1,3 +1,4 @@
+<% if file.filename != "image4.jpeg" && file.filename != "go.jpeg" && file.filename != "image4.jpeg" && file.filename != "circle.jpeg"  %>
 <li >
   <div > <!--- style="border-style: solid; height: 200px; width: 200px; margin: 100px; " --->
     <img class="clickable" id="file<%= file.id %>"
@@ -13,8 +14,11 @@
       <b><%= file.filename %></b>
     </p>
 
-    <b>Filename: <input type="text" name="file[filename]" value="<%= file.filename %>" > ( <%= file.image_dimension_browser %> ) </b>
-    <b>Tags: <input type="text" name="file[tags]" value="<%= file.tags %>" > </b>
+
+    <p><b><!-- Filename: <input type="text" name="file[filename]" value="<%= file.filename %>" > ---> ( <%= file.image_dimension_browser %> ) </b></b>
+    <p><b>Tags: <input type="text" name="file[tags]" value="<%= file.tags %>" > </b></p>
+
     <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
   </div>
 </li>
+<% end %>
