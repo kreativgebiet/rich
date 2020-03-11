@@ -1,7 +1,9 @@
 <header>
 
   <div id="rich-search">
-    <input type="text" placeholder="<%= t('search_bar_placeholder') %>"/>
+    <input type="text" placeholder="<%= t('search_bar_placeholder') %> (separate by comma)"/>
+  </div>
+  <div id="rich-search-tags">
     <input type="text" placeholder="Search by tags (separate by comma)"/>
   </div>
 
@@ -12,7 +14,8 @@
     <a href="#" id="sort-alphabetically" title="<%= t(:sort_alphabetically_tip) %>"><%= t(:sort_alphabetically) %></a>
   </div>
 
-  <!--div id="view-toggle">
+  <!-- ALLOW GRID -->
+  <!--div id="view-toggle"> 
     <a href="#" id="view-grid" title="<%= t(:view_grid_tip) %>"><%= t(:view_grid) %></a>
     <a href="#" id="view-list" title="<%= t(:view_list_tip) %>"><%= t(:view_list) %></a>
   </div-->
@@ -46,3 +49,54 @@
 	<%= render :partial => "file", :collection => @items, :as => :file %>
 
 </ul>
+
+<script>
+
+    function updateLabel(elem) {
+        var targetSibling;
+	      var sibling = elem.parentNode.firstChild;
+        while (sibling) {
+
+          if (sibling.nodeType === 1 && sibling !== elem && sibling.nodeName == "LABEL") {
+            targetSibling = sibling;
+            break;
+          }
+          sibling = sibling.nextSibling
+        }
+        if (targetSibling!=undefined) {
+          var targetValue = "";
+          // Find value
+	  sibling = elem.parentNode.firstChild;
+          while (sibling) {
+
+            if (sibling.nodeType === 1 && sibling !== elem && sibling.nodeName == "INPUT" && sibling.type == "text") {
+              targetValue = sibling.value;
+              break;
+            }
+            sibling = sibling.nextSibling
+          }
+
+          targetSibling.innerHTML = targetValue + "." + elem.name ;
+        }
+   }
+
+    $(document).ready( function() {
+      
+      var submitfilenames = document.getElementsByClassName("submitfilename");
+      console.log("submitfilenames: ", submitfilenames.length);
+
+      if ( submitfilenames.length > 0 ) {
+        var i;
+        for (i=0; i<submitfilenames.length; i++) {
+          var submitfilename = submitfilenames[i];
+          submitfilename.addEventListener('click', (event) => {
+            //console.log(event);
+            console.log(event.target);
+            var elem = event.target;
+            console.log(elem.parentNode);
+            updateLabel(elem);
+          })
+        }
+      }
+    });
+</script>

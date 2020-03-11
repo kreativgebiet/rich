@@ -10,8 +10,8 @@ rich.Browser = function(){
     currentPage: 1,
     loading: false,
     reachedBottom: false,
-    viewModeGrid: false, // DEFAULT TO LIST
-    sortAlphabetically: false
+    viewModeGrid: false, // false DEFAULT TO LIST, // true is GRID
+    sortAlphabetically: true //false
   };
 
 };
@@ -25,7 +25,7 @@ rich.Browser.prototype = {
     // initialize image insertion mode
     this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
     this.toggleInsertionMode(false);
-    this.toggleViewMode(true); //(true); -> List ||  (false); -> Grid
+    this.toggleViewMode(true); // (true); -> LIST // (false); -> GRID
   },
 
   initStyles: function(opt, def) {
@@ -141,25 +141,50 @@ rich.Browser.prototype = {
     },100);
   },
 
-  performSearch: function(query) {
+  // Search By Filename
+  performSearch: function(query, searchby) {
     this.showLoadingIconAndRefreshList();
     this._options.searchQuery = query;
 
     var self = this;
-    $.ajax({
-      url: this.urlWithParams(),
-      type: 'get',
-      dataType: 'script',
-      success: function(e) {
-        self.setLoading(false);
-      }
-    });
+
+    console.log(this.urlWithParams());
+
+    if (searchby == "filename") {
+      $.ajax({
+        url: this.urlWithParams(searchby),
+        type: 'get',
+        dataType: 'script',
+        success: function(e) {
+          self.setLoading(false);
+        }
+      });
+    } 
+
+    if (searchby == "imagetags") {
+      $.ajax({
+        url: this.urlWithParams(searchby),
+        type: 'get',
+        dataType: 'script',
+        success: function(e) {
+          self.setLoading(false);
+        }
+      });
+    } 
   },
 
-  urlWithParams: function() {
+  urlWithParams: function(searchby) {
     var url = window.location.href;
     if (this._options.sortAlphabetically) url += '&alpha=1';
-    if (this._options.searchQuery) url += '&search=' + this._options.searchQuery;
+
+    //filename    
+    if (searchby == "filename") {   
+      if (this._options.searchQuery) url += '&search=' + this._options.searchQuery;
+    }
+    //searchtags
+    if (searchby == "imagetags") {
+      if (this._options.searchQuery) url += '&searchtags=' + this._options.searchQuery;
+    }
     return url;
   },
 
@@ -214,6 +239,8 @@ rich.Browser.prototype = {
     form.submit(function(e) {
       e.preventDefault();
       self.setLoading(true);
+      var allListElements = $( "input" );
+      allListElements = $(this).find('input');
       var newFilename = $(this).find('input').val();
       $.ajax({
         url: p_tag.data('update-url'),
@@ -294,11 +321,20 @@ $(function(){
 
   // search bar, triggered after idling for 1 second
   var richSearchTimeout;
+
   $('#rich-search input').keyup(function() {
     clearTimeout(richSearchTimeout);
     var input = this;
     richSearchTimeout = setTimeout(function() {
-      browser.performSearch($(input).val());
+      browser.performSearch($(input).val(), "filename");
+    }, 1000);
+  });
+
+  $('#rich-search-tags input').keyup(function() {
+    clearTimeout(richSearchTimeout);
+    var input = this;
+    richSearchTimeout = setTimeout(function() {
+      browser.performSearch($(input).val(), "imagetags");
     }, 1000);
   });
 

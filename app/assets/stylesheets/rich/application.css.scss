@@ -91,11 +91,11 @@ header {
 	@include box-shadow(0, 0, 4px, rgba(0,0,0,0.5))
 }
 
-#rich-search {
+#rich-search, #rich-search-tags {
   float: left;
   margin: 10px;
   input {
-    width: 250px;
+    width: 240px;
     padding: 5px;
     border: 1px solid lightGray;
     border-radius: 3px;
@@ -299,13 +299,16 @@ header {
 #items:not(.list) {
 
   li#uploadBlock {
+  	height: 200px;
+	width: 100px;
     p {
       display: none;
     }
   }
 
   li:not(#uploadBlock) {
-
+  	height: 180px;
+	width: 300px;
     &:hover p {
       position: relative;
       margin-top: 2px;
@@ -319,54 +322,7 @@ header {
 
     p:hover {
       background: $hoverChangeName;
-    }
-
-    form {
-      input {
-        top: 2px;
-        left: -15px;
-        width: 120px;
-      }
-    }
-
-    .delete {
-      top: 120px;
-    }
-
-  }
-
-}
-
-// Condensed list view
-#items.list {
-
-  li {
-    width: auto;
-    height: 32px;
-    float: none;
-    margin-bottom: 16px;
-
-    img, .placeholder {
-      height: 32px;
-      width: 32px;
-      float: left;
-      line-height: 32px;
-      border: none;
-    }
-
-    .spinner {
-      margin: 0;
-    }
-
-    .progress .progress-bar {
-      background: $light;
-      height: 4px;
-      float: left;
-      @include rounded;
-      margin-top: 28px;
-    }
-
-
+		}
     p {
       color: $dark;
       font-size: 14px;
@@ -378,9 +334,99 @@ header {
       float: left;
       cursor: default;
       border-radius: 3px;
+		}
+	label {
+      color: $dark;
+      font-size: 14px;
+      width: auto;
+      height: 32px;
+      margin-left: 8px;
+      padding: 0 8px;
+      line-height: 32px;
+      float: left;
+      border-radius: 3px;
     }
-
     form {
+		color: $dark;
+		font-size: 14px;
+		width: auto;
+		height: 32px;
+		margin-left: 8px;
+		padding: 0 8px;
+		line-height: 32px;
+		float: left;
+		border-radius: 3px;	 
+      input {
+        top: 2px;
+        left: -15px;
+        width: 120px;
+      }
+    }
+    .delete {
+      top: 120px;
+    }
+  }
+}
+// Condensed list view
+#items.list {
+  li#uploadBlock {
+    height: 60px;
+	}
+  li {
+    width: auto;
+    height: 120px;
+    //float: none;
+    //margin-bottom: 16px;
+    img, .placeholder {
+      height: 80px; //32
+      width: 80px; //32
+      float: left;
+      line-height: 80px; //32
+      border: none;
+    }
+    .spinner {
+      margin: 0;
+    }
+    .progress .progress-bar {
+      background: $light;
+      height: 4px;
+      float: left;
+      @include rounded;
+      margin-top: 28px;
+    }
+    p {
+      color: $dark;
+      font-size: 14px;
+      width: auto;
+      height: 32px;
+      margin-left: 8px;
+      padding: 0 8px;
+      line-height: 32px;
+      float: left;
+      cursor: default;
+      border-radius: 3px;
+		}
+	label {
+      color: $dark;
+      font-size: 14px;
+      width: auto;
+      height: 32px;
+      margin-left: 8px;
+      padding: 0 8px;
+      line-height: 32px;
+      float: left;
+      border-radius: 3px;
+    }
+    form {
+		color: $dark;
+		font-size: 14px;
+		width: auto;
+		height: 32px;
+		margin-left: 8px;
+		padding: 0 8px;
+		line-height: 32px;
+		float: left;
+		border-radius: 3px;
       input {
         float: left;
         width: 210px;
@@ -390,7 +436,6 @@ header {
         padding: 3px 5px;
       }
     }
-
     .delete {
         position: relative;
         float: left;

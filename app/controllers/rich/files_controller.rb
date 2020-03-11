@@ -23,7 +23,38 @@ module Rich
       end
 
       if params[:search].present?
-        @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%")
+        # @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%") #original-search
+        searchString = params[:search]
+        searchList = Array.new
+        Rails.logger.info "SEARCH MANY"
+        if searchString.include? ","
+          searchList_in = searchString.split(",")
+          searchList_in.each_with_index do |s, idx|
+            s = s.strip
+            searchList.push("%#{s}%")
+          end
+          Rails.logger.info searchList
+          @items = @items.where('rich_file_file_name ILIKE ANY ( array[?] )', searchList)
+        else
+          @items = @items.where('rich_file_file_name ILIKE ?', "%#{ searchString }%")
+        end
+      end
+
+      if params[:searchtags].present?
+        searchString = params[:searchtags]
+        searchList = Array.new
+        Rails.logger.info "SEARCH MANY TAGS"
+        if searchString.include? ","
+          searchList_in = searchString.split(",")
+          searchList_in.each_with_index do |s, idx|
+            s = s.strip
+            searchList.push("%#{s}%")
+          end
+          Rails.logger.info searchList
+          @items = @items.where('tags ILIKE ANY ( array[?] )', searchList)
+        else
+          @items = @items.where('tags ILIKE ?', "%#{ searchString }%")
+        end
       end
 
       if params[:alpha].present?
@@ -99,10 +130,22 @@ module Rich
     end
 
     def update
-      new_filename_without_extension = params[:filename].parameterize
+      new_filename_without_extension = ""
+      if params[:filename] != nil
+        new_filename_without_extension = params[:filename].parameterize
+      end     
+      if params[:inputfilename] != nil
+        new_filename_without_extension = params[:inputfilename]
+      end
+      tags = params[:image_tags]
       if new_filename_without_extension.present?
         new_filename = @rich_file.rename!(new_filename_without_extension)
         render :json => { :success => true, :filename => new_filename, :uris => @rich_file.uri_cache }
+      elsif tags.present?
+        @rich_file.tags = tags
+        @rich_file.image_tags = tags
+        @rich_file.save
+        render :json => { :success => true, :image_tags => tags, :uris => @rich_file.uri_cache }
       else
         render :nothing => true, :status => 500
       end

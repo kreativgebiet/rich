@@ -1,6 +1,8 @@
 require 'cgi'
 require 'mime/types'
 require 'kaminari'
+require 'mini_magick'
+require 'paperclip'
 
 module Rich
   class RichFile < ActiveRecord::Base
@@ -33,12 +35,11 @@ module Rich
       end
     end
 
-    def tags
-      "Tags Only"
-      # self.tags
+    def image_tags
+      self.tags
     end
 
-    def tags=(val)
+    def image_tags=(val)
       self.tags = val
     end
 
@@ -70,6 +71,10 @@ module Rich
         write_attribute(:uri_cache, uri_cache_attribute)
       end
       uri_cache_attribute
+    end
+
+    def fileExt
+      rich_file.file.extension
     end
 
     def nameNoExt
