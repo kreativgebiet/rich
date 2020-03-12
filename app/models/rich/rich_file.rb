@@ -1,8 +1,6 @@
 require 'cgi'
 require 'mime/types'
 require 'kaminari'
-require 'mini_magick'
-require 'paperclip'
 
 module Rich
   class RichFile < ActiveRecord::Base
