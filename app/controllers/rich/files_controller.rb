@@ -22,38 +22,57 @@ module Rich
         @items = @items.where("owner_type = ? AND owner_id = ?", params[:scope_type], params[:scope_id])
       end
 
+      searchRoute = false
       if params[:search].present?
         # @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%") #original-search
         searchString = params[:search]
+        searchString = searchString.strip
         searchList = Array.new
         Rails.logger.info "SEARCH MANY"
         if searchString.include? ","
           searchList_in = searchString.split(",")
           searchList_in.each_with_index do |s, idx|
             s = s.strip
-            searchList.push("%#{s}%")
+            if !s.empty? 
+              searchList.push("%#{s}%")
+            end
           end
           Rails.logger.info searchList
-          @items = @items.where('rich_file_file_name ILIKE ANY ( array[?] )', searchList)
+          if searchList.length > 0
+            @items = @items.where('rich_file_file_name ILIKE ANY ( array[?] )', searchList)
+            searchRoute = true
+          end
         else
-          @items = @items.where('rich_file_file_name ILIKE ?', "%#{ searchString }%")
+          if !searchString.empty? 
+            @items = @items.where('rich_file_file_name ILIKE ?', "%#{ searchString }%")
+            searchRoute = true
+          end
         end
       end
 
       if params[:searchtags].present?
         searchString = params[:searchtags]
+        searchString = searchString.strip
         searchList = Array.new
         Rails.logger.info "SEARCH MANY TAGS"
         if searchString.include? ","
           searchList_in = searchString.split(",")
           searchList_in.each_with_index do |s, idx|
             s = s.strip
-            searchList.push("%#{s}%")
+            if !s.empty? 
+              searchList.push("%#{s}%")
+            end
           end
           Rails.logger.info searchList
-          @items = @items.where('tags ILIKE ANY ( array[?] )', searchList)
+          if searchList.length > 0
+            @items = @items.where('tags ILIKE ANY ( array[?] )', searchList)
+            searchRoute = true
+          end
         else
-          @items = @items.where('tags ILIKE ?', "%#{ searchString }%")
+          if !searchString.empty? 
+            @items = @items.where('tags ILIKE ?', "%#{ searchString }%")
+            searchRoute = true
+          end
         end
       end
 
@@ -63,7 +82,9 @@ module Rich
         @items = @items.order("created_at DESC")
       end
 
-      @items = @items.page params[:page]
+      if !searchRoute # paginate if ALL files
+        @items = @items.page params[:page]
+      end
 
       # stub for new file
       @rich_asset = RichFile.new

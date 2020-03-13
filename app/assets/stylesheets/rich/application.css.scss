@@ -378,8 +378,8 @@ header {
     //float: none;
     //margin-bottom: 16px;
     img, .placeholder {
-      height: 80px; //32
-      width: 80px; //32
+      // height: 32px; // WILL DISPLAY TRUE THUMBNAIL
+      // width: 32px; // WILL DISPLAY TRUE THUMBNAIL
       float: left;
       line-height: 80px; //32
       border: none;

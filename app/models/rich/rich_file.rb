@@ -77,20 +77,14 @@ module Rich
 
     def nameNoExt
       extension = '.' + rich_file.file.extension
-      Rails.logger.info "EXTENSION"
-      Rails.logger.info extension
-      Rails.logger.info rich_file.file.filename
       withoutPath = rich_file.file.filename.gsub( extension, "" )
-      Rails.logger.info withoutPath
       withoutPath
     end
 
     def sizes_available
-      Rails.logger.info "sizes_available"
       image_dimension
       sizeslist = []
       rich_file.versions.keys.each_with_index do |version, idx|
-        Rails.logger.info "sizes_available version: #{version}"
         vvs = version.to_s
         if vvs.include? "x"
           sizeslist.push( vvs.gsub("image_", "") )
@@ -100,20 +94,14 @@ module Rich
     end
 
     def image_dimension
-      Rails.logger.info "image_dimension"
       # Rails.logger.info rich_file.file
       dsize = Paperclip::Geometry.from_file(rich_file.file)
-      Rails.logger.info dsize
       dsize
     end
 
     def image_dimension_browser
-      Rails.logger.info "DIM:"
-      Rails.logger.info rich_file.url
       begin
         dimensions = rich_file.store_dimensions
-        Rails.logger.info dimensions
-        Rails.logger.info "text: #{ dimensions.to_s }"
         img_dims = dimensions.to_s
         img_dims = img_dims.gsub("[", "")
         img_dims = img_dims.gsub("]", "")
