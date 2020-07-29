@@ -1,15 +1,35 @@
-<li class="clickable">
-  <img  id="file<%= file.id %>"
-        src="<%= thumb_for_file(file) %>"
-        data-uris="<%= file.uri_cache %>"
-        data-rich-asset-id="<%= file.id %>"
-				data-rich-asset-type="<%= file.simplified_type %>"
-				data-rich-asset-name="<%= file.filename %>"
-  />
-  <p data-update-url="<%= file_path(file) %>"
-     data-input-placeholder="<%= t('filename_update_input_placeholder') %>"
-     title="<%= t('filename_update_hover_hint') %>">
-    <%= file.filename %>
-  </p>
-  <%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %>
+<li >
+  <div>
+     <div>
+      <img class="clickable" id="file<%= file.id %>"
+            src="<%= thumb_for_file(file) %>"
+            data-uris="<%= file.uri_cache %>"
+            data-rich-asset-id="<%= file.id %>"
+            data-rich-asset-type="<%= file.simplified_type %>"
+            data-rich-asset-name="<%= file.filename %>"
+      />
+      <label> ( <%= file.image_dimension_browser %> ) </label>
+      </div>
+    <!--%= link_to "delete", "/rich/files/"+file.id.to_s, :method => :delete, :remote => true, :data => { :confirm => t(:delete_confirm) }, :class => "delete", :title => t(:delete) %-->
+
+      <div>
+      <!--p data-update-url="<%= file_path(file) %>"
+        data-input-placeholder="<%= t('filename_update_input_placeholder') %>"
+        title="<%= t('filename_update_hover_hint') %>" id="inputfilename">
+        <b><%= file.filename %></b>
+      </p-->
+
+      <form accept-charset="UTF-8" action="/rich/files/<%= file.id.to_s %>" data-remote="true" method="put">
+        <label name="<%= file.nameNoExt %>"><%= file.filename %></label>
+        <input type="text" name="inputfilename" id="inputfilename" value="<%= file.nameNoExt %>" >    
+        <input type="submit" value="Rename" name="<%= file.fileExt %>" class="submitfilename">
+      </form>
+      <form accept-charset="UTF-8" action="/rich/files/<%= file.id.to_s %>" data-remote="true" method="put">
+        <label> TAGS: </label>
+        <input type="text" name="image_tags" value="<%= file.tags %>" >    
+        <input type="submit" value="Add/ Update">
+      </form>
+      </div>
+
+  </div>
 </li>

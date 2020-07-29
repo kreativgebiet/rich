@@ -10,8 +10,8 @@ rich.Browser = function(){
     currentPage: 1,
     loading: false,
     reachedBottom: false,
-    viewModeGrid: true,
-    sortAlphabetically: false
+    viewModeGrid: false, // false DEFAULT TO LIST, // true is GRID
+    sortAlphabetically: true //false
   };
 
 };
@@ -25,7 +25,7 @@ rich.Browser.prototype = {
     // initialize image insertion mode
     this._options.insertionModeMany = ($.QueryString["insert_many"]=="true")?true:false;
     this.toggleInsertionMode(false);
-      this.toggleViewMode(false);
+    this.toggleViewMode(true); // (true); -> LIST // (false); -> GRID
   },
 
   initStyles: function(opt, def) {
@@ -141,25 +141,46 @@ rich.Browser.prototype = {
     },100);
   },
 
-  performSearch: function(query) {
+  // Search By Filename
+  performSearch: function(query, querytags, searchby) {
     this.showLoadingIconAndRefreshList();
-    this._options.searchQuery = query;
+    //this._options.searchQuery = query;
 
     var self = this;
-    $.ajax({
-      url: this.urlWithParams(),
-      type: 'get',
-      dataType: 'script',
-      success: function(e) {
-        self.setLoading(false);
-      }
-    });
+
+
+    if (searchby == "filename") {
+      this._options.searchQuery = query;
+      $.ajax({
+        url: this.urlWithParams(query, querytags),
+        type: 'get',
+        dataType: 'script',
+        success: function(e) {
+          self.setLoading(false);
+        }
+      });
+    } 
+
+    if (searchby == "imagetags") {
+      this._options.searchQuery = querytags;
+      $.ajax({
+        url: this.urlWithParams(query, querytags),
+        type: 'get',
+        dataType: 'script',
+        success: function(e) {
+          self.setLoading(false);
+        }
+      });
+    }
   },
 
-  urlWithParams: function() {
+  urlWithParams: function(query, querytags) {
     var url = window.location.href;
     if (this._options.sortAlphabetically) url += '&alpha=1';
-    if (this._options.searchQuery) url += '&search=' + this._options.searchQuery;
+
+    if (query) url += '&search=' + query;
+    if (querytags) url += '&searchtags=' + querytags;
+
     return url;
   },
 
@@ -171,6 +192,13 @@ rich.Browser.prototype = {
   },
 
   loadNextPage: function() {
+    var searchTags = $('#rich-search-tags input').val();
+    var search = $('#rich-search input').val();
+
+    if ( (searchTags!=undefined && searchTags.length>0) || (search!=undefined && search.length>0) ) {
+      return; // do not load when coming from search view
+    }
+
     if (this._options.loading || this._options.reachedBottom) {
       return;
     }
@@ -214,6 +242,8 @@ rich.Browser.prototype = {
     form.submit(function(e) {
       e.preventDefault();
       self.setLoading(true);
+      var allListElements = $( "input" );
+      allListElements = $(this).find('input');
       var newFilename = $(this).find('input').val();
       $.ajax({
         url: p_tag.data('update-url'),
@@ -294,11 +324,26 @@ $(function(){
 
   // search bar, triggered after idling for 1 second
   var richSearchTimeout;
+
   $('#rich-search input').keyup(function() {
     clearTimeout(richSearchTimeout);
     var input = this;
     richSearchTimeout = setTimeout(function() {
-      browser.performSearch($(input).val());
+      var searchFile = $(input).val();
+      var searchTags = $('#rich-search-tags input').val();
+      searchTags = (searchTags != undefined) ? searchTags : ""
+      browser.performSearch(searchFile, searchTags, "filename");
+    }, 1000);
+  });
+
+  $('#rich-search-tags input').keyup(function() {
+    clearTimeout(richSearchTimeout);
+    var input = this;
+    richSearchTimeout = setTimeout(function() {
+      var searchFile = $('#rich-search input').val();
+      searchFile = (searchFile != undefined) ? searchFile : ""
+      var searchTags = $(input).val();
+      browser.performSearch(searchFile, searchTags, "imagetags");
     }, 1000);
   });
 

@@ -22,8 +22,58 @@ module Rich
         @items = @items.where("owner_type = ? AND owner_id = ?", params[:scope_type], params[:scope_id])
       end
 
+      searchRoute = false
       if params[:search].present?
-        @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%")
+        # @items = @items.where('rich_file_file_name ILIKE ?', "%#{ params[:search] }%") #original-search
+        searchString = params[:search]
+        searchString = searchString.strip
+        searchList = Array.new
+        Rails.logger.info "SEARCH MANY"
+        if searchString.include? ","
+          searchList_in = searchString.split(",")
+          searchList_in.each_with_index do |s, idx|
+            s = s.strip
+            if !s.empty? 
+              searchList.push("%#{s}%")
+            end
+          end
+          Rails.logger.info searchList
+          if searchList.length > 0
+            @items = @items.where('rich_file_file_name ILIKE ANY ( array[?] )', searchList)
+            searchRoute = true
+          end
+        else
+          if !searchString.empty? 
+            @items = @items.where('rich_file_file_name ILIKE ?', "%#{ searchString }%")
+            searchRoute = true
+          end
+        end
+      end
+
+      if params[:searchtags].present?
+        searchString = params[:searchtags]
+        searchString = searchString.strip
+        searchList = Array.new
+        Rails.logger.info "SEARCH MANY TAGS"
+        if searchString.include? ","
+          searchList_in = searchString.split(",")
+          searchList_in.each_with_index do |s, idx|
+            s = s.strip
+            if !s.empty? 
+              searchList.push("%#{s}%")
+            end
+          end
+          Rails.logger.info searchList
+          if searchList.length > 0
+            @items = @items.where('tags ILIKE ANY ( array[?] )', searchList)
+            searchRoute = true
+          end
+        else
+          if !searchString.empty? 
+            @items = @items.where('tags ILIKE ?', "%#{ searchString }%")
+            searchRoute = true
+          end
+        end
       end
 
       if params[:alpha].present?
@@ -32,7 +82,9 @@ module Rich
         @items = @items.order("created_at DESC")
       end
 
-      @items = @items.page params[:page]
+      if !searchRoute # paginate if ALL files
+        @items = @items.page params[:page]
+      end
 
       # stub for new file
       @rich_asset = RichFile.new
@@ -50,7 +102,7 @@ module Rich
       if(params[:id])
         # list all files
         @file = @rich_file
-        render :layout => false
+        render :layout => true
       else
         render :text => "File not found"
       end
@@ -99,10 +151,22 @@ module Rich
     end
 
     def update
-      new_filename_without_extension = params[:filename].parameterize
+      new_filename_without_extension = ""
+      if params[:filename] != nil
+        new_filename_without_extension = params[:filename].parameterize
+      end     
+      if params[:inputfilename] != nil
+        new_filename_without_extension = params[:inputfilename]
+      end
+      tags = params[:image_tags]
       if new_filename_without_extension.present?
         new_filename = @rich_file.rename!(new_filename_without_extension)
         render :json => { :success => true, :filename => new_filename, :uris => @rich_file.uri_cache }
+      elsif tags.present?
+        @rich_file.tags = tags
+        @rich_file.image_tags = tags
+        @rich_file.save
+        render :json => { :success => true, :image_tags => tags, :uris => @rich_file.uri_cache }
       else
         render :nothing => true, :status => 500
       end

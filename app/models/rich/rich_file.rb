@@ -33,6 +33,14 @@ module Rich
       end
     end
 
+    def image_tags
+      self.tags
+    end
+
+    def image_tags=(val)
+      self.tags = val
+    end
+
     def rich_file
       self.rich_file_file_name
     end
@@ -63,6 +71,47 @@ module Rich
       uri_cache_attribute
     end
 
+    def fileExt
+      rich_file.file.extension
+    end
+
+    def nameNoExt
+      extension = '.' + rich_file.file.extension
+      withoutPath = rich_file.file.filename.gsub( extension, "" )
+      withoutPath
+    end
+
+    def sizes_available
+      image_dimension
+      sizeslist = []
+      rich_file.versions.keys.each_with_index do |version, idx|
+        vvs = version.to_s
+        if vvs.include? "x"
+          sizeslist.push( vvs.gsub("image_", "") )
+        end
+      end
+      sizeslist
+    end
+
+    def image_dimension
+      # Rails.logger.info rich_file.file
+      dsize = Paperclip::Geometry.from_file(rich_file.file)
+      dsize
+    end
+
+    def image_dimension_browser
+      begin
+        dimensions = rich_file.store_dimensions
+        img_dims = dimensions.to_s
+        img_dims = img_dims.gsub("[", "")
+        img_dims = img_dims.gsub("]", "")
+        img_dims = img_dims.gsub(", ", "x")
+      rescue
+        img_dims = ""
+      end
+      img_dims
+    end
+
     def rename!(new_filename_without_extension)
       new_filename = new_filename_without_extension + '.' + rich_file.file.extension
       rename_files!(new_filename)
@@ -91,8 +140,21 @@ module Rich
     end
 
     def rename_file!(version, new_filename)
-      path = version.path
-      FileUtils.move path, File.join(File.dirname(path), new_filename)
+      Rails.logger.info "rename_file!"
+      Rails.logger.info "version: #{version}"
+      Rails.logger.info "new_filename: #{new_filename}"
+      if !version.nil?
+        path = version.path
+        Rails.logger.info "path: #{path}"
+        if !path.nil? && !path.empty?
+          Rails.logger.info "DO rename_file!"
+          Rails.logger.info path
+          Rails.logger.info File.dirname(path)
+          Rails.logger.info new_filename
+          # FileUtils.move path, File.join(File.dirname(path), new_filename)
+          File.rename path, File.join(File.dirname(path), new_filename)
+        end 
+      end
     end
 
     def unlink_from_associations
