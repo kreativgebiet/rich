@@ -54,6 +54,9 @@ module Rich
   mattr_accessor :file_path
   @@file_path
 
+  mattr_accessor :image_tags
+  @@image_tags
+
   mattr_accessor :backend
   @@backend = :paperclip
 
